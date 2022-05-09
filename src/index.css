@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Quicksand&display=swap');
+
+/* variables */
+:root {
+  --textlight: #fafafa;
+  --textgrey: #888888;
+  --accent: #ffda91;
+  --accentsoft: #394e5d;
+  --accentdark: #102531;
+  --background: #29272a;
+  --alphaoverlay: #101a2260;
+}
+
+/* base styles */
+body {
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  font-size: 14pt;
+  background: var(--background);
+  color: var(--textlight);
+}
+ul,
+li,
+p,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style-type: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Marcellus SC', serif;
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+  color: var(--textlight);
+}

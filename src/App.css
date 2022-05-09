@@ -1,0 +1,10 @@
+.App {
+  min-height: 100vh;
+  /* display: flex; */
+}
+.App .container{
+  max-width: 725px;
+  margin: 0 auto;
+  /* flex-grow: 1; */
+  /* padding: 0 30px; */
+}
