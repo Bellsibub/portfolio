@@ -10,6 +10,7 @@ const NavigationLink = ({ children, ...props }) => {
     <li>
       <NavLink
         {...props}
+        // reloadDocument
         className={({ isActive }) => (isActive ? styles.active : undefined)}
       >
         {children}

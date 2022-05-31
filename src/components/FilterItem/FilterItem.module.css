@@ -1,0 +1,7 @@
+.base {
+  color: teal;
+  background-color: white;
+}
+.active {
+  color: red;
+}
