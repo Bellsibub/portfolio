@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 
@@ -15,15 +15,21 @@ const FilterItem = ({ name, handleClick }) => {
   let activeParam = filterParam && filterParam.includes(name);
   const [isActive, setIsActive] = useState(activeParam);
 
+  useEffect(() => {
+    if (searchParams) {
+      setIsActive(activeParam);
+    }
+  }, [activeParam, searchParams]);
+
   const handleToggle = () => {
     setIsActive(!isActive);
     handleClick(name, isActive);
   };
-  
+
   let buttonClass = cx({
     base: true,
-    active: isActive
-  })
+    active: isActive,
+  });
 
   return (
     <button onClick={handleToggle} className={buttonClass}>

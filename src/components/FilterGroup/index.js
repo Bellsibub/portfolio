@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import _ from 'lodash';
 
 // hooks
+import { useSnapshotDB } from 'hooks/useSnapshotDB';
 
 // components
 import FilterItem from 'components/FilterItem';
@@ -9,6 +10,7 @@ import FilterItem from 'components/FilterItem';
 // styles
 
 const FilterGroup = () => {
+  const { documents } = useSnapshotDB('skills');
   let [searchParams, setSearchParams] = useSearchParams();
   let filterParams = searchParams.get('filter');
 
@@ -28,8 +30,13 @@ const FilterGroup = () => {
 
   return (
     <div>
-      <FilterItem name="react" handleClick={toggleFilter} />
-      <FilterItem name="backend" handleClick={toggleFilter} />
+      {documents && (
+        <>
+          {documents.map((d) => (
+            <FilterItem key={d.id} name={d.title} handleClick={toggleFilter} />
+          ))}
+        </>
+      )}
     </div>
   );
 };

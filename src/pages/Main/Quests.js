@@ -4,7 +4,7 @@ import { useSnapshotDB } from 'hooks/useSnapshotDB';
 import { FilterGroup } from 'components';
 
 const Quests = () => {
-  const { documents, error } = useSnapshotDB('projects');
+  let { documents } = useSnapshotDB('projects', true);
 
   return (
     <>
@@ -12,7 +12,9 @@ const Quests = () => {
       {documents ? (
         <>
           {documents.map((d) => (
-            <div key={d.id}>{d.title}</div>
+            <div key={d.id}>
+              {d.title} - {d.skills}
+            </div>
           ))}
         </>
       ) : (
