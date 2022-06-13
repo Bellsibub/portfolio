@@ -1,11 +1,11 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 // hooks
 import { useAuth } from 'hooks/useAuth';
 
 // elements
 import ProtectedRoute from 'utils/ProtectedRoute';
-import { Navbar } from 'components';
+import { Navbar, Modal } from 'components';
 import {
   Home,
   Contact,
@@ -24,11 +24,16 @@ import {
 import './App.css';
 
 const MainRoutes = () => {
+  let location = useLocation();
+  let state = {
+    backgroundLocation: location.state?.backgroundLocation || location.state,
+  };
+
   return (
     <>
       <Navbar />
       <main>
-        <Routes>
+        <Routes location={state?.backgroundLocation || location}>
           <Route index element={<Home />} />
           <Route path="contact" element={<Contact />} />
           <Route path="skills" element={<Skills />} />
@@ -36,6 +41,11 @@ const MainRoutes = () => {
           <Route path="character" element={<Character />} />
         </Routes>
       </main>
+      {state?.backgroundLocation && (
+        <Routes>
+          <Route path="/quests/:id" element={<Modal />} />
+        </Routes>
+      )}
     </>
   );
 };

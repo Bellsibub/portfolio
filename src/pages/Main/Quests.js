@@ -1,7 +1,7 @@
 // hooks
 import { useSnapshotDB } from 'hooks/useSnapshotDB';
 // components
-import { FilterGroup } from 'components';
+import { FilterGroup, ProjectItem } from 'components';
 
 const Quests = () => {
   let { documents } = useSnapshotDB('projects', true);
@@ -10,13 +10,13 @@ const Quests = () => {
     <>
       <FilterGroup />
       {documents ? (
-        <>
-          {documents.map((d) => (
-            <div key={d.id}>
-              {d.title} - {d.skills}
-            </div>
+        <ul>
+          {documents.map((doc) => (
+            <li key={doc.id}>
+              <ProjectItem project={doc} />
+            </li>
           ))}
-        </>
+        </ul>
       ) : (
         <div>no documents found</div>
       )}
