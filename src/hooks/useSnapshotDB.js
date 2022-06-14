@@ -17,7 +17,7 @@ import { useSearchParams } from 'react-router-dom';
  * @returns react state object: error, loading, documents
  */
 
-export const useSnapshotDB = (_collection, _filterable, _sort) => {
+export const useSnapshotDB = (_collection, _filterable, _customFilter, _sort) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -27,6 +27,7 @@ export const useSnapshotDB = (_collection, _filterable, _sort) => {
   // creating a mutable object to avoid infinte loop in side effect
   const sort = useRef(_sort).current;
   const filterable = useRef(_filterable).current;
+  const customFilter = useRef(_customFilter).current;
 
   const fetchData = useCallback(
     (q) => {
@@ -65,10 +66,12 @@ export const useSnapshotDB = (_collection, _filterable, _sort) => {
   useEffect(() => {
     if (filterable && filterParams) {
       fetchData(['skills', 'array-contains-any', filterParams.split(',')]);
-    } else {
+    } else if(!filterable && customFilter) { 
+      fetchData(customFilter)
+    }else {
       fetchData();
     }
-  }, [fetchData, filterParams, filterable]);
+  }, [customFilter, fetchData, filterParams, filterable]);
 
   return { error, loading, documents };
 };

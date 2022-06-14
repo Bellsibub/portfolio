@@ -1,6 +1,25 @@
+// hooks
+import ProjectItem from 'components/ProjectItem';
+import { useSnapshotDB } from 'hooks/useSnapshotDB';
+
 const SkillsContent = ({ data }) => {
+  let { documents } = useSnapshotDB('projects', false, [
+    'skills',
+    'array-contains',
+    data.title,
+  ]);
   return (
-    <div>{data.title}</div>
-  )
-}
-export default SkillsContent
+    <>
+      {documents && (
+        <ul>
+          {documents.map((doc) => (
+            <li key={doc.id}>
+              <ProjectItem project={doc} nested />
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
+  );
+};
+export default SkillsContent;

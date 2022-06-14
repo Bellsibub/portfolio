@@ -44,6 +44,7 @@ const MainRoutes = () => {
       {state?.backgroundLocation && (
         <Routes>
           <Route path="/quests/:id" element={<Modal />} />
+          <Route path="/skills/:id" element={<Modal />} />
         </Routes>
       )}
     </>

@@ -22,7 +22,7 @@ const Modal = () => {
   let { document } = useDocument(collection);
   const closeModal = () => {
     setOpen(false);
-    navigate(-1);
+    navigate(location.state.backgroundLocation);
   };
 
   return (
