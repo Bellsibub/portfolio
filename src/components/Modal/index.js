@@ -1,16 +1,25 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
 import Popup from 'reactjs-popup';
 
 // hooks
+import { useDocument } from 'hooks/useDocument';
 
 import styles from './Modal.module.css';
+import ProjectContent from 'components/ProjectContent';
+import SkillsContent from 'components/SkillsContent';
 
 const Modal = () => {
   let navigate = useNavigate();
+  let location = useLocation();
   const [open, setOpen] = useState(true);
-
+  const collection = location.pathname.includes('quests')
+    ? 'projects'
+    : location.pathname.includes('skills')
+    ? 'skills'
+    : null;
+  let { document } = useDocument(collection);
   const closeModal = () => {
     setOpen(false);
     navigate(-1);
@@ -18,20 +27,29 @@ const Modal = () => {
 
   return (
     <>
-      <Popup open={open} closeOnDocumentClick onClose={closeModal} modal>
-        <div className={styles.container}>
-          <button type="button" className={styles.close} onClick={closeModal}>
-            &times;
-          </button>
-          <div className={styles.header}>Title here</div>
-          <div className={styles.content}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a
-            nostrum. Dolorem, repellat quidem ut, minima sint vel eveniet
-            quibusdam voluptates delectus doloremque, explicabo tempore dicta
-            adipisci fugit amet dignissimos?
+      {document && (
+        <Popup open={open} closeOnDocumentClick onClose={closeModal} modal>
+          <div className={styles.container}>
+            <button type="button" className={styles.close} onClick={closeModal}>
+              &times;
+            </button>
+            <div className={styles.header}>{document.title}</div>
+            <div className={styles.content}>
+              {(() => {
+                switch (collection) {
+                  case 'projects':
+                    return <ProjectContent data={document} />;
+                  case 'skills':
+                    return <SkillsContent data={document} />;
+
+                  default:
+                    return <></>;
+                }
+              })()}
+            </div>
           </div>
-        </div>
-      </Popup>
+        </Popup>
+      )}
     </>
   );
 };
