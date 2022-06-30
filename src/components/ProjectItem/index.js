@@ -1,16 +1,13 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styles from './ProjectItem.module.css';
 
-const ProjectItem = ({ project, nested }) => {
-  let location = useLocation();
-
+const ProjectItem = ({ project }) => {
   return (
     <>
       <Link
         to={`/quests/${project.id}`}
         state={{ backgroundLocation: '/quests' }}
-        // state={{ backgroundLocation: nested ? location.state.backgroundLocation : location }}
       >
         {project.title} - {project.skills}
       </Link>

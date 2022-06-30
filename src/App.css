@@ -1,10 +1,16 @@
 .App {
   min-height: 100vh;
-  /* display: flex; */
+  overflow: hidden;
 }
-.App .container{
+.App .container {
   max-width: var(--maxWidthContainer);
   margin: 0 auto;
-  /* flex-grow: 1; */
-  /* padding: 0 30px; */
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main.content-container {
+  flex-grow: 1;
+  overflow: auto;
 }

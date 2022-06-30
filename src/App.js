@@ -5,6 +5,7 @@ import { useAuth } from 'hooks/useAuth';
 
 // elements
 import ProtectedRoute from 'utils/ProtectedRoute';
+import AnimatedPage from 'utils/AnimatedPage';
 import { Navbar, Modal } from 'components';
 import {
   Home,
@@ -32,7 +33,7 @@ const MainRoutes = () => {
   return (
     <>
       <Navbar />
-      <main>
+      <AnimatedPage>
         <Routes location={state?.backgroundLocation || location}>
           <Route index element={<Home />} />
           <Route path="contact" element={<Contact />} />
@@ -40,7 +41,7 @@ const MainRoutes = () => {
           <Route path="quests" element={<Quests />} />
           <Route path="character" element={<Character />} />
         </Routes>
-      </main>
+      </AnimatedPage>
       {state?.backgroundLocation && (
         <Routes>
           <Route path="/quests/:id" element={<Modal />} />
