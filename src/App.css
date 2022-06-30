@@ -1,6 +1,7 @@
 .App {
   min-height: 100vh;
   overflow: hidden;
+  
 }
 .App .container {
   max-width: var(--maxWidthContainer);

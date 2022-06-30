@@ -6,3 +6,4 @@ export {default as ProjectContent} from "./ProjectContent";
 export {default as ProjectItem} from "./ProjectItem";
 export {default as SkillItem} from "./SkillItem";
 export {default as SkillsContent} from "./SkillsContent";
+export {default as SocialLinks} from "./SocialLinks";

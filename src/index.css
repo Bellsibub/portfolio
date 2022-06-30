@@ -17,7 +17,8 @@ body {
   font-family: 'Quicksand', sans-serif;
   margin: 0;
   font-size: 14pt;
-  background: var(--background);
+  background: url('assets/backgroundx2.png'), var(--background);
+  background-size: cover;
   color: var(--textlight);
 }
 ul,

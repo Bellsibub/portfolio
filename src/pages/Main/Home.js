@@ -1,8 +1,9 @@
+import { SocialLinks } from "components";
 
 const Home = () => {
   return (
     <>
-      <div>Home</div>
+      <SocialLinks />
     </>
   );
 };

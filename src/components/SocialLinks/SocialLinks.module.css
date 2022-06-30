@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 10pt;
+}
+
+.container a {
+  font-size: 24pt;
+  color: var(--accent) !important;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.container a:hover {
+  transform: scale(0.9);
+}

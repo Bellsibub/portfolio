@@ -9,6 +9,14 @@
   text-align: center;
 }
 
+.contents a {
+  transition: color 0.5s ease-out;
+}
+
+.contents a:hover {
+  color: var(--accent);
+}
+
 .active {
   color: var(--accent);
   border-bottom: 1px solid var(--accent);
@@ -18,7 +26,7 @@
 /* ADMIN */
 
 .contentsAdmin {
-  display:flex;
+  display: flex;
   flex-direction: row;
   gap: 25px;
 }
