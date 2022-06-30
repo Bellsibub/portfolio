@@ -1,0 +1,23 @@
+.button {
+  transition: all 0.2s ease-in-out;
+  padding: 10pt;
+  width: 10em;
+  font-size: 13pt;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.button:hover {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+}
+
+.button:active {
+  transform: scale(0.96);
+}

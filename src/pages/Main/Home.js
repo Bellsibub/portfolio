@@ -1,9 +1,10 @@
-import { SocialLinks } from "components";
+import { ResumeButton, SocialLinks } from 'components';
 
 const Home = () => {
   return (
     <>
       <SocialLinks />
+      <ResumeButton />
     </>
   );
 };
