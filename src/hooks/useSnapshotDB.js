@@ -13,6 +13,7 @@ import { useSearchParams } from 'react-router-dom';
  * Returns realtime db from firestore
  * @param {string} _collection (name of the collection)
  * @param {boolean} _filterable (whether or not the hook should consider filters in the search params)
+ * @param {Array} _customFilter ([fieldname, operator, value])
  * @param {Array} _sort ([fieldName, direction])
  * @returns react state object: error, loading, documents
  */

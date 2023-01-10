@@ -9,8 +9,12 @@ import FilterItem from 'components/FilterItem';
 
 // styles
 
-const FilterGroup = () => {
-  const { documents } = useSnapshotDB('skills');
+const FilterGroup = ({ ...params }) => {
+  const { documents } = useSnapshotDB('skills', false, [
+    'featured',
+    '==',
+    true,
+  ]);
   let [searchParams, setSearchParams] = useSearchParams();
   let filterParams = searchParams.get('filter');
 
@@ -29,7 +33,7 @@ const FilterGroup = () => {
   };
 
   return (
-    <div>
+    <div {...params}>
       {documents && (
         <>
           {documents.map((d) => (

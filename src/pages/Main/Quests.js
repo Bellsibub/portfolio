@@ -1,26 +1,34 @@
+import _ from 'lodash';
 // hooks
 import { useSnapshotDB } from 'hooks/useSnapshotDB';
 // components
-import { FilterGroup, ProjectItem } from 'components';
+import { FilterGroup, ListHeader } from 'components';
+// layout
+import layout from './Layouts/Quests.module.css';
 
 const Quests = () => {
   let { documents } = useSnapshotDB('projects', true);
+  let groupedDocs = _.groupBy(documents, 'primarySkill');
 
   return (
-    <>
-      <FilterGroup />
-      {documents ? (
-        <ul>
-          {documents.map((doc) => (
-            <li key={doc.id}>
-              <ProjectItem project={doc} />
-            </li>
+    <div className={layout.wrapper}>
+      <FilterGroup className={layout.filters} />
+      {groupedDocs ? (
+        <div className={layout.list}>
+          {Object.entries(groupedDocs).map(([skillname, projects]) => (
+            <ListHeader
+              key={skillname}
+              list={projects}
+              title={skillname}
+              projectCount
+              accordian
+            />
           ))}
-        </ul>
+        </div>
       ) : (
         <div>no documents found</div>
       )}
-    </>
+    </div>
   );
 };
 
