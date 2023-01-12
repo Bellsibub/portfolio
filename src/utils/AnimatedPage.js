@@ -37,12 +37,11 @@ const pageTransitions = {
 const AnimatedPage = ({ children }) => {
   let navigate = useNavigate();
   let location = useLocation();
-  const { pathname } = location;
+  const { pathname, state } = location;
 
   const hasMount = useRef(false);
   const prevPath = useRef();
   const direction = useRef();
-
 
   if (!hasMount.current) {
     // mounted
@@ -50,10 +49,15 @@ const AnimatedPage = ({ children }) => {
     prevPath.current = pathname;
   } else {
     // update
-    if (prevPath.current !== pathname) {
-      direction.current = getDirection(prevPath.current, pathname);
-      if (direction.current !== null) {
-        prevPath.current = pathname;
+    if (state && state.nested) {
+      prevPath.current = '/quests';
+      direction.current = getDirection('/skills', '/quests');
+    } else {
+      if (prevPath.current !== pathname) {
+        direction.current = getDirection(prevPath.current, pathname);
+        if (direction.current !== null) {
+          prevPath.current = pathname;
+        }
       }
     }
   }

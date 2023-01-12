@@ -14,7 +14,7 @@ const SkillsContent = ({ data }) => {
         <ul>
           {documents.map((doc) => (
             <li key={doc.id}>
-              <ListItem item={doc} />
+              <ListItem item={doc} nested />
             </li>
           ))}
         </ul>
