@@ -5,7 +5,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import classNames from 'classnames/bind';
 
 // components
-import ProjectItem from 'components/ProjectItem';
+import ListItem from 'components/ListItem';
 // styling
 import styles from './ListHeader.module.css';
 
@@ -47,7 +47,7 @@ const ListHeader = ({ list, title, accordian, ...subinfo }) => {
         <>
           {list.map((doc) => (
             <li key={doc.id} className={styles.listItem}>
-              <ProjectItem project={doc} />
+              <ListItem item={doc} />
             </li>
           ))}
         </>

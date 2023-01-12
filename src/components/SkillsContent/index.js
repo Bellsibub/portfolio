@@ -1,5 +1,5 @@
 // hooks
-import ProjectItem from 'components/ProjectItem';
+import ProjectItem from 'components/ListItem';
 import { useSnapshotDB } from 'hooks/useSnapshotDB';
 
 const SkillsContent = ({ data }) => {

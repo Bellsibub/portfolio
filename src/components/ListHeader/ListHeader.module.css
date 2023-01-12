@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   padding: 0.5em;
+  margin: 0 0.5em;
 }
 
 .accordian:hover {
@@ -28,7 +29,7 @@
 }
 
 .listItem {
-  margin: 0.5em 0;
+  margin: 0.5em;
 }
 
 .subinfo {

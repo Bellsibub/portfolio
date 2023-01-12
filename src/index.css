@@ -12,6 +12,7 @@
   --borderRadius: 4pt;
   --alphaoverlay: #101a2260;
   --maxWidthContainer: 725px;
+  --boxShadow: 3pt 2pt 5pt #101a22;
 }
 
 /* base styles */
@@ -37,15 +38,22 @@ h5 {
 ul {
   list-style-type: none;
 }
+
 h1,
 h2,
 h3,
 h4,
 button,
 h5 {
-  font-family: 'Marcellus SC', serif;
   letter-spacing: 2pt;
   font-weight: normal;
+}
+
+h1,
+h2,
+button,
+h5 {
+  font-family: 'Marcellus SC', serif;
 }
 
 a {
