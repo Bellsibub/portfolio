@@ -46,6 +46,7 @@ const MainRoutes = () => {
         <Routes>
           <Route path="/quests/:id" element={<Modal />} />
           <Route path="/skills/:id" element={<Modal />} />
+          <Route path="/character/equipment/:id" element={<Modal />} />
         </Routes>
       )}
     </>

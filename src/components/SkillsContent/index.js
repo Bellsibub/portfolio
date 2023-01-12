@@ -1,5 +1,5 @@
 // hooks
-import ProjectItem from 'components/ListItem';
+import ListItem from 'components/ListItem';
 import { useSnapshotDB } from 'hooks/useSnapshotDB';
 
 const SkillsContent = ({ data }) => {
@@ -14,7 +14,7 @@ const SkillsContent = ({ data }) => {
         <ul>
           {documents.map((doc) => (
             <li key={doc.id}>
-              <ProjectItem project={doc} nested />
+              <ListItem item={doc} />
             </li>
           ))}
         </ul>

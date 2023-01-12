@@ -18,8 +18,11 @@ const Modal = () => {
     ? 'projects'
     : location.pathname.includes('skills')
     ? 'skills'
+    : location.pathname.includes('equipment')
+    ? 'equipment'
     : null;
   let { document } = useDocument(collection);
+  
   const closeModal = () => {
     setOpen(false);
     navigate(location.state.backgroundLocation);

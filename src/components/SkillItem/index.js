@@ -7,7 +7,7 @@ const SkillItem = ({skill}) => {
     <>
       <Link
         to={`/skills/${skill.id}`}
-        state={{ backgroundLocation: location }}
+        state={{ backgroundLocation: '/skills' }}
       >
         {skill.title}
       </Link>
