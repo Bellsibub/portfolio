@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-flow: column;
+  gap: 0.5em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-color: var(--textgrey);
+  padding: 1em;
+}
+
+.title {
+  flex: 1;
+  color: var(--accent);
+}
+
+.links {
+  display: flex;
+  flex-flow: row;
+  gap: 0.5em;
+  font-size: 25px;
+}
+.links > * {
+  color: var(--accent);
+}
+
+.links > a:hover {
+  color: var(--textlight);
+}

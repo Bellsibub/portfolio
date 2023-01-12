@@ -9,8 +9,8 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
-  box-shadow: var(--boxShadow);
   background-color: var(--textgrey);
+  box-shadow: var(--boxShadow);
 }
 .title {
   color: var(--accent);
