@@ -27,3 +27,15 @@
 .links > a:hover {
   color: var(--textlight);
 }
+
+.subtitle{
+  color: var(--textgrey);
+  font-weight: bold;
+}
+
+.duration {
+  color: var(--textgrey);
+  font-family: 'Quicksand';
+  text-transform: uppercase;
+  /* font-weight: bold; */
+}

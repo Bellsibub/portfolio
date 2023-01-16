@@ -21,11 +21,16 @@ const SubheadProject = ({ data }) => {
 };
 
 const SubheadSkills = ({ data }) => {
-  return <div>lol</div>;
+  return <h5 className={styles.subtitle}>{data.type}</h5>;
 };
 
 const SubheadEquipment = ({ data }) => {
-  return <div>lol</div>;
+  return (
+    <>
+      <h5 className={styles.subtitle}>{data.company}</h5>
+      <h5 className={styles.duration}>{data.duration}</h5>
+    </>
+  );
 };
 
 const ModalHeader = ({ data, collection }) => {
