@@ -2,6 +2,7 @@
   width: 100%;
   height: 1px;
   background: var(--textgrey);
+  flex: 0 0 auto;
 }
 .accent {
   width: 100%;

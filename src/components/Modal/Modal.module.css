@@ -6,11 +6,27 @@
   box-shadow: var(--boxShadow);
   border: var(--border);
   border-width: 2px;
+  overflow-y: initial !important;
+  height: 85vh;
+  max-height: 800px;
+  display: flex;
+  flex-direction: column;
 }
 
 .content {
-  padding: 10px 5px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 10px 25px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  gap: 0.5em;
 }
+
+.content > h4 {
+  color: var(--textgrey);
+}
+
 .closeWrapper {
   position: absolute;
   display: block;
@@ -19,6 +35,7 @@
   background: transparent;
   border: none;
 }
+
 .closeIcon {
   cursor: pointer;
   color: var(--textgrey);
@@ -27,6 +44,7 @@
   width: 35px;
   height: 35px;
 }
+
 .closeIcon:hover {
   color: var(--accent);
 }
