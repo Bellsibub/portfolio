@@ -12,6 +12,7 @@ import styles from './Modal.module.css';
 import ProjectContent from 'components/ProjectContent';
 import SkillsContent from 'components/SkillsContent';
 import ModalHeader from 'components/ModalHeader';
+import EquipmentContent from 'components/EquipmentContent';
 
 const Modal = () => {
   let navigate = useNavigate();
@@ -54,7 +55,8 @@ const Modal = () => {
                     return <ProjectContent data={document} />;
                   case 'skills':
                     return <SkillsContent data={document} />;
-
+                  case 'equipment':
+                    return <EquipmentContent data={document} />;
                   default:
                     return <></>;
                 }

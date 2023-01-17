@@ -1,4 +1,5 @@
 export {default as Carousel} from "./Carousel";
+export {default as EquipmentContent} from "./EquipmentContent";
 export {default as FilterGroup} from "./FilterGroup";
 export {default as FilterItem} from "./FilterItem";
 export {default as ListHeader} from "./ListHeader";
