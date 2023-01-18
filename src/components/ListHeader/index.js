@@ -20,7 +20,9 @@ const ProjectCount = ({ count }) => {
 };
 
 const ListHeader = ({ list, title, accordian, ...subinfo }) => {
-  const [open, setOpen] = useState(accordian ? false : true);
+  const [open, setOpen] = useState(
+    subinfo.featured ? true : accordian ? false : true
+  );
 
   const handleToggle = () => {
     if (accordian) setOpen(!open);

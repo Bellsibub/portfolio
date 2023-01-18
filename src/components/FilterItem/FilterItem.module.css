@@ -1,7 +1,22 @@
 .base {
-  color: teal;
-  background-color: white;
+  color: var(--textlight);
+  width: 100%;
+  height: 50px;
+  border-radius: var(--borderRadius);
+  border: var(--border);
+  border-width: 2px;
+  border-color: var(--accentsoft);
+  background: var(--accentsoft);
+  cursor: pointer;
+  box-shadow: var(--boxShadow);
 }
+
+.base:hover {
+  border-color: var(--textgrey);
+}
+
+
 .active {
-  color: red;
+  box-shadow: inset var(--boxShadow);
+  background: var(--accentdark);
 }

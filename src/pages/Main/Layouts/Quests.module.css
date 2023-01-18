@@ -3,7 +3,9 @@
   gap: 20pt;
 }
 .filters {
-  
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 .list {
   flex: 1;

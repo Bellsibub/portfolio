@@ -18,7 +18,12 @@ import { useSearchParams } from 'react-router-dom';
  * @returns react state object: error, loading, documents
  */
 
-export const useSnapshotDB = (_collection, _filterable, _customFilter, _sort) => {
+export const useSnapshotDB = (
+  _collection,
+  _filterable,
+  _customFilter,
+  _sort
+) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -67,9 +72,11 @@ export const useSnapshotDB = (_collection, _filterable, _customFilter, _sort) =>
   useEffect(() => {
     if (filterable && filterParams) {
       fetchData(['skills', 'array-contains-any', filterParams.split(',')]);
-    } else if(!filterable && customFilter) { 
-      fetchData(customFilter)
-    }else {
+    } else if (!filterable && customFilter) {
+      fetchData(customFilter);
+    } else if (filterable && !filterParams) {
+      fetchData(['none', '==', true]);
+    } else {
       fetchData();
     }
   }, [customFilter, fetchData, filterParams, filterable]);

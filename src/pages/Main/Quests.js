@@ -8,28 +8,41 @@ import layout from './Layouts/Quests.module.css';
 
 const Quests = () => {
   let { documents } = useSnapshotDB('projects', true);
+  let { documents: featuredDocs } = useSnapshotDB('projects', false, [
+    'featured',
+    '==',
+    true,
+  ]);
   let groupedDocs = _.groupBy(documents, 'primarySkill');
 
-  return (
-    <div className={layout.wrapper}>
-      <FilterGroup className={layout.filters} />
-      {groupedDocs ? (
-        <div className={layout.list}>
-          {Object.entries(groupedDocs).map(([skillname, projects]) => (
+  if (featuredDocs)
+    return (
+      <div className={layout.wrapper}>
+        <FilterGroup className={layout.filters} />
+        {groupedDocs ? (
+          <div className={layout.list}>
             <ListHeader
-              key={skillname}
-              list={projects}
-              title={skillname}
+              featured
+              list={featuredDocs}
+              title="featured"
               projectCount
               accordian
             />
-          ))}
-        </div>
-      ) : (
-        <div>no documents found</div>
-      )}
-    </div>
-  );
+            {Object.entries(groupedDocs).map(([skillname, projects]) => (
+              <ListHeader
+                key={skillname}
+                list={projects}
+                title={skillname}
+                projectCount
+                accordian
+              />
+            ))}
+          </div>
+        ) : (
+          <div>no documents found</div>
+        )}
+      </div>
+    );
 };
 
 export default Quests;
