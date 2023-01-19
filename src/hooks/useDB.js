@@ -95,6 +95,7 @@ export const useDB = (_collection) => {
         uid: user.uid,
       });
       dispatchNotCancelled({ type: 'ADD_DOCUMENT', payload: newDoc });
+      return newDoc;
     } catch (error) {
       dispatchNotCancelled({ type: 'ERROR', payload: error.message || error });
       console.error(error);

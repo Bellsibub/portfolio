@@ -10,3 +10,5 @@ export { default as Contact } from './Main/Contact';
 export { default as Home } from './Main/Home';
 export { default as Quests } from './Main/Quests';
 export { default as Skills } from './Main/Skills';
+
+export { default as CRUDproject } from './Admin/CRUD/Project';

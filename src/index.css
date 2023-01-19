@@ -69,3 +69,7 @@ a {
   bottom: 0 !important;
   right: 0 !important; */
 }
+
+.react-select__menu {
+  color: black !important;
+}
