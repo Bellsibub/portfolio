@@ -1,8 +1,10 @@
+import { AddMedia, MediaGrid, MediaSelect, Modal } from 'components';
 import { useDB } from 'hooks/useDB';
 import { useDocument } from 'hooks/useDocument';
 import { useSnapshotDB } from 'hooks/useSnapshotDB';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import _ from 'lodash';
+import { useEffect, useState } from 'react';
+// import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Select from 'react-select';
 
@@ -25,7 +27,10 @@ const Project = () => {
     descriptionLong: '',
     skills: [],
     primarySkill: '',
+    media: [],
+    featuredImage: '',
   });
+  const [medias, setMedias] = useState([]);
 
   useEffect(() => {
     if (document) {
@@ -37,7 +42,10 @@ const Project = () => {
         descriptionLong: document.descriptionLong || '',
         skills: document.skills || '',
         primarySkill: document.primarySkill || '',
+        media: document.media || [],
+        featuredImage: document.featuredImage || '',
       });
+      setMedias(document.media || []);
     }
     if (skills) {
       let _skills = skills;
@@ -49,9 +57,9 @@ const Project = () => {
     }
   }, [document, skills]);
 
-  const handleSubmit = () => {
-    console.log(val);
-    updateDocument(id, val);
+  const handleSubmit = async () => {
+    let t = { ...val, media: [...medias] };
+    await updateDocument(id, t);
   };
 
   const handleChange = (target, field, multi) => {
@@ -68,6 +76,20 @@ const Project = () => {
     } else {
       setValues({ ...val, [field]: target.value });
     }
+  };
+
+  const handleMediaSelect = (media, remove) => {
+    if (remove) {
+      setMedias([...medias, media]);
+    } else {
+      let t = [...medias];
+      _.pull(t, media);
+      setMedias([...t]);
+    }
+  };
+
+  const handleFeatureSelect = (featured) => {
+    setValues({ ...val, featuredImage: featured });
   };
 
   if (document)
@@ -103,9 +125,9 @@ const Project = () => {
           <Select
             classNamePrefix="react-select"
             isMulti
-            value={val.skills.map((d) => {
+            value={val.skills.length > 0 ? val.skills.map((d) => {
               return { label: d, value: d };
-            })}
+            }) : []}
             options={skillOptions}
             onChange={(option) => handleChange(option, 'skills', true)}
           />
@@ -141,7 +163,15 @@ const Project = () => {
         </div>
 
         <h5>Media</h5>
+        <h6>select what should be removed and marked as feature</h6>
+        <MediaGrid
+          featuredImage={val.featuredImage}
+          media={val.media}
+          handleMediaSelect={handleMediaSelect}
+          handleFeatureSelect={handleFeatureSelect}
+        />
         <button onClick={handleSubmit}>submit</button>
+        <MediaSelect type="projects" />
       </div>
     );
 };

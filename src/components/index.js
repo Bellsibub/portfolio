@@ -4,6 +4,8 @@ export {default as FilterGroup} from "./FilterGroup";
 export {default as FilterItem} from "./FilterItem";
 export {default as ListHeader} from "./ListHeader";
 export {default as ListItem} from "./ListItem";
+export {default as MediaGrid} from "./MediaGrid";
+export {default as MediaSelect} from "./MediaSelect";
 export {default as Modal} from "./Modal";
 export {default as ModalHeader} from "./ModalHeader";
 export {default as Navbar} from "./Navbar";

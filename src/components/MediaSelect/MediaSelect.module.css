@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  background: var(--accentdark);
+  flex-direction: column;
+  max-width: 600px;
+  min-width: 500px;
+  height: 500px;
+  gap: 0.5em;
+}
+
+.container h2 {
+  width: 100%;
+}
+
+.content {
+  overflow-y: auto;
+  gap: 0.5em;
+  flex-flow: row wrap;
+  display: flex;
+}
+
+.item {
+  flex: 1 1 25%;
+  cursor: pointer;
+}
+
+.item > * {
+  max-width: 240px;
+}
+
+.active > * {
+  border: 1px solid red;
+}

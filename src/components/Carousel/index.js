@@ -41,28 +41,20 @@ const Carousel = ({ media }) => {
           }
           icon={solid('angle-left')}
         />
-        {(() => {
-          switch (media[current].type) {
-            case 'image':
-              return (
-                <img
-                  className={styles.image}
-                  src={media[current].url}
-                  alt={media[current].alt || 'respresentation of the project'}
-                />
-              );
-            case 'video':
-              return (
-                <video controls className={styles.image}>
-                  <source src={media[current].url} type="video/mp4" />
-                  Your browser does not support the video tag
-                </video>
-              );
-
-            default:
-              return <></>;
-          }
-        })()}
+        {media[current].type.includes('image') ? (
+          <img
+            className={styles.image}
+            src={media[current].url}
+            alt={media[current].alt || 'respresentation of the project'}
+          />
+        ) : media[current].type.includes('video') ? (
+          <video className={styles.image}>
+            <source src={media[current].url} type="video/mp4" />
+            Your browser does not support the video tag
+          </video>
+        ) : (
+          <></>
+        )}
         <FontAwesomeIcon
           onClick={() => {
             if (direction !== 0) changeImage(1);
