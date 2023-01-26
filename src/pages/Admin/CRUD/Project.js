@@ -15,7 +15,7 @@ const Project = () => {
   const { id } = useParams();
   const { documents: skills } = useSnapshotDB('skills');
   const { document } = useDocument('projects', id);
-  const { updateDocument } = useDB('projects');
+  const { updateDocument, response } = useDB('projects');
 
   const [skillOptions, setSkillOptions] = useState([]);
   const [primarySkillOptions, setPrimarySkillOptions] = useState([]);
@@ -29,6 +29,7 @@ const Project = () => {
     primarySkill: '',
     media: [],
     featuredImage: '',
+    featured: false,
   });
   const [medias, setMedias] = useState([]);
 
@@ -44,6 +45,7 @@ const Project = () => {
         primarySkill: document.primarySkill || '',
         media: document.media || [],
         featuredImage: document.featuredImage || '',
+        featured: document.featured || false,
       });
       setMedias(document.media || []);
     }
@@ -125,9 +127,13 @@ const Project = () => {
           <Select
             classNamePrefix="react-select"
             isMulti
-            value={val.skills.length > 0 ? val.skills.map((d) => {
-              return { label: d, value: d };
-            }) : []}
+            value={
+              val.skills.length > 0
+                ? val.skills.map((d) => {
+                    return { label: d, value: d };
+                  })
+                : []
+            }
             options={skillOptions}
             onChange={(option) => handleChange(option, 'skills', true)}
           />
@@ -140,6 +146,14 @@ const Project = () => {
             value={{ label: val.primarySkill, value: val.primarySkill }}
             options={primarySkillOptions}
             onChange={(option) => handleChange(option, 'primarySkill')}
+          />
+        </div>
+        <h5>Featured</h5>
+        <div className={styles.inputWrapper}>
+          <input
+            type="checkbox"
+            checked={val.featured}
+            onChange={() => setValues({ ...val, featured: !val.featured })}
           />
         </div>
         <h5>Text</h5>
@@ -170,7 +184,7 @@ const Project = () => {
           handleMediaSelect={handleMediaSelect}
           handleFeatureSelect={handleFeatureSelect}
         />
-        <button onClick={handleSubmit}>submit</button>
+        <button onClick={handleSubmit} disabled={response.loading}>submit</button>
         <MediaSelect type="projects" />
       </div>
     );

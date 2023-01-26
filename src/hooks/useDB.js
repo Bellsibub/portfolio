@@ -81,6 +81,7 @@ export const useDB = (_collection) => {
   const dispatchNotCancelled = (action) => {
     if (!cancelled) {
       dispatch(action);
+      setCancelled(false);
     }
   };
 
@@ -129,6 +130,7 @@ export const useDB = (_collection) => {
   };
 
   useEffect(() => {
+    setCancelled(false);
     return () => setCancelled(true);
   }, []);
 
