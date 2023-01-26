@@ -63,6 +63,10 @@ a {
   color: var(--textlight);
 }
 
+button {
+  cursor: pointer;
+}
+
 .popup-overlay {
   /* position: absolute !important; */
   /* top: 0 !important;

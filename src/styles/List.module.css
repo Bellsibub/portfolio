@@ -1,0 +1,51 @@
+.container {
+  display: inline-flex;
+  gap: 0.5em;
+  flex-flow: column wrap;
+  width: 100%;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+
+.item > p {
+  cursor: pointer;
+  padding: 0.5em;
+  flex-grow: 1;
+  border: var(--border);
+  border-radius: var(--borderRadius);
+  border-color: transparent;
+}
+.item > p:hover {
+  border: var(--border);
+  /* flex: 1 1 80%; */
+}
+
+
+.actions > * {
+  cursor: pointer;
+  border: var(--border);
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+}
+
+.actions > *:hover {
+  border-color: var(--accentdark);
+  color: var(--accent);
+}
+
+.actions > *:not(:last-child) {
+  margin-right: 0.5em;
+}
+
+.active {
+  color: var(--accent);
+  background: var(--accentdark);
+  border-color: var(--accent);
+}
