@@ -12,7 +12,6 @@
   justify-content: space-between;
 }
 
-
 .item > p {
   cursor: pointer;
   padding: 0.5em;
@@ -23,9 +22,14 @@
 }
 .item > p:hover {
   border: var(--border);
-  /* flex: 1 1 80%; */
 }
-
+.item > span {
+  border: var(--border);
+  border-radius: var(--borderRadius);
+  background-color: var(--accentdark);
+  padding: 0.2em 0.5em;
+  margin-right: 0.5em;
+}
 
 .actions > * {
   cursor: pointer;

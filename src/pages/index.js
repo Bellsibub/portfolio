@@ -12,3 +12,4 @@ export { default as Quests } from './Main/Quests';
 export { default as Skills } from './Main/Skills';
 
 export { default as CRUDproject } from './Admin/CRUD/Project';
+export { default as CRUDskills } from './Admin/CRUD/Skills';

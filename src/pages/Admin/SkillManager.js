@@ -1,8 +1,8 @@
 
-const SkillManager = () => {
-  return (
-    <div>SkillManager</div>
-  )
-}
+import { AdminList } from 'components';
 
-export default SkillManager
+const SkillManager = () => {
+  return <AdminList type="skills" />;
+};
+
+export default SkillManager;

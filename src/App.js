@@ -20,6 +20,7 @@ import {
   SkillManager,
   Equipment,
   CRUDproject,
+  CRUDskills,
 } from 'pages';
 
 // styling
@@ -97,6 +98,14 @@ const AdminRoutes = () => {
             element={
               <ProtectedRoute>
                 <SkillManager />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="skills/:id"
+            element={
+              <ProtectedRoute>
+                <CRUDskills />
               </ProtectedRoute>
             }
           />
