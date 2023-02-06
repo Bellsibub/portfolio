@@ -1,0 +1,21 @@
+.container {
+  margin: 0em 0.5em 0 0.5em;
+  padding: 0.5em;
+  color: var(--textgrey);
+  background-color: var(--accentdark);
+  border: var(--border);
+  border-radius: var(--borderRadius);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  gap: 2em;
+}
+
+.subSection h4 {
+  border-bottom: var(--border);
+  line-height: 2em;
+}
+
+.subSection ul {
+  margin-top: 0.5em;
+}

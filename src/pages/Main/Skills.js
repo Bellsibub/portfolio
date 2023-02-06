@@ -1,24 +1,29 @@
 // hooks
-import { SkillItem } from 'components';
+import { ListHeader } from 'components';
 import { useSnapshotDB } from 'hooks/useSnapshotDB';
 
 const Skills = () => {
   let { documents } = useSnapshotDB('skills');
-  return (
-    <>
-      {documents ? (
-        <ul>
-          {documents.map((doc) => (
-            <li key={doc.id}>
-              <SkillItem skill={doc} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <div>No skills found</div>
-      )}
-    </>
-  );
+  let { documents: character } = useSnapshotDB('character');
+  if (documents && character)
+    return (
+      <>
+        <ListHeader
+          featured
+          list={documents}
+          title="Showcased Skills"
+          accordian
+          skills
+        />
+        <ListHeader
+          featured
+          list={character[0].skills}
+          title="Other Skills"
+          accordian
+          otherSkills
+        />
+      </>
+    );
 };
 
 export default Skills;

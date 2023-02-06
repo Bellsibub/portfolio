@@ -8,6 +8,8 @@ import classNames from 'classnames/bind';
 import ListItem from 'components/ListItem';
 // styling
 import styles from './ListHeader.module.css';
+import SkillContainer from 'components/SkillContainer';
+import OtherSkills from 'components/OtherSkills';
 
 let cx = classNames.bind(styles);
 
@@ -31,6 +33,7 @@ const ListHeader = ({ list, title, accordian, ...subinfo }) => {
   let headerClass = cx({
     header: true,
     accordian: accordian,
+    otherSkills: subinfo.otherSkills,
   });
 
   return (
@@ -47,11 +50,19 @@ const ListHeader = ({ list, title, accordian, ...subinfo }) => {
       </div>
       {open && (
         <>
-          {list.map((doc) => (
-            <li key={doc.id} className={styles.listItem}>
-              <ListItem item={doc} />
-            </li>
-          ))}
+          {subinfo.skills ? (
+            <SkillContainer list={list} />
+          ) : subinfo.otherSkills ? (
+            <OtherSkills list={list} />
+          ) : (
+            <>
+              {list.map((doc) => (
+                <li key={doc.id} className={styles.listItem}>
+                  <ListItem item={doc} />
+                </li>
+              ))}
+            </>
+          )}
         </>
       )}
     </ul>
