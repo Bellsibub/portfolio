@@ -13,3 +13,4 @@ export { default as Skills } from './Main/Skills';
 
 export { default as CRUDproject } from './Admin/CRUD/Project';
 export { default as CRUDskills } from './Admin/CRUD/Skills';
+export { default as CRUDcharacter } from './Admin/CRUD/Character';

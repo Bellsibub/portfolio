@@ -1,8 +1,14 @@
+import { useSnapshotDB } from 'hooks/useSnapshotDB';
+import { CRUDcharacter } from 'pages';
 
 const Profile = () => {
-  return (
-    <div>Profile</div>
-  )
-}
+  const { documents } = useSnapshotDB('character', false);
+  if (documents)
+    return (
+      <>
+        <CRUDcharacter data={documents[0]} />
+      </>
+    );
+};
 
-export default Profile
+export default Profile;
