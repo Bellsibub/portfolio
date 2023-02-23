@@ -67,6 +67,10 @@ button {
   cursor: pointer;
 }
 
+p {
+  white-space: break-spaces;
+}
+
 .popup-overlay {
   /* position: absolute !important; */
   /* top: 0 !important;

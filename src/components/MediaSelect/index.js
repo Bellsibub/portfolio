@@ -64,7 +64,7 @@ const MediaSelect = ({ type }) => {
                     <img
                       className={styles.image}
                       src={doc.url}
-                      alt={doc.alt || 'respresentation of the project'}
+                      alt={doc.alt || `respresentation of the ${type}`}
                     />
                   ) : doc.type.includes('video') ? (
                     <video className={styles.image}>

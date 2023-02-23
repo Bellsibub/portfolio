@@ -21,6 +21,7 @@ import {
   Equipment,
   CRUDproject,
   CRUDskills,
+  CRUDequipment,
 } from 'pages';
 
 // styling
@@ -114,6 +115,14 @@ const AdminRoutes = () => {
             element={
               <ProtectedRoute>
                 <Equipment />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="equipment/:id"
+            element={
+              <ProtectedRoute>
+                <CRUDequipment />
               </ProtectedRoute>
             }
           />

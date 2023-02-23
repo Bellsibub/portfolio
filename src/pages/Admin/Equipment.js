@@ -1,7 +1,8 @@
+import { AdminList } from "components"
 
 const Equipment = () => {
   return (
-    <div>Equipment</div>
+    <AdminList  type="equipment" />
   )
 }
 

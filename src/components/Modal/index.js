@@ -25,7 +25,7 @@ const Modal = () => {
     : location.pathname.includes('equipment')
     ? 'equipment'
     : null;
-  let { document } = useDocument(collection);
+  const { document } = useDocument(collection);
 
   const closeModal = () => {
     setOpen(false);

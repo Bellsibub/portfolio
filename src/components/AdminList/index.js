@@ -24,15 +24,17 @@ const AdminList = ({ type }) => {
           {documents.map((doc) => (
             <li className={styles.item} key={doc.id}>
               <p onClick={() => navigate(doc.id)}>{doc.title}</p>
-              {doc.type && (<span>{doc.type}</span>)}
+              {doc.type && <span>{doc.type}</span>}
               <div className={styles.actions}>
-                <FontAwesomeIcon
-                  onClick={() =>
-                    updateDocument(doc.id, { featured: !doc.featured })
-                  }
-                  className={doc.featured ? styles.active : ''}
-                  icon={regular('star')}
-                />
+                {type !== 'equipment' && (
+                  <FontAwesomeIcon
+                    onClick={() =>
+                      updateDocument(doc.id, { featured: !doc.featured })
+                    }
+                    className={doc.featured ? styles.active : ''}
+                    icon={regular('star')}
+                  />
+                )}
                 <FontAwesomeIcon
                   onClick={() => deleteDocument(doc.id)}
                   icon={regular('trash-can')}
