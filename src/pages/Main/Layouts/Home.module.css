@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  gap: 0.5em;
+  height: 100%;
+}
+
+.wrapper h1 {
+  color: var(--accent);
+}
+
+.wrapper h4 {
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  margin-bottom: 1em;
+}
+
+.wrapper p:last-of-type {
+  margin-bottom: 1em;
+}
