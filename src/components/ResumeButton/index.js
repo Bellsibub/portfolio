@@ -1,12 +1,19 @@
+import { useDownloadFile } from 'hooks/useDownloadFile';
 import styles from './ResumeButton.module.css';
 const ResumeButton = () => {
-  const onClick = () => {
-    console.log('Initiate download of resume');
-  };
+  const { document } = useDownloadFile('Test_PDF.pdf');
 
   return (
     <>
-      <button onClick={onClick} className={styles.button}>Resume</button>
+      <a
+        href={document}
+        target="_blank"
+        download
+        className={styles.button}
+        rel="noreferrer"
+      >
+        Resume
+      </a>
     </>
   );
 };

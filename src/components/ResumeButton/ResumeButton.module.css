@@ -11,6 +11,8 @@
   border-radius: 4px;
   cursor: pointer;
   box-sizing: border-box;
+  text-align: center;
+  letter-spacing: 4pt;
 }
 
 .button:hover {
