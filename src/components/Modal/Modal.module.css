@@ -7,7 +7,7 @@
   border: var(--border);
   border-width: 2px;
   overflow-y: initial !important;
-  /* height: 85vh; */
+  /* height: 100vh; */
   min-height: 667px;
   max-height: 800px;
   display: flex;
@@ -48,4 +48,13 @@
 
 .closeIcon:hover {
   color: var(--accent);
+}
+
+
+@media screen and (max-width: 725px) {
+ .container {
+  height: 100vh;
+  max-height: none;
+  /* min-height: none; */
+ } 
 }

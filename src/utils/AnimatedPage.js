@@ -2,20 +2,22 @@ import { useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const pageOrders = ['/quests', '/skills', '/', '/character', '/contact'];
+import { getDirection, getNextPage } from './PageDirection';
 
-const getDirection = (currentPage, nextPage) => {
-  let cP = pageOrders.indexOf(currentPage);
-  let nP = pageOrders.indexOf(nextPage);
-  if (cP === -1 || nP === -1) return null;
-  return nP === cP ? null : nP > cP ? -1 : 1;
-};
+// const pageOrders = ['/quests', '/skills', '/', '/character', '/contact'];
 
-const getNextPage = (currentPage, direction) => {
-  let cP = pageOrders.indexOf(currentPage);
-  let nP = cP + direction;
-  return pageOrders[nP > pageOrders.length - 1 || nP < 0 ? cP : nP];
-};
+// const getDirection = (currentPage, nextPage) => {
+//   let cP = pageOrders.indexOf(currentPage);
+//   let nP = pageOrders.indexOf(nextPage);
+//   if (cP === -1 || nP === -1) return null;
+//   return nP === cP ? null : nP > cP ? -1 : 1;
+// };
+
+// const getNextPage = (currentPage, direction) => {
+//   let cP = pageOrders.indexOf(currentPage);
+//   let nP = cP + direction;
+//   return pageOrders[nP > pageOrders.length - 1 || nP < 0 ? cP : nP];
+// };
 
 const pageAnimations = {
   out: (custom) => {
@@ -75,7 +77,7 @@ const AnimatedPage = ({ children }) => {
         className="content-container"
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={1}
+        dragElastic={1.5}
         onDragEnd={(e, info) => {
           if (info.velocity.x < -200) {
             navigate(getNextPage(pathname, 1));

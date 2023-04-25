@@ -1,9 +1,13 @@
-import { NavLink, useLocation } from 'react-router-dom';
-
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 // hooks
 import { useLogout } from 'hooks/useLogout';
 
 import styles from './Navbar.module.css';
+import { useViewport } from 'hooks/useViewport';
+import { useEffect, useState } from 'react';
+import { getNextPage } from 'utils/PageDirection';
 
 const NavigationLink = ({ children, ...props }) => {
   return (
@@ -20,7 +24,30 @@ const NavigationLink = ({ children, ...props }) => {
 };
 
 const MainApplicationLinks = () => {
-  return (
+  let location = useLocation();
+  const [pathname, setPathname] = useState('');
+  const { width } = useViewport();
+  const breakpoint = 725;
+
+  const formatPathname = (pathname) => {
+    return pathname === '/' ? '-^^-' : pathname.replace('/', '');
+  };
+
+  useEffect(() => {
+    setPathname(formatPathname(location.pathname));
+  }, [location]);
+
+  return width < breakpoint ? (
+    <ul className={styles.mobileContents}>
+      <Link className={styles.directionalLink} to={getNextPage(location.pathname, -1) || '/'}>
+        <FontAwesomeIcon icon={solid('caret-left')} />
+      </Link>
+      <li className={styles.current}>{pathname.toUpperCase()}</li>
+      <Link className={styles.directionalLink} to={getNextPage(location.pathname, 1) || '/'}>
+        <FontAwesomeIcon icon={solid('caret-right')} />
+      </Link>
+    </ul>
+  ) : (
     <ul className={styles.contents}>
       <NavigationLink to="quests">Quests</NavigationLink>
       <NavigationLink to="skills">Skills</NavigationLink>

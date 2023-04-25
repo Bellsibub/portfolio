@@ -30,3 +30,29 @@
   flex-direction: row;
   gap: 25px;
 }
+
+/* MObile */
+.mobileContents {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 1em;
+}
+
+.current {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.directionalLink {
+  font-size: 1.5em;
+  color: var(--textlight);
+}
+
+.directionalLink:hover {
+  color: var(--accent);
+}
+.directionalLink:focus {
+  color: var(--textlight);
+}
