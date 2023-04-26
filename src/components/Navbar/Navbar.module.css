@@ -56,3 +56,10 @@
 .directionalLink:focus {
   color: var(--textlight);
 }
+
+
+@media screen and (max-width: 725px) {
+ .wrapper {
+  margin-bottom: 0;
+ } 
+}

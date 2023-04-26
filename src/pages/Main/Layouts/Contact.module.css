@@ -16,3 +16,10 @@
   text-align: center;
   margin: .5em 0;
 }
+
+
+@media screen and (max-width: 725px) {
+  .section h4 {
+    margin-bottom: .5em;
+  }
+}

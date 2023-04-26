@@ -57,3 +57,19 @@
 .list > li > p > span {
   color: var(--textgrey);
 }
+
+@media screen and (max-width: 725px) {
+  
+  .container {
+    position: unset;
+    /* min-width: 0; */
+    /* max-width: 250px; */
+    
+  }
+  
+  .icon {
+    position: absolute;
+    top: -25px;
+  }
+  
+}

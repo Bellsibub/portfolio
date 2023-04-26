@@ -23,3 +23,10 @@
 .button:active {
   transform: scale(0.96);
 }
+
+@media screen and (max-width: 725px) {
+  .button {
+    font-size: 14px;
+    padding: 5pt;
+  }
+}

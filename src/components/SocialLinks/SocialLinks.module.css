@@ -13,3 +13,10 @@
 .container a:hover {
   transform: scale(0.9);
 }
+
+
+@media screen and (max-width: 725px) {
+  .container a {
+    font-size: 18pt;
+  }
+}
