@@ -1,5 +1,5 @@
 .container {
-  margin: 0em 0.5em 0 0.5em;
+  margin: 0.5em 0.5em 0 0.5em;
   padding: 0.5em;
   color: var(--textgrey);
   background-color: var(--accentdark);
@@ -19,3 +19,4 @@
 .subSection ul {
   margin-top: 0.5em;
 }
+

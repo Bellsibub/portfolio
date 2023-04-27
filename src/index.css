@@ -13,6 +13,7 @@
   --alphaoverlay: #101a2260;
   --maxWidthContainer: 725px;
   --boxShadow: 3pt 2pt 5pt #101a22;
+  --footerheight: 50px;
 }
 
 /* base styles */
@@ -84,7 +85,13 @@ p {
 }
 
 @media screen and (max-width: 725px) {
-  body {
+  /* body {
+    font-size: 14px;
+  } */
+  body, h3 {
     font-size: 16px;
+  }
+  h1,h2 {
+    font-size: 20px;
   }
 }

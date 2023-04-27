@@ -13,6 +13,7 @@
   background: var(--accentsoft);
 }
 
+
 .accordian:hover:hover > .icon {
   color: var(--accentdark);
 }
@@ -39,4 +40,15 @@
 
 .otherSkills {
   margin-top: 0.5em;
+}
+
+
+@media screen and (max-width: 725px) {
+  .accordian:hover {
+    background: var(--accentdark);
+  }
+  .accordian:hover:hover > .icon {
+    color: var(--accentsoft);
+  }
+  
 }

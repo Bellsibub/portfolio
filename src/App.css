@@ -1,5 +1,5 @@
 .App {
-  min-height: 100vh;
+  /* height: 100vh; */
   overflow: hidden;
   
 }
@@ -19,6 +19,7 @@ main.content-container {
 @media screen and (max-width: 725px) {
   main.content-container {
    flex-grow: 0;
-   margin: 0 1em;
+   margin: 0 1em var(--footerheight) 1em;
+   height: 100%;
   }
 }
