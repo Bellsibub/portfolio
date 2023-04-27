@@ -6,13 +6,6 @@
   gap: 0.5em;
 }
 
-.image {
-  max-width: 500px;
-  max-height: 500px;
-  box-shadow: var(--boxShadow);
-  border-radius: var(--borderRadius);
-  /* flex: 1 0 50%;'' */
-}
 
 .selector {
   /* grid-area: selector; */
@@ -53,3 +46,25 @@
   color: var(--accent) !important;
   border-color: var(--accent) !important;
 }
+
+
+.motion {
+  
+}
+
+
+.image {
+  max-width: 500px;
+  max-height: 500px;
+  box-shadow: var(--boxShadow);
+  border-radius: var(--borderRadius);
+  /* flex: 1 0 50%;'' */
+}
+
+
+
+@media screen and (max-width: 725px) {
+  .image {
+   width: 100%;
+  }
+ }

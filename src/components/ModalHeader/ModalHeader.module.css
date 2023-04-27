@@ -6,7 +6,7 @@
   background-repeat: no-repeat;
   background-position: right;
   background-color: var(--textgrey);
-  padding: 1em;
+  padding: 1em 40px 1em 1em;
 }
 
 .title {

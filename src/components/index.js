@@ -1,5 +1,6 @@
 export {default as AdminList} from "./AdminList";
 export {default as Carousel} from "./Carousel";
+export {default as CarouselImage} from "./CarouselImage";
 export {default as CharacterInfo} from "./CharacterInfo";
 export {default as EquipmentContent} from "./EquipmentContent";
 export {default as FilterGroup} from "./FilterGroup";

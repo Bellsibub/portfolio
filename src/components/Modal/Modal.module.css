@@ -55,6 +55,10 @@
  .container {
   height: 100vh;
   max-height: none;
-  /* min-height: none; */
+  min-width: 0;
+  max-width: none;
  } 
+ .content {
+  margin-bottom: var(--footerheight);
+ }
 }
