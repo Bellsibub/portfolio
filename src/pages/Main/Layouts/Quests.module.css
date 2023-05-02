@@ -13,3 +13,14 @@
   flex-direction: column;
   gap: 1em;
 }
+
+@media screen and (max-width: 725px) {
+  .wrapper {
+    flex-direction: column;
+    margin-bottom: var(--footerheight);
+  }
+
+  .filters {
+    flex-direction: row;
+  }
+}
