@@ -37,35 +37,37 @@ const ListHeader = ({ list, title, accordian, ...subinfo }) => {
   });
 
   return (
-    <ul className={styles.container}>
-      <div className={headerClass} onClick={handleToggle}>
-        {accordian && (
-          <FontAwesomeIcon
-            icon={open ? solid('caret-up') : solid('caret-down')}
-            className={styles.icon}
-          />
-        )}
-        <h2 className={styles.title}>{title}</h2>
-        {subinfo.projectCount && <ProjectCount count={_.size(list)} />}
-      </div>
-      {open && (
-        <>
-          {subinfo.skills ? (
-            <SkillContainer list={list} />
-          ) : subinfo.otherSkills ? (
-            <OtherSkills list={list} />
-          ) : (
-            <>
-              {list.map((doc) => (
-                <li key={doc.id} className={styles.listItem}>
-                  <ListItem item={doc} />
-                </li>
-              ))}
-            </>
+    list && (
+      <ul className={styles.container}>
+        <div className={headerClass} onClick={handleToggle}>
+          {accordian && (
+            <FontAwesomeIcon
+              icon={open ? solid('caret-up') : solid('caret-down')}
+              className={styles.icon}
+            />
           )}
-        </>
-      )}
-    </ul>
+          <h2 className={styles.title}>{title}</h2>
+          {subinfo.projectCount && <ProjectCount count={_.size(list)} />}
+        </div>
+        {open && (
+          <>
+            {subinfo.skills ? (
+              <SkillContainer list={list} />
+            ) : subinfo.otherSkills ? (
+              <OtherSkills list={list} />
+            ) : (
+              <>
+                {list.map((doc) => (
+                  <li key={doc.id} className={styles.listItem}>
+                    <ListItem item={doc} />
+                  </li>
+                ))}
+              </>
+            )}
+          </>
+        )}
+      </ul>
+    )
   );
 };
 
