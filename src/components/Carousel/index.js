@@ -50,110 +50,110 @@ const Carousel = ({ media }) => {
       };
     },
   };
-
-  return media.length > 1 ? (
-    <>
-      <div className={styles.container}>
-        {width > breakpoint && (
-          <FontAwesomeIcon
-            onClick={() => {
-              if (direction !== 1) changeImage(-1);
-            }}
-            className={
-              styles.icon + `${direction === 1 ? '' : ' ' + styles.active}`
-            }
-            icon={solid('angle-left')}
-          />
-        )}
-        {media[current].type.includes('image') ? (
-          <AnimatePresence initial={false} custom={dir} exitBeforeEnter>
-            <motion.img
-              className={styles.image}
-              src={media[current].url}
-              alt={media[current].alt || 'respresentation of the project'}
-              key={current}
-              custom={dir}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                duration: .5,
+  if (media)
+    return media.length > 1 ? (
+      <>
+        <div className={styles.container}>
+          {width > breakpoint && (
+            <FontAwesomeIcon
+              onClick={() => {
+                if (direction !== 1) changeImage(-1);
               }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={1.5}
-              onDragEnd={(e, { velocity }) => {
-                if (velocity.x < -200) {
-                  changeImage(1);
-                } else if (velocity.x > 200) {
-                  changeImage(-1);
-                }
-              }}
+              className={
+                styles.icon + `${direction === 1 ? '' : ' ' + styles.active}`
+              }
+              icon={solid('angle-left')}
             />
-          </AnimatePresence>
-        ) : media[current].type.includes('video') ? (
-          <AnimatePresence  custom={direction} exitBeforeEnter>
-            <motion.video
-              className={styles.image}
-              src={media[current].url}
-              type="video/mp4"
-              key={current}
-              custom={current}
-              variants={variants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                duration: 0.5,
-              }}
-              drag="x"
-              dragConstraints={{ left: 0, right: 0 }}
-              dragElastic={1.5}
-              onDragEnd={(e, { velocity }) => {
-                if (velocity.x < -200) {
-                  changeImage(1);
-                } else if (velocity.x > 200) {
-                  changeImage(-1);
-                }
-              }}
-            >
-              Your browser does not support the video tag
-            </motion.video>
-          </AnimatePresence>
-        ) : (
-          <></>
-        )}
+          )}
+          {media[current].type.includes('image') ? (
+            <AnimatePresence initial={false} custom={dir} exitBeforeEnter>
+              <motion.img
+                className={styles.image}
+                src={media[current].url}
+                alt={media[current].alt || 'respresentation of the project'}
+                key={current}
+                custom={dir}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  duration: 0.5,
+                }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1.5}
+                onDragEnd={(e, { velocity }) => {
+                  if (velocity.x < -200) {
+                    changeImage(1);
+                  } else if (velocity.x > 200) {
+                    changeImage(-1);
+                  }
+                }}
+              />
+            </AnimatePresence>
+          ) : media[current].type.includes('video') ? (
+            <AnimatePresence custom={direction} exitBeforeEnter>
+              <motion.video
+                className={styles.image}
+                src={media[current].url}
+                type="video/mp4"
+                key={current}
+                custom={current}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  duration: 0.5,
+                }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={1.5}
+                onDragEnd={(e, { velocity }) => {
+                  if (velocity.x < -200) {
+                    changeImage(1);
+                  } else if (velocity.x > 200) {
+                    changeImage(-1);
+                  }
+                }}
+              >
+                Your browser does not support the video tag
+              </motion.video>
+            </AnimatePresence>
+          ) : (
+            <></>
+          )}
 
-        {width > breakpoint && (
-          <FontAwesomeIcon
-            onClick={() => {
-              if (direction !== 0) changeImage(1);
-            }}
-            className={
-              styles.icon + `${direction === 0 ? '' : ' ' + styles.active}`
-            }
-            icon={solid('angle-right')}
-          />
-        )}
+          {width > breakpoint && (
+            <FontAwesomeIcon
+              onClick={() => {
+                if (direction !== 0) changeImage(1);
+              }}
+              className={
+                styles.icon + `${direction === 0 ? '' : ' ' + styles.active}`
+              }
+              icon={solid('angle-right')}
+            />
+          )}
+        </div>
+        <div className={styles.selector}>
+          {media.map((c, i) => (
+            <div
+              className={
+                styles.select +
+                `${current === i ? ' ' + styles.activeSelect : ''}`
+              }
+              key={i}
+            />
+          ))}
+        </div>
+      </>
+    ) : (
+      <div className={styles.container}>
+        <CarouselImage media={media} current={current} />
       </div>
-      <div className={styles.selector}>
-        {media.map((c, i) => (
-          <div
-            className={
-              styles.select +
-              `${current === i ? ' ' + styles.activeSelect : ''}`
-            }
-            key={i}
-          />
-        ))}
-      </div>
-    </>
-  ) : (
-    <div className={styles.container}>
-      <CarouselImage media={media} current={current} />
-    </div>
-  );
+    );
 };
 
 export default Carousel;

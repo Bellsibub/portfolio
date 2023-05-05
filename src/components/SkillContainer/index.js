@@ -27,6 +27,7 @@ const SkillContainer = ({ list }) => {
         {Object.entries(skills).map(([type, skills]) => (
           <ul className={styles.list} key={type}>
             <h3>{type}</h3>
+           <div className={line.base} />
             <div className={styles.skills}>
               {skills.map((skill) => (
                 <li
@@ -46,7 +47,6 @@ const SkillContainer = ({ list }) => {
                 </li>
               ))}
             </div>
-            {type !== 'secondary' && <div className={line.base} />}
           </ul>
         ))}
       </div>

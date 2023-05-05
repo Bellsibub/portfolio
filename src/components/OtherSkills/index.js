@@ -8,7 +8,7 @@ const OtherSkills = ({ list }) => {
           <h4>Tools</h4>
           <ul>
             {list.tools.map((skill) => (
-              <li>{skill}</li>
+              <li key={skill}>{skill}</li>
             ))}
           </ul>
         </div>
@@ -16,7 +16,7 @@ const OtherSkills = ({ list }) => {
           <h4>Other</h4>
           <ul>
             {list.other.map((skill) => (
-              <li>{skill}</li>
+              <li key={skill}>{skill}</li>
             ))}
           </ul>
         </div>
