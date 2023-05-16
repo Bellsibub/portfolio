@@ -11,7 +11,7 @@ const CarouselImage = ({media, current}) => {
             alt={media[current].alt || 'respresentation of the project'}
           />
         ) : media[current].type.includes('video') ? (
-          <video className={styles.image}>
+          <video controls className={styles.image}>
             <source src={media[current].url} type="video/mp4" />
             Your browser does not support the video tag
           </video>

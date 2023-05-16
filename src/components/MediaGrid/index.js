@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import _ from 'lodash';
 import { useState, useEffect } from 'react';
 import styles from './MediaGrid.module.css';
@@ -62,6 +62,14 @@ const MediaGrid = ({
             }
           >
             <FontAwesomeIcon icon={regular('star')} />
+          </div>
+          <div
+            className={
+              styles.feature +
+              `${m.mobile ? ' ' + styles.primary : ''}`
+            }
+          >
+            <FontAwesomeIcon icon={solid('mobile')} />
           </div>
           {m.type.includes('image') ? (
             <img

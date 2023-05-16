@@ -2,7 +2,7 @@ import { arrayUnion } from 'firebase/firestore';
 import { useDB } from 'hooks/useDB';
 import { useStorage } from 'hooks/useStorage';
 import _ from 'lodash';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 
@@ -22,7 +22,7 @@ const MediaSelect = ({ type }) => {
       _.pullAt(temp, selectedIndex);
       setSelected([...temp]);
     } else {
-      setSelected([...selected, { ...m }]);
+      setSelected([...selected, { ...m, mobile: m.path.includes('mobile') }]);
     }
   };
 

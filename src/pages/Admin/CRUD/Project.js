@@ -93,6 +93,9 @@ const Project = () => {
   const handleFeatureSelect = (featured) => {
     setValues({ ...val, featuredImage: featured });
   };
+  // const handleMobileSelect = (mobile) => {
+  //   setValues({ ...val, mobile: featured });
+  // };
 
   if (document)
     return (
