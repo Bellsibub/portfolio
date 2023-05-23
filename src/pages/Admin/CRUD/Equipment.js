@@ -20,7 +20,8 @@ const Equipment = () => {
   const [val, setValues] = useState({
     title: '',
     company: '',
-    duration: '',
+    start: '',
+    end: '',
     description: '',
     skills: [],
     media: [],
@@ -34,7 +35,8 @@ const Equipment = () => {
       setValues({
         title: document.title || '',
         company: document.company || '',
-        duration: document.duration || '',
+        start: document.start || '',
+        end: document.end || '',
         description: document.description || '',
         skills: document.skills || [],
         media: document.media || [],
@@ -118,11 +120,17 @@ const Equipment = () => {
         </div>
         <h5>dates</h5>
         <div className={styles.inputWrapper}>
-          <label>duration</label>
+          <label>start</label>
           <input
-            type="text"
-            value={val.duration}
-            onChange={(e) => handleChange(e.target, 'duration')}
+            type="date"
+            value={val.start}
+            onChange={(e) => handleChange(e.target, 'start')}
+          />
+          <label>end</label>
+          <input
+            type="date"
+            value={val.end}
+            onChange={(e) => handleChange(e.target, 'end')}
           />
         </div>
         <h5>skills</h5>
@@ -142,7 +150,10 @@ const Equipment = () => {
           />
         </div>
         <h5>media</h5>
-        <h6>select what media should be shown via star, click on media and submit to remove</h6>
+        <h6>
+          select what media should be shown via star, click on media and submit
+          to remove
+        </h6>
         <MediaGrid
           featuredImage={val.featuredImage}
           media={val.media}

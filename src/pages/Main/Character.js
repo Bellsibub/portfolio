@@ -5,7 +5,10 @@ import { useSnapshotDB } from 'hooks/useSnapshotDB';
 import layout from './Layouts/Character.module.css';
 
 const Character = () => {
-  let { documents } = useSnapshotDB('equipment', false);
+  let { documents } = useSnapshotDB('equipment', false, null, [
+    'start',
+    'desc',
+  ]);
 
   return (
     <div className={layout.wrapper}>

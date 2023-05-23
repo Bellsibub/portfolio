@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './ListItem.module.css';
 import line from 'styles/Line.module.css';
 import Tags from 'components/Tags';
+import { getRange } from 'utils/DateManipulation';
 
 const ListItem = ({ item, nested }) => {
   const loc = item.company
@@ -20,9 +21,9 @@ const ListItem = ({ item, nested }) => {
       >
         <h3 className={styles.title}>{item.title}</h3>
         {item.company && <h5 className={styles.subtitle}>{item.company}</h5>}
-        {item.duration && (
+        {item.start && (
           <>
-            <h5 className={styles.subinfo}>{item.duration}</h5>
+            <h5 className={styles.subinfo}>{getRange(item.start, item.end)}</h5>
             <div className={line.base} />
             <h4 className={styles.skillHeader}>Skills used and/or learned</h4>
           </>
