@@ -13,10 +13,16 @@ import styles from './CRUD.module.css';
 const Equipment = () => {
   const { id } = useParams();
   const { documents: skills } = useSnapshotDB('skills');
+  const { document: character } = useDocument(
+    'character',
+    'IubhuDbfpetly9OUHZ2M'
+  );
   const { document } = useDocument('equipment', id);
   const { updateDocument, response } = useDB('equipment');
 
   const [skillOptions, setSkillOptions] = useState([]);
+  const [otherSkillOptions, setOtherSkillOptions] = useState([]);
+  const [toolsOptions, setToolsOptions] = useState([]);
   const [val, setValues] = useState({
     title: '',
     company: '',
@@ -24,6 +30,8 @@ const Equipment = () => {
     end: '',
     description: '',
     skills: [],
+    otherSkills: [],
+    tools: [],
     media: [],
     featuredImage: '',
   });
@@ -39,12 +47,15 @@ const Equipment = () => {
         end: document.end || '',
         description: document.description || '',
         skills: document.skills || [],
+        otherSkills: document.otherSkills || [],
+        tools: document.tools || [],
         media: document.media || [],
 
         featuredImage: document.featuredImage || '',
       });
       setMedias(document.media || []);
     }
+    // set skill options
     if (skills) {
       let _skills = skills;
       setSkillOptions(
@@ -53,7 +64,23 @@ const Equipment = () => {
         })
       );
     }
-  }, [document, skills]);
+    // set other skill options
+    if (character) {
+      console.log(character);
+      let _otherSkills = character.skills.other;
+      let _tools = character.skills.tools;
+      setOtherSkillOptions(
+        _otherSkills.map((skill) => {
+          return { value: skill, label: skill };
+        })
+      );
+      setToolsOptions(
+        _tools.map((skill) => {
+          return { value: skill, label: skill };
+        })
+      );
+    }
+  }, [character, document, skills]);
 
   const handleSubmit = async () => {
     let t = { ...val, media: [...medias] };
@@ -147,6 +174,38 @@ const Equipment = () => {
             }
             options={skillOptions}
             onChange={(option) => handleChange(option, 'skills', true)}
+          />
+        </div>
+        <h5>other skills</h5>
+        <div className={styles.inputWrapper}>
+          <Select
+            classNamePrefix="react-select"
+            isMulti
+            value={
+              val.otherSkills.length > 0
+                ? val.otherSkills.map((d) => {
+                    return { label: d, value: d };
+                  })
+                : []
+            }
+            options={otherSkillOptions}
+            onChange={(option) => handleChange(option, 'otherSkills', true)}
+          />
+        </div>
+        <h5>tools</h5>
+        <div className={styles.inputWrapper}>
+          <Select
+            classNamePrefix="react-select"
+            isMulti
+            value={
+              val.tools.length > 0
+                ? val.tools.map((d) => {
+                    return { label: d, value: d };
+                  })
+                : []
+            }
+            options={toolsOptions}
+            onChange={(option) => handleChange(option, 'tools', true)}
           />
         </div>
         <h5>media</h5>

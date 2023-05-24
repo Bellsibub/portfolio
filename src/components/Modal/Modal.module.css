@@ -24,7 +24,8 @@
   gap: 0.5em;
 }
 
-.content > h4 {
+.content > h4,
+.content > h5 {
   color: var(--textgrey);
 }
 
@@ -50,15 +51,14 @@
   color: var(--accent);
 }
 
-
 @media screen and (max-width: 725px) {
- .container {
-  height: 100vh;
-  max-height: none;
-  min-width: 0;
-  max-width: none;
- } 
- .content {
-  margin-bottom: var(--footerheight);
- }
+  .container {
+    height: 100vh;
+    max-height: none;
+    min-width: 0;
+    max-width: none;
+  }
+  .content {
+    margin-bottom: var(--footerheight);
+  }
 }
