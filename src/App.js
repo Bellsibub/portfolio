@@ -1,12 +1,12 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 // hooks
-import { useAuth } from 'hooks/useAuth';
+import { useAuth } from "hooks/useAuth";
 
 // elements
-import ProtectedRoute from 'utils/ProtectedRoute';
-import AnimatedPage from 'utils/AnimatedPage';
-import { Navbar, Modal } from 'components';
+import ProtectedRoute from "utils/ProtectedRoute";
+import AnimatedPage from "utils/AnimatedPage";
+import { Navbar, Modal } from "components";
 import {
   Home,
   Contact,
@@ -22,10 +22,10 @@ import {
   CRUDproject,
   CRUDskills,
   CRUDequipment,
-} from 'pages';
+} from "pages";
 
 // styling
-import './App.css';
+import "./App.css";
 
 const MainRoutes = () => {
   let location = useLocation();
