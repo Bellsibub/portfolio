@@ -18,6 +18,7 @@ const Home = () => {
         <ResumeButton />
         <SocialLinks />
         <h1>Skills</h1>
+        <p>check out</p>
       </div>
     </>
   );
