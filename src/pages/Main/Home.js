@@ -17,8 +17,6 @@ const Home = () => {
         <p>The journey has only just begun…</p>
         <ResumeButton />
         <SocialLinks />
-        <h1>Skills</h1>
-        <p>check out</p>
       </div>
     </>
   );

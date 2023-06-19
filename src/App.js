@@ -9,16 +9,16 @@ import AnimatedPage from "utils/AnimatedPage";
 import { Navbar, Modal } from "components";
 import {
   Home,
-  Contact,
+  Character,
   Skills,
   Quests,
-  Character,
+  Equipment,
   Login,
   Profile,
   Projects,
   Admin,
   SkillManager,
-  Equipment,
+  AdminEquipment,
   CRUDproject,
   CRUDskills,
   CRUDequipment,
@@ -39,17 +39,17 @@ const MainRoutes = () => {
       <AnimatedPage>
         <Routes location={state?.backgroundLocation || location}>
           <Route index element={<Home />} />
-          <Route path="contact" element={<Contact />} />
+          <Route path="character" element={<Character />} />
           <Route path="skills" element={<Skills />} />
           <Route path="quests" element={<Quests />} />
-          <Route path="character" element={<Character />} />
+          <Route path="equipment" element={<Equipment />} />
         </Routes>
       </AnimatedPage>
       {state?.backgroundLocation && (
         <Routes>
           <Route path="/quests/:id" element={<Modal />} />
           <Route path="/skills/:id" element={<Modal />} />
-          <Route path="/character/equipment/:id" element={<Modal />} />
+          <Route path="/equipment/:id" element={<Modal />} />
         </Routes>
       )}
     </>
@@ -114,7 +114,7 @@ const AdminRoutes = () => {
             path="equipment"
             element={
               <ProtectedRoute>
-                <Equipment />
+                <AdminEquipment />
               </ProtectedRoute>
             }
           />

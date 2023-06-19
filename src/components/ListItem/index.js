@@ -7,7 +7,7 @@ import { getRange } from 'utils/DateManipulation';
 
 const ListItem = ({ item, nested }) => {
   const loc = item.company
-    ? { bkg: '/character', to: '/character/equipment/' }
+    ? { bkg: '/equipment', to: '/equipment/' }
     : { bkg: '/quests', to: '/quests/' };
   return (
     <>

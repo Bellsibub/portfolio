@@ -1,4 +1,4 @@
-const pageOrders = ['/quests', '/skills', '/', '/character', '/contact'];
+const pageOrders = ['/quests', '/skills', '/', '/equipment', '/character'];
 
 export const getDirection = (currentPage, nextPage) => {
   let cP = pageOrders.indexOf(currentPage);

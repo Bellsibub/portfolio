@@ -1,28 +1,27 @@
-// hooks
-import { CharacterInfo, ListHeader } from 'components';
-import { useSnapshotDB } from 'hooks/useSnapshotDB';
-// layout
-import layout from './Layouts/Character.module.css';
+import { ResumeButton, SocialLinks, CharacterInfo } from "components";
+import layout from "./Layouts/Character.module.css";
 
 const Character = () => {
-  let { documents } = useSnapshotDB('equipment', false, null, [
-    'start',
-    'desc',
-  ]);
 
   return (
-    <div className={layout.wrapper}>
-      <div className={layout.infoPanel}>
-        <CharacterInfo />
+    <>
+      <div className={layout.wrapper} >
+        <div className={layout.infoPanel} >
+          <CharacterInfo />
+        </div>
+        {/* <ResumeButton />
+        <div className={layout.section}>
+          <h4>email</h4>
+          <a className={layout.link} href="mailto:isabella.billgren@gmail.com">
+            isabella.billgren@gmail.com
+          </a>
+        </div>
+        <div className={layout.section}>
+          <h4>socials</h4>
+          <SocialLinks />
+        </div> */}
       </div>
-      <div className={layout.list}>
-        {documents ? (
-          <ListHeader title="Equipment" list={documents} />
-        ) : (
-          <div>no documents found</div>
-        )}
-      </div>
-    </div>
+    </>
   );
 };
 
