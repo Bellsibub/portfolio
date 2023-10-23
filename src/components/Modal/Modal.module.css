@@ -47,8 +47,10 @@
   height: 35px;
 }
 
-.closeIcon:hover {
-  color: var(--accent);
+@media not all and (hover: none) {
+  .closeIcon:hover {
+    color: var(--accent);
+  }
 }
 
 @media screen and (max-width: 725px) {
