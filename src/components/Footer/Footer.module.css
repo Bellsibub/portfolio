@@ -1,0 +1,12 @@
+.container {
+  position: sticky;
+  bottom: 0;
+  height: 2em;
+  background: linear-gradient(
+    360deg,
+    rgba(159, 156, 150, 1) 0%,
+    rgb(159, 156, 150) 45%,
+    rgba(159, 156, 150, 0.72) 75%,
+    rgba(159, 156, 150, 0) 100%
+  );
+}

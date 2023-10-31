@@ -12,7 +12,6 @@ const Equipment = () => {
 
   return (
     <div className={layout.wrapper}>
-      
       <div className={layout.list}>
         {documents ? (
           <ListHeader title="" list={documents} />

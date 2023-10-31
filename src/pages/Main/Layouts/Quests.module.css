@@ -17,7 +17,7 @@
 @media screen and (max-width: 725px) {
   .wrapper {
     flex-direction: column;
-    margin-bottom: var(--footerheight);
+    margin: 0 1em 1em 1em;
   }
 
   .filters {

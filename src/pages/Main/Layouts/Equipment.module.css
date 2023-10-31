@@ -21,11 +21,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
-    margin-bottom: var(--footerheight);
-    
+    /* margin-top: 30px; */
+    height: 100%;
+    margin: 0 1em 1em 1em;
   }
-  
+
   .list {
     margin-top: 0;
     /* margin-bottom: 50px; */

@@ -61,6 +61,7 @@
     max-width: none;
   }
   .content {
-    margin-bottom: var(--footerheight);
+    margin-bottom: 1em;
+    /* margin-bottom: var(--footerheight); */
   }
 }
