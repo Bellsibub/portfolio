@@ -37,19 +37,20 @@ const Modal = () => {
     <>
       {document && (
         <Popup open={open} closeOnDocumentClick onClose={closeModal} modal>
-            <div className={styles.container}>
-              <button
-                type="button"
-                className={styles.closeWrapper}
-                onClick={closeModal}
-              >
-                <FontAwesomeIcon
-                  className={styles.closeIcon}
-                  icon={regular("circle-xmark")}
-                />
-              </button>
-              <ModalHeader data={document} collection={collection} />
-              <div className={styles.content}>
+          <div className={styles.container}>
+            <button
+              type="button"
+              className={styles.closeWrapper}
+              onClick={closeModal}
+            >
+              <FontAwesomeIcon
+                className={styles.closeIcon}
+                icon={regular("circle-xmark")}
+              />
+            </button>
+            <ModalHeader data={document} collection={collection} />
+            <div className={styles.contentWrapper}>
+              <div className={styles.contentContainer}>
                 {(() => {
                   switch (collection) {
                     case "projects":
@@ -65,6 +66,7 @@ const Modal = () => {
               </div>
               <Footer modal />
             </div>
+          </div>
         </Popup>
       )}
     </>
