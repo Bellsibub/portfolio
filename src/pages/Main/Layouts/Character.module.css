@@ -1,17 +1,11 @@
 .wrapper {
-  max-width: 500px;
   margin: 0 auto;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-  /* gap: .5em; */
-  /* height: 100%; */
-  /* justify-content: center; */
+  height: 100%;
 }
 
-.infoPanel {
-  /* position: absolute; */
-}
+/* .infoPanel {
+  position: absolute;
+} */
 
 .link {
   color: var(--accent);
@@ -21,6 +15,12 @@
 .section {
   text-align: center;
   margin: 0.5em 0;
+}
+
+.contactWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media screen and (max-width: 725px) {
