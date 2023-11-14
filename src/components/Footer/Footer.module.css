@@ -1,7 +1,7 @@
 .container {
   position: sticky;
   bottom: 0;
-  height: 2em;
+  height: 4em;
   background: linear-gradient(
     360deg,
     rgba(159, 156, 150, 1) 0%,

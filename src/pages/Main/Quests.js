@@ -19,17 +19,10 @@ const Quests = () => {
   let groupedDocs = _.groupBy(documents, "primarySkill");
 
   if (documents)
-    return width > breakpoint ? (
+    return (
       <div className={layout.wrapper}>
         <FilterGroup className={layout.filters} />
         <div className={layout.list}>
-          <ListHeader
-            featured
-            list={featuredDocs}
-            title="featured"
-            projectCount
-            accordian
-          />
           {Object.entries(groupedDocs).map(([skillname, projects]) => (
             <ListHeader
               key={skillname}
@@ -39,28 +32,13 @@ const Quests = () => {
               accordian
             />
           ))}
-        </div>
-      </div>
-    ) : (
-      <div className={layout.wrapper}>
-        <div className={layout.list}>
           <ListHeader
             featured
             list={featuredDocs}
             title="featured"
             projectCount
-            accordian
+            // accordian
           />
-          <FilterGroup className={layout.filters} />
-          {Object.entries(groupedDocs).map(([skillname, projects]) => (
-            <ListHeader
-              key={skillname}
-              list={projects}
-              title={skillname}
-              projectCount
-              accordian
-            />
-          ))}
         </div>
       </div>
     );
