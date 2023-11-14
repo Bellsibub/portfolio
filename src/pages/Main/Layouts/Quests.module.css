@@ -8,11 +8,12 @@
   gap: 1em;
 }
 .list {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 1em;
 }
+
+/* MOBILE */
 
 @media screen and (max-width: 725px) {
   .wrapper {

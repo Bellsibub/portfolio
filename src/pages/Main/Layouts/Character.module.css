@@ -1,18 +1,9 @@
-.wrapper {
-  margin: 0 auto;
-  height: 100%;
-}
-
-/* .infoPanel {
-  position: absolute;
-} */
-
 .link {
   color: var(--accent);
   text-decoration: underline;
 }
 
-.section {
+.contactSection {
   text-align: center;
   margin: 0.5em 0;
 }
@@ -23,11 +14,13 @@
   align-items: center;
 }
 
+/* MOBILE */
+
 @media screen and (max-width: 725px) {
   .wrapper {
     margin: 0 1em 1em 1em;
   }
-  .section h4 {
+  .contactSection h4 {
     margin-bottom: 0.5em;
   }
 }
