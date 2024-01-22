@@ -6,7 +6,7 @@
   box-shadow: var(--boxShadow);
   border: var(--border);
   border-width: 2px;
-  overflow-y: initial !important;
+  /* overflow-y: initial !important; */
   /* height: 100vh; */
   min-height: 667px;
   max-height: 800px;
@@ -15,13 +15,17 @@
 }
 
 .content {
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow-y: scroll !important;
+  /* text-align: justify; */
+  /* width: 100%; */
+  /* overflow-x: hidden; */
   padding: 10px 25px;
   display: flex;
   flex-direction: column;
+  /* min-width: 100%; */
   /* align-items: center; */
   gap: 0.5em;
+  max-height: calc(100vh - 205px);
 }
 
 .content > h4,
@@ -53,12 +57,17 @@
 
 @media screen and (max-width: 725px) {
   .container {
-    height: 100vh;
-    max-height: none;
+    /* height: 100vh; */
+    width: 100vw;
+    max-height: 100vh;
     min-width: 0;
-    max-width: none;
+    /* min-height: 0;
+    min-width: 100vw;
+    max-width: none; */
   }
   .content {
+    overflow-x: hidden !important;
     margin-bottom: var(--footerheight);
+    padding: 1em;
   }
 }
