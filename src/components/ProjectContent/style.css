@@ -1,0 +1,36 @@
+.markdown {
+  text-align: justify;
+}
+
+.markdown ul{
+  list-style-type: disc;
+}
+
+.markdown ul,
+.markdown li,
+.markdown p,
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  margin: revert;
+  padding: revert;
+}
+
+.markdown ul {
+  padding-left: 1.5em;
+}
+
+.markdown blockquote {
+  background-color: var(--background);
+  padding: .1em .5em;
+  border-radius: var(--borderRadius);
+  box-shadow: var(--boxShadow);
+}
+
+.markdown pre > div {
+  border-radius: var(--borderRadius);
+  box-shadow: var(--boxShadow);
+}
