@@ -47,42 +47,6 @@ const CharacterInfo = () => {
                 <p key={val}>{val}</p>
               ))}
             </li>
-            <li>
-              <h5>+ traits</h5>
-              {info[0].traits.map((val) => (
-                <p key={val}>{val}</p>
-              ))}
-            </li>
-            <li>
-              <h5>+ interests</h5>
-              {info[0].interests.map((val) => (
-                <p key={val}>{val}</p>
-              ))}
-            </li>
-            <li>
-              <h5>+ traits</h5>
-              {info[0].traits.map((val) => (
-                <p key={val}>{val}</p>
-              ))}
-            </li>
-            <li>
-              <h5>+ interests</h5>
-              {info[0].interests.map((val) => (
-                <p key={val}>{val}</p>
-              ))}
-            </li>
-            <li>
-              <h5>+ traits</h5>
-              {info[0].traits.map((val) => (
-                <p key={val}>{val}</p>
-              ))}
-            </li>
-            <li>
-              <h5>+ interests</h5>
-              {info[0].interests.map((val) => (
-                <p key={val}>{val}</p>
-              ))}
-            </li>
           </ul>
         </div>
       </>

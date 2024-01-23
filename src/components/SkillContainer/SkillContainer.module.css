@@ -46,14 +46,16 @@
 }
 
 /* Hover effects */
-.item:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-.base:hover {
-  color: var(--accentdark);
-  font-weight: bold;
-  background: var(--accent);
+@media not all and (hover: none) {
+  .item:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  .base:hover {
+    color: var(--accentdark);
+    font-weight: bold;
+    background: var(--accent);
+  }
 }
 
 @media screen and (max-width: 725px) {

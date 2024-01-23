@@ -1,35 +1,28 @@
-import _ from 'lodash';
+import _ from "lodash";
 // hooks
-import { useSnapshotDB } from 'hooks/useSnapshotDB';
+import { useSnapshotDB } from "hooks/useSnapshotDB";
 // components
-import { FilterGroup, ListHeader } from 'components';
+import { FilterGroup, ListHeader } from "components";
 // layout
-import layout from './Layouts/Quests.module.css';
-import { useViewport } from 'hooks/useViewport';
+import layout from "./Layouts/Quests.module.css";
+import { useViewport } from "hooks/useViewport";
 
 const Quests = () => {
   const { width } = useViewport();
   const breakpoint = 725;
-  let { documents } = useSnapshotDB('projects', true);
-  let { documents: featuredDocs } = useSnapshotDB('projects', false, [
-    'featured',
-    '==',
+  let { documents } = useSnapshotDB("projects", true);
+  let { documents: featuredDocs } = useSnapshotDB("projects", false, [
+    "featured",
+    "==",
     true,
   ]);
-  let groupedDocs = _.groupBy(documents, 'primarySkill');
+  let groupedDocs = _.groupBy(documents, "primarySkill");
 
   if (documents)
-    return width > breakpoint ? (
+    return (
       <div className={layout.wrapper}>
         <FilterGroup className={layout.filters} />
         <div className={layout.list}>
-          <ListHeader
-            featured
-            list={featuredDocs}
-            title="featured"
-            projectCount
-            accordian
-          />
           {Object.entries(groupedDocs).map(([skillname, projects]) => (
             <ListHeader
               key={skillname}
@@ -39,28 +32,13 @@ const Quests = () => {
               accordian
             />
           ))}
-        </div>
-      </div>
-    ) : (
-      <div className={layout.wrapper}>
-        <div className={layout.list}>
           <ListHeader
             featured
             list={featuredDocs}
             title="featured"
             projectCount
-            accordian
+            // accordian
           />
-        <FilterGroup className={layout.filters} />
-          {Object.entries(groupedDocs).map(([skillname, projects]) => (
-            <ListHeader
-              key={skillname}
-              list={projects}
-              title={skillname}
-              projectCount
-              accordian
-            />
-          ))}
         </div>
       </div>
     );

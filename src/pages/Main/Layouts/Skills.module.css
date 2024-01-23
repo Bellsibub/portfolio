@@ -1,3 +1,7 @@
-.wrapper {
-  margin-bottom: var(--footerheight);
+/* MOBILE */
+
+@media screen and (max-width: 725px) {
+  .wrapper {
+    margin: 0 1em 1em 1em;
+  }
 }

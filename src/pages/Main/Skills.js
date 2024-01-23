@@ -1,10 +1,10 @@
 // hooks
-import { ListHeader } from 'components';
-import { useSnapshotDB } from 'hooks/useSnapshotDB';
-import styles from './Layouts/Skills.module.css'
+import { ListHeader } from "components";
+import { useSnapshotDB } from "hooks/useSnapshotDB";
+import styles from "./Layouts/Skills.module.css";
 const Skills = () => {
-  let { documents } = useSnapshotDB('skills');
-  let { documents: character } = useSnapshotDB('character');
+  let { documents } = useSnapshotDB("skills");
+  let { documents: character } = useSnapshotDB("character");
   if (documents && character)
     return (
       <div className={styles.wrapper}>
