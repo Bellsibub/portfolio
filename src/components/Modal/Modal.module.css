@@ -14,8 +14,8 @@
   flex-direction: column;
 }
 
-.content {
-  overflow-y: scroll !important;
+.contentContainer {
+  /* overflow-y: scroll !important; */
   /* text-align: justify; */
   /* width: 100%; */
   /* overflow-x: hidden; */
@@ -72,8 +72,8 @@
     min-width: 100vw;
     max-width: none; */
   }
-  .content {
-    overflow-x: hidden !important;
+  .contentContainer {
+    /* overflow-x: hidden !important; */
     margin-bottom: var(--footerheight);
     padding: 1em;
   }
