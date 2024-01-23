@@ -21,8 +21,6 @@ main.admin {
 
 @media screen and (max-width: 725px) {
   main.content-container {
-    flex-grow: 0;
-    /* margin: 0 1em 1em 1em; */
-    height: 100%;
+    position: relative;
   }
 }
