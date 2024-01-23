@@ -60,7 +60,7 @@ const AdminRoutes = () => {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="admin">
         <Routes>
           <Route
             index
