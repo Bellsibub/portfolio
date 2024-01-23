@@ -12,7 +12,7 @@ const ResumeButton = () => {
         className={styles.button}
         rel="noreferrer"
       >
-        Resume
+        Download CV
       </a>
     </>
   );

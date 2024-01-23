@@ -8,14 +8,15 @@
   margin: 0 0.5em;
 }
 
-.accordian:hover {
-  cursor: pointer;
-  background: var(--accentsoft);
-}
+@media not all and (hover: none) {
+  .accordian:hover {
+    cursor: pointer;
+    background: var(--accentsoft);
+  }
 
-
-.accordian:hover:hover > .icon {
-  color: var(--accentdark);
+  .accordian:hover:hover > .icon {
+    color: var(--accentdark);
+  }
 }
 
 .title {
@@ -42,13 +43,12 @@
   margin-top: 0.5em;
 }
 
-
-@media screen and (max-width: 725px) {
-  .accordian:hover {
+/* @media screen and (max-width: 725px) {
+  .accordian:active {
     background: var(--accentdark);
   }
-  .accordian:hover:hover > .icon {
+  .accordian:active:active > .icon {
     color: var(--accentsoft);
   }
   
-}
+}  */

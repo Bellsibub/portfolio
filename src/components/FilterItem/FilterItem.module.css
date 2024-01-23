@@ -10,11 +10,11 @@
   cursor: pointer;
   box-shadow: var(--boxShadow);
 }
-
-.base:hover {
-  border-color: var(--textgrey);
+@media not all and (hover: none) {
+  .base:hover {
+    border-color: var(--textgrey);
+  }
 }
-
 
 .active {
   box-shadow: inset var(--boxShadow);

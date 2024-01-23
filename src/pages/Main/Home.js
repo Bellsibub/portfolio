@@ -1,6 +1,6 @@
-import { ResumeButton, SocialLinks } from 'components';
+import { ResumeButton, SocialLinks } from "components";
 
-import layout from './Layouts/Home.module.css';
+import layout from "./Layouts/Home.module.css";
 
 const Home = () => {
   return (

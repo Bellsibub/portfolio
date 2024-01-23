@@ -1,0 +1,22 @@
+.container {
+  position: sticky;
+  bottom: 0;
+  height: 4em;
+  background: linear-gradient(
+    360deg,
+    rgba(159, 156, 150, 1) 0%,
+    rgb(159, 156, 150) 45%,
+    rgba(159, 156, 150, 0.72) 75%,
+    rgba(159, 156, 150, 0) 100%
+  );
+}
+
+.modal {
+  background: linear-gradient(
+    360deg,
+    rgba(16, 37, 49, 1) 0%,
+    rgb(16, 37, 49) 45%,
+    rgba(16, 37, 49, 0.72) 75%,
+    rgba(16, 37, 49, 0) 100%
+  );
+}

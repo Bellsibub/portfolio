@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import styles from './ListItem.module.css';
-import line from 'styles/Line.module.css';
-import Tags from 'components/Tags';
-import { getRange } from 'utils/DateManipulation';
+import styles from "./ListItem.module.css";
+import line from "styles/Line.module.css";
+import Tags from "components/Tags";
+import { getRange } from "utils/DateManipulation";
 
 const ListItem = ({ item, nested }) => {
   const loc = item.company
-    ? { bkg: '/equipment', to: '/equipment/' }
-    : { bkg: '/quests', to: '/quests/' };
+    ? { bkg: "/equipment", to: "/equipment/" }
+    : { bkg: "/quests", to: "/quests/" };
   return (
     <>
       <Link

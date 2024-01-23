@@ -1,22 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
 // provider
-import { AuthProvider } from 'context/AuthContext';
+import { AuthProvider } from "context/AuthContext";
 
 // Application component
-import App from './App';
+import App from "./App";
 // styling
-import './index.css';
-import { ViewportProvider } from 'context/ViewportContext';
+import "./index.css";
+import { ViewportProvider } from "context/ViewportContext";
+import { WrapperProvider } from "context/WrapperContext";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
     <AuthProvider>
       <ViewportProvider>
-        <App />
+        <WrapperProvider>
+          <App />
+        </WrapperProvider>
       </ViewportProvider>
     </AuthProvider>
   </React.StrictMode>

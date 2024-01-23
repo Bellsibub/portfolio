@@ -14,18 +14,21 @@
   flex-direction: column;
 }
 
-.content {
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 10px 25px;
+.contentContainer {
   display: flex;
   flex-direction: column;
   /* align-items: center; */
   gap: 0.5em;
+  padding: 10px 25px;
 }
 
-.content > h4,
-.content > h5 {
+.contentWrapper {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.contentContainer > h4,
+.contentContainer > h5 {
   color: var(--textgrey);
 }
 
@@ -47,8 +50,10 @@
   height: 35px;
 }
 
-.closeIcon:hover {
-  color: var(--accent);
+@media not all and (hover: none) {
+  .closeIcon:hover {
+    color: var(--accent);
+  }
 }
 
 @media screen and (max-width: 725px) {
@@ -59,6 +64,7 @@
     max-width: none;
   }
   .content {
-    margin-bottom: var(--footerheight);
+    margin-bottom: 1em;
+    /* margin-bottom: var(--footerheight); */
   }
 }

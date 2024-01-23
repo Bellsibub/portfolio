@@ -1,6 +1,3 @@
-// Make sure you also wrap the root of your application in the new ViewportProvider, so that the newly rewritten useViewport Hook will have access to the Context when used further down in the component tree.
-
-
 import { createContext, useEffect, useState } from 'react';
 
 export const ViewportContext = createContext();

@@ -1,8 +1,9 @@
-import { useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import { getDirection, getNextPage } from './PageDirection';
+import { getDirection, getNextPage } from "./PageDirection";
+import { Footer } from "components";
 
 // const pageOrders = ['/quests', '/skills', '/', '/character', '/contact'];
 
@@ -52,8 +53,8 @@ const AnimatedPage = ({ children }) => {
   } else {
     // update
     if (state && state.nested) {
-      prevPath.current = '/quests';
-      direction.current = getDirection('/skills', '/quests');
+      prevPath.current = "/quests";
+      direction.current = getDirection("/skills", "/quests");
     } else {
       if (prevPath.current !== pathname) {
         direction.current = getDirection(prevPath.current, pathname);
@@ -87,6 +88,8 @@ const AnimatedPage = ({ children }) => {
         }}
       >
         {children}
+
+        <Footer />
       </motion.main>
     </AnimatePresence>
   );
