@@ -5,5 +5,5 @@ export const Route = createFileRoute('/_public/')({
 });
 
 function RouteComponent() {
-    return <div>Hello from '/'</div>;
+    return <div>Hello "from" '/'</div>;
 }
