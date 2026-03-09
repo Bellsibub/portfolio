@@ -27,3 +27,10 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Deploy to Netlify
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: npx netlify-cli deploy --prod --dir=dist
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
