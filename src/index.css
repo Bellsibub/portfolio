@@ -1,74 +1,71 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-headings: 'Eagle Lake', sans-serif;
-  --font-body: 'Roboto Mono', monospace;
-  --font-alt: 'Quicksand', sans-serif;
+    --font-headings: 'Eagle Lake', sans-serif;
+    --font-body: 'Roboto Mono', monospace;
+    --font-alt: 'Quicksand', sans-serif;
 
-  --color-background-primary: rgba(15, 23, 42, 1);
-  --color-background-panel: rgba(30, 41, 59, 1);
+    --color-background-primary: rgba(15, 23, 42, 1);
+    --color-background-panel: rgba(30, 41, 59, 1);
 
-  --color-accent-primary: rgba(201, 163, 78, 1);
-  --color-accent-darker: rgba(161, 123, 38, 1);
-  --color-accent-lighter: rgba(241, 203, 118, 1);
+    --color-accent-primary: rgba(201, 163, 78, 1);
+    --color-accent-darker: rgba(161, 123, 38, 1);
+    --color-accent-lighter: rgba(241, 203, 118, 1);
 
-  --color-danger-primary: rgba(127, 29, 29, 1);
-  --color-danger-darker: rgba(93, 20, 20, 1);
-  --color-danger-lighter: rgba(202, 71, 71, 1);
+    --color-danger-primary: rgba(127, 29, 29, 1);
+    --color-danger-darker: rgba(93, 20, 20, 1);
+    --color-danger-lighter: rgba(202, 71, 71, 1);
 
-  --color-text-primary: rgba(248, 250, 252, 1);
-  --color-text-secondary: rgba(148, 163, 184, 1);
+    --color-text-primary: rgba(248, 250, 252, 1);
+    --color-text-secondary: rgba(148, 163, 184, 1);
 }
 
 @layer base {
-  body {
-    color-scheme: light dark;
-    color: var(--color-text-primary);
-    background-color: var(--color-background-primary);
+    body {
+        color-scheme: light dark;
+        color: var(--color-text-primary);
+        background-color: var(--color-background-primary);
 
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 400;
-  }
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 400;
+    }
 
-  h1, h2, h3 {
-    font-family: var(--font-headings);
-  }
+    h1,
+    h2,
+    h3 {
+        font-family: var(--font-headings);
+    }
 
-  h1 {
-    font-size: 56px;
-    line-height: 83px;
-  }
+    h1 {
+        font-size: 56px;
+        line-height: 83px;
+    }
 
-  h2 {
-    font-size: 36px;
-    line-height: auto;
-  }
+    h2 {
+        font-size: 36px;
+        line-height: auto;
+    }
 
-  h3 {
-    font-size: 22px;
-    line-height: auto;
-  }
+    h3 {
+        font-size: 22px;
+        line-height: auto;
+    }
 
-  button {
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 20px;
-    letter-spacing: 25%;
-  }
-
-
-
+    button {
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 25%;
+    }
 }
 
 @layer components {
-
-  .caption {
-    font-family: var(--font-alt);
-    font-size: 14px;
-    line-height: auto;
-    color: var(--color-text-secondary);
-  }
-
+    .caption {
+        font-family: var(--font-alt);
+        font-size: 14px;
+        line-height: auto;
+        color: var(--color-text-secondary);
+    }
 }

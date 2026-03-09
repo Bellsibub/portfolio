@@ -1,14 +1,14 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router'
+import { Outlet, createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/admin')({
-  component: AdminLayout,
-})
+    component: AdminLayout,
+});
 
 function AdminLayout() {
-  return (
-    <div>
-      {/* shared admin UI: sidebar, topbar, etc. */}
-      <Outlet />
-    </div>
-  )
+    return (
+        <div>
+            {/* shared admin UI: sidebar, topbar, etc. */}
+            <Outlet />
+        </div>
+    );
 }

@@ -1,10 +1,10 @@
-import { Sandbox } from '@/sandbox/Sandbox'
-import { createFileRoute } from '@tanstack/react-router'
+import { Sandbox } from '@/sandbox/Sandbox';
+import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_public/sandbox')({
-  component: RouteComponent,
-})
+    component: RouteComponent,
+});
 
 function RouteComponent() {
-  return <Sandbox />
+    return <Sandbox />;
 }
