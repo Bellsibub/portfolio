@@ -19,8 +19,8 @@ jobs:
 
       - run: npm ci
 
-      - name: Lint & format check
-        run: npm run lint:check
+      - name: Lint & format
+        run: npm run lint
 
       - name: Type check
         run: npx tsc -b --noEmit
