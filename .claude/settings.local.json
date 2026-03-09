@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree -L 3 /c/Users/isabe/Documents/Code/$bellsibub/portfolio/src/)",
+      "Read(//c/Users/isabe/Documents/Code/$bellsibub/portfolio/src/**)"
+    ]
+  }
+}

@@ -7,6 +7,7 @@ import { DialogStory } from './stories/DialogStory';
 import { TooltipStory } from './stories/TooltipStory';
 import { DropdownMenuStory } from './stories/DropdownMenuStory';
 import { ToastStory } from './stories/ToastStory';
+import { QueryStory } from './stories/QueryStory';
 
 const STORIES = [
   { name: 'Button', component: ButtonStory },
@@ -16,6 +17,7 @@ const STORIES = [
   { name: 'Tooltip', component: TooltipStory },
   { name: 'DropdownMenu', component: DropdownMenuStory },
   { name: 'Toast', component: ToastStory },
+  { name: 'Query', component: QueryStory },
 ] as const;
 
 type StoryName = (typeof STORIES)[number]['name'];
