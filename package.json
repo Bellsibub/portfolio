@@ -8,7 +8,8 @@
         "build": "tsc -b && vite build",
         "lint": "prettier --write . && eslint .",
         "lint:check": "prettier --check . && eslint .",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "prepare": "husky"
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.2.1",
@@ -23,6 +24,9 @@
         "react-dom": "^19.2.0",
         "tailwindcss": "^4.2.1"
     },
+    "lint-staged": {
+        "*.{ts,tsx,js,json,css,md}": "prettier --write"
+    },
     "devDependencies": {
         "@eslint/js": "^9.39.1",
         "@tanstack/eslint-plugin-query": "^5.91.4",
@@ -36,6 +40,8 @@
         "eslint-plugin-react-hooks": "^7.0.1",
         "eslint-plugin-react-refresh": "^0.4.24",
         "globals": "^16.5.0",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.3.2",
         "prettier": "^3.8.1",
         "prettier-plugin-tailwindcss": "^0.7.2",
         "typescript": "~5.9.3",
