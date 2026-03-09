@@ -1,1 +1,1 @@
-npx lint-staged
+NO_COLOR=1 npx lint-staged
