@@ -14,7 +14,7 @@ const TooltipContent = forwardRef<
             ref={ref}
             sideOffset={sideOffset}
             className={[
-                'z-50 overflow-hidden rounded border border-accent-primary/30',
+                'z-50 overflow-hidden rounded border border-accent/30',
                 'bg-background-panel px-3 py-1.5',
                 'font-body text-xs text-text-primary',
                 'shadow-md',
@@ -27,7 +27,7 @@ const TooltipContent = forwardRef<
             {...props}
         >
             {props.children}
-            <RadixTooltip.Arrow className="fill-accent-primary/30" />
+            <RadixTooltip.Arrow className="fill-accent/30" />
         </RadixTooltip.Content>
     </RadixTooltip.Portal>
 ));

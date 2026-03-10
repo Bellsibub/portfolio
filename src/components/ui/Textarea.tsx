@@ -15,7 +15,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
                     'border',
                     error
                         ? 'border-danger-lighter focus:ring-danger-lighter'
-                        : 'border-accent-primary/30 focus:ring-accent-primary',
+                        : 'border-accent/30 focus:ring-accent',
                     'focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-background-primary',
                     'placeholder:text-text-secondary',
                     'disabled:opacity-50 disabled:cursor-not-allowed',

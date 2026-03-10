@@ -1,4 +1,5 @@
-import { ToastProvider } from '@/components/ui';
+import { Button, ToastProvider } from '@/components/ui';
+import { QuestCardStory } from '@/sandbox/stories/QuestCardStory';
 import { useState } from 'react';
 
 import { ButtonStory } from './stories/ButtonStory';
@@ -19,6 +20,17 @@ const STORIES = [
     { name: 'DropdownMenu', component: DropdownMenuStory },
     { name: 'Toast', component: ToastStory },
     { name: 'Query', component: QueryStory },
+    { name: 'QuestCard', component: QuestCardStory },
+    {
+        name: 'SectionHeader',
+        component: () => <p>SectionHeader story goes here</p>,
+    },
+    { name: 'Badge', component: () => <p>Badge story goes here</p> },
+    { name: 'StatBar', component: () => <p>StatBar story goes here</p> },
+    {
+        name: 'InventoryItem',
+        component: () => <p>InventoryItem story goes here</p>,
+    },
 ] as const;
 
 type StoryName = (typeof STORIES)[number]['name'];
@@ -31,24 +43,26 @@ export function Sandbox() {
         <ToastProvider>
             <div className="flex min-h-screen">
                 {/* Sidebar */}
-                <aside className="w-52 shrink-0 border-r border-accent-primary/20 bg-background-panel">
+                <aside className="w-52 shrink-0 border-r border-accent/20 bg-background-panel">
                     <div className="sticky top-0 p-4 space-y-1">
                         <p className="caption px-3 pb-3 uppercase tracking-widest">
                             Components
                         </p>
                         {STORIES.map(({ name }) => (
-                            <button
+                            <Button
                                 key={name}
+                                variant="ghost"
+                                size="sm"
                                 onClick={() => setActive(name)}
                                 className={[
-                                    'w-full text-left px-3 py-2 rounded text-sm transition-colors cursor-pointer',
+                                    'w-full flex-1 justify-start',
                                     active === name
-                                        ? 'bg-accent-primary/20 text-accent-primary'
-                                        : 'text-text-secondary hover:text-text-primary hover:bg-accent-primary/10',
+                                        ? 'bg-accent/20 text-accent'
+                                        : 'text-text-secondary hover:text-text-primary hover:bg-accent/10',
                                 ].join(' ')}
                             >
                                 {name}
-                            </button>
+                            </Button>
                         ))}
                     </div>
                 </aside>

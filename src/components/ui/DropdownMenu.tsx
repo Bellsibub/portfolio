@@ -14,7 +14,7 @@ const DropdownMenuContent = forwardRef<
             ref={ref}
             sideOffset={sideOffset}
             className={[
-                'z-50 min-w-48 overflow-hidden rounded border border-accent-primary/20',
+                'z-50 min-w-48 overflow-hidden rounded border border-accent/20',
                 'bg-background-panel p-1 shadow-lg',
                 'animate-in data-[state=closed]:animate-out',
                 'fade-in-0 data-[state=closed]:fade-out-0',
@@ -38,8 +38,8 @@ const DropdownMenuItem = forwardRef<
         className={[
             'relative flex cursor-pointer select-none items-center gap-2 rounded px-2 py-1.5',
             'text-sm text-text-primary outline-none transition-colors',
-            'focus:bg-accent-primary/10 focus:text-text-primary',
-            'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+            'focus:bg-accent/10 focus:text-text-primary',
+            'data-disabled:pointer-events-none data-disabled:opacity-50',
             className,
         ].join(' ')}
         {...props}
@@ -68,9 +68,7 @@ const DropdownMenuSeparator = forwardRef<
 >(({ className = '', ...props }, ref) => (
     <RadixDropdownMenu.Separator
         ref={ref}
-        className={['-mx-1 my-1 h-px bg-accent-primary/20', className].join(
-            ' ',
-        )}
+        className={['-mx-1 my-1 h-px bg-accent/20', className].join(' ')}
         {...props}
     />
 ));
@@ -85,8 +83,8 @@ const DropdownMenuSubTrigger = forwardRef<
         className={[
             'relative flex cursor-pointer select-none items-center gap-2 rounded px-2 py-1.5',
             'text-sm text-text-primary outline-none transition-colors',
-            'focus:bg-accent-primary/10 data-[state=open]:bg-accent-primary/10',
-            'data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+            'focus:bg-accent/10 data-[state=open]:bg-accent/10',
+            'data-disabled:pointer-events-none data-disabled:opacity-50',
             className,
         ].join(' ')}
         {...props}
@@ -118,7 +116,7 @@ const DropdownMenuSubContent = forwardRef<
     <RadixDropdownMenu.SubContent
         ref={ref}
         className={[
-            'z-50 min-w-32 overflow-hidden rounded border border-accent-primary/20',
+            'z-50 min-w-32 overflow-hidden rounded border border-accent/20',
             'bg-background-panel p-1 shadow-lg',
             'animate-in data-[state=closed]:animate-out',
             'fade-in-0 data-[state=closed]:fade-out-0',

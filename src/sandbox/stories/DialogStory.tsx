@@ -6,6 +6,8 @@ import {
     DialogDescription,
     DialogTitle,
     DialogTrigger,
+    Input,
+    Textarea,
 } from '@/components/ui';
 
 import { StoryBlock, StoryGroup } from '../StoryBlock';
@@ -31,7 +33,7 @@ export function DialogStory() {
                                     <Button variant="ghost">Cancel</Button>
                                 </DialogClose>
                                 <DialogClose asChild>
-                                    <Button variant="danger">
+                                    <Button variant="secondary">
                                         Delete account
                                     </Button>
                                 </DialogClose>
@@ -58,19 +60,18 @@ export function DialogStory() {
                                     <label className="text-sm text-text-secondary">
                                         Display name
                                     </label>
-                                    <input
-                                        className="w-full rounded px-3 py-2 text-sm bg-background-primary border border-accent-primary/30 focus:outline-none focus:ring-2 focus:ring-accent-primary text-text-primary"
+                                    <Input
                                         defaultValue="bellsibub"
+                                        placeholder="bellsibub"
                                     />
                                 </div>
                                 <div className="space-y-1">
                                     <label className="text-sm text-text-secondary">
                                         Bio
                                     </label>
-                                    <textarea
-                                        className="w-full rounded px-3 py-2 text-sm bg-background-primary border border-accent-primary/30 focus:outline-none focus:ring-2 focus:ring-accent-primary text-text-primary resize-y"
-                                        rows={3}
-                                        defaultValue="Full-stack developer & designer."
+                                    <Textarea
+                                        defaultValue="I'm a software developer"
+                                        placeholder="I'm a software developer"
                                     />
                                 </div>
                             </div>
