@@ -1,5 +1,5 @@
 import { Button, ToastProvider } from '@/components/ui';
-import { QuestCardStory } from '@/sandbox/stories/QuestCardStory';
+import { CardStory } from '@/sandbox/stories/CardStory';
 import { useState } from 'react';
 
 import { ButtonStory } from './stories/ButtonStory';
@@ -20,7 +20,7 @@ const STORIES = [
     { name: 'DropdownMenu', component: DropdownMenuStory },
     { name: 'Toast', component: ToastStory },
     { name: 'Query', component: QueryStory },
-    { name: 'QuestCard', component: QuestCardStory },
+    { name: 'Card', component: CardStory },
     {
         name: 'SectionHeader',
         component: () => <p>SectionHeader story goes here</p>,

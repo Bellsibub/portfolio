@@ -45,3 +45,11 @@ export {
     ToastViewport,
 } from './Toast';
 export type { ToastProps } from './Toast';
+
+export {
+    Card,
+    CardTitle,
+    CardDescription,
+    CardContent,
+    CardFooter,
+} from './Card';
