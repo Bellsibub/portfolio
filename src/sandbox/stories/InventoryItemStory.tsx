@@ -1,15 +1,27 @@
 import { InventoryItem } from '@/components/features';
 import { StoryBlock, StoryGroup } from '@/sandbox/StoryBlock';
+import { React } from 'developer-icons';
 
 export const InventoryItemStory = () => {
     return (
         <div>
             <StoryGroup title="Variants">
                 <StoryBlock label="Default">
-                    <InventoryItem>Default</InventoryItem>
+                    <InventoryItem label="React" Icon={React} />
                 </StoryBlock>
-                <StoryBlock label="Outline">
-                    <InventoryItem variant="outline">Outline</InventoryItem>
+                <StoryBlock label="Equipped">
+                    <InventoryItem
+                        label="React"
+                        Icon={React}
+                        variant="equipped"
+                    />
+                </StoryBlock>
+                <StoryBlock label="Empty">
+                    <InventoryItem
+                        label={null}
+                        Icon={undefined}
+                        variant="empty"
+                    />
                 </StoryBlock>
             </StoryGroup>
         </div>
