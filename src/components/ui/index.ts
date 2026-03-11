@@ -7,6 +7,13 @@ export type { InputProps } from './Input';
 export { Textarea } from './Textarea';
 export type { TextareaProps } from './Textarea';
 
+export { SectionHeader } from './SectionHeader';
+
+export { Separator } from './Separator';
+export type { SeparatorProps } from './Separator';
+
+export { Badge } from './Badge';
+
 export {
     Dialog,
     DialogTrigger,

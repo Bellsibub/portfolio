@@ -34,7 +34,7 @@
 
         font-family: var(--font-body);
         font-size: 16px;
-        line-height: 20px;
+        /* line-height: 20px; */
         font-weight: 400;
     }
 
@@ -46,17 +46,17 @@
 
     h1 {
         font-size: 56px;
-        line-height: 83px;
+        /* line-height: 83px; */
     }
 
     h2 {
         font-size: 36px;
-        line-height: auto;
+        /* line-height: auto; */
     }
 
     h3 {
         font-size: 22px;
-        line-height: auto;
+        /* line-height: auto; */
     }
 }
 
@@ -64,13 +64,13 @@
     .caption {
         font-family: var(--font-alt);
         font-size: 14px;
-        line-height: auto;
+        /* line-height: auto; */
         color: var(--color-text-secondary);
     }
     .section-title {
         font-family: var(--font-headings);
         font-size: 28px;
-        line-height: auto;
+        /* line-height: auto; */
         color: var(--color-text-primary);
     }
 }
