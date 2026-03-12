@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { Link } from '@tanstack/react-router';
 
 export type NavLink = {
     name: string;
@@ -14,7 +15,7 @@ export const Navbar = ({ links, className, ...props }: NavbarProps) => {
     return (
         <nav
             className={cn(
-                'h-25 flex items-center justify-between px-10',
+                'h-25 flex items-center justify-between px-10 sticky top-0 z-50 bg-background/80 backdrop-blur-sm',
                 className,
             )}
             {...props}
@@ -25,13 +26,13 @@ export const Navbar = ({ links, className, ...props }: NavbarProps) => {
             </div>
             <div>
                 {links?.map((link) => (
-                    <a
+                    <Link
                         key={link.href}
-                        href={link.href}
+                        to={link.href}
                         className="text-sm font-medium text-gray-300 hover:text-white"
                     >
                         {link.name}
-                    </a>
+                    </Link>
                 ))}
             </div>
         </nav>

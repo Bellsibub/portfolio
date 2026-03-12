@@ -1,15 +1,15 @@
 import { PageWrapper } from '@/components/layouts';
-import { BadgeStory } from '@/sandbox/stories/BadgeStory';
+import { DialogStory } from '@/sandbox/stories/DialogStory';
 import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/_public/')({
+export const Route = createFileRoute('/_public/skills')({
     component: RouteComponent,
 });
 
 function RouteComponent() {
     return (
         <PageWrapper>
-            <BadgeStory />
+            <DialogStory />
         </PageWrapper>
     );
 }

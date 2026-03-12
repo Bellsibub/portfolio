@@ -14,7 +14,7 @@ import { StoryBlock, StoryGroup } from '../StoryBlock';
 
 export function DialogStory({ ...props }) {
     return (
-        <div className="space-y-10" {...props}>
+        <div {...props}>
             <StoryGroup title="Default">
                 <StoryBlock label="basic dialog" center>
                     <Dialog>

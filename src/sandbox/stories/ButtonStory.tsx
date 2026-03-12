@@ -4,7 +4,7 @@ import { StoryBlock, StoryGroup } from '../StoryBlock';
 
 export function ButtonStory({ ...props }) {
     return (
-        <div className="space-y-10" {...props}>
+        <div {...props}>
             <StoryGroup title="Variants">
                 <StoryBlock label="primary">
                     <Button variant="primary">Primary</Button>

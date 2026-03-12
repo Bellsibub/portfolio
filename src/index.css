@@ -1,5 +1,48 @@
 @import 'tailwindcss';
 
+@keyframes slide-in-up {
+    from {
+        transform: translate3d(0, 40px, 0);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-out-up {
+    from {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate3d(0, -40px, 0);
+        opacity: 0;
+    }
+}
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
 @theme {
     --font-headings: 'Eagle Lake', sans-serif;
     --font-body: 'Roboto Mono', monospace;
@@ -30,14 +73,13 @@
     html {
         scroll-behavior: smooth;
     }
+
     body {
         color-scheme: light dark;
         color: var(--color-text-primary);
         background-color: var(--color-background-primary);
-
         font-family: var(--font-body);
         font-size: 16px;
-        /* line-height: 20px; */
         font-weight: 400;
     }
 
@@ -49,17 +91,14 @@
 
     h1 {
         font-size: 56px;
-        /* line-height: 83px; */
     }
 
     h2 {
         font-size: 36px;
-        /* line-height: auto; */
     }
 
     h3 {
         font-size: 22px;
-        /* line-height: auto; */
     }
 }
 
@@ -67,13 +106,42 @@
     .caption {
         font-family: var(--font-alt);
         font-size: 14px;
-        /* line-height: auto; */
         color: var(--color-text-secondary);
     }
+
     .section-title {
         font-family: var(--font-headings);
         font-size: 28px;
-        /* line-height: auto; */
         color: var(--color-text-primary);
+    }
+}
+
+@layer utilities {
+    nav {
+        view-transition-name: navbar;
+    }
+
+    ::view-transition-old(navbar),
+    ::view-transition-new(navbar),
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+    }
+
+    ::view-transition-old(page) {
+        /* animation: slide-out-up 0.5s ease both; */
+        animation: fade-out 0.5s ease both;
+    }
+
+    ::view-transition-new(page) {
+        /* animation: slide-in-up 0.5s ease both; */
+        animation: fade-in 0.5s ease both;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(page),
+    ::view-transition-new(page) {
+        animation: none;
     }
 }
