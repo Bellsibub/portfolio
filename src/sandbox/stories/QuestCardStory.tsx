@@ -11,9 +11,9 @@ const Quest: QuestItem = {
     isCompleted: false,
 };
 
-export const QuestCardStory = () => {
+export const QuestCardStory = ({ ...props }) => {
     return (
-        <div>
+        <div {...props}>
             <StoryGroup title="Variants">
                 <StoryBlock label="Default">
                     <QuestCard quest={Quest} />

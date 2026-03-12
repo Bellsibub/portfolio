@@ -1,9 +1,9 @@
 import { Badge } from '@/components/ui';
 import { StoryBlock, StoryGroup } from '@/sandbox/StoryBlock';
 
-export const BadgeStory = () => {
+export const BadgeStory = ({ ...props }) => {
     return (
-        <div>
+        <div {...props}>
             <StoryGroup title="Variants">
                 <StoryBlock label="Default">
                     <Badge>Default</Badge>

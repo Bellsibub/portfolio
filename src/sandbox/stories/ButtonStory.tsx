@@ -2,9 +2,9 @@ import { Button } from '@/components/ui';
 
 import { StoryBlock, StoryGroup } from '../StoryBlock';
 
-export function ButtonStory() {
+export function ButtonStory({ ...props }) {
     return (
-        <div className="space-y-10">
+        <div className="space-y-10" {...props}>
             <StoryGroup title="Variants">
                 <StoryBlock label="primary">
                     <Button variant="primary">Primary</Button>
