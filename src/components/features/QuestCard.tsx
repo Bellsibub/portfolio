@@ -1,30 +1,65 @@
 /* eslint-disable react-refresh/only-export-components */
-import { cn } from '@/lib/utils';
-import { type VariantProps, cva } from 'class-variance-authority';
+import {
+    Badge,
+    Button,
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    type CardProps,
+    CardTitle,
+} from '@/components/ui';
 
-export const QuestCardVariants = cva('block', {
-    variants: {
-        variant: {
-            default: 'text-white',
-        },
-    },
-    defaultVariants: {
-        variant: 'default',
-    },
-});
+export type QuestItem = {
+    id: string;
+    title: string;
+    description: string;
+    level: 'novice' | 'apprentice' | 'adept' | 'master';
+    difficulty: 'easy' | 'medium' | 'hard' | 'legendary';
+    rewards: string[];
+    isCompleted: boolean;
+};
 
-export const QuestCard = ({
-    className,
-    variant,
-    ...props
-}: React.ComponentProps<'div'> & VariantProps<typeof QuestCardVariants>) => {
+export interface QuestCardProps extends CardProps {
+    quest: QuestItem;
+}
+
+export const QuestCard = ({ quest, ...props }: QuestCardProps) => {
     return (
-        <div
-            className={cn(QuestCardVariants({ variant, className }))}
-            {...props}
-        >
-            QuestCard
-        </div>
+        <Card {...props}>
+            <CardTitle>{quest.title}</CardTitle>
+            <CardDescription>{quest.description}</CardDescription>
+            <CardContent className="flex flex-col gap-6">
+                <div className="flex flex-col gap-2">
+                    <div className="inline-flex items-center gap-2">
+                        <p className="text-accent">Level:</p>
+                        <p>{quest.level}</p>
+                    </div>
+                    <div className="inline-flex items-center gap-2">
+                        <p className="text-accent">Difficulty:</p>
+                        <p>{quest.difficulty}</p>
+                    </div>
+                </div>
+                <div className="flex flex-col gap-2">
+                    <p className="caption tracking-widest">Rewards:</p>
+                    <div className="inline-flex items-center gap-2 flex-wrap">
+                        {quest.rewards.map((reward, index) => (
+                            <Badge key={index} variant="outline">
+                                {reward}
+                            </Badge>
+                        ))}
+                    </div>
+                </div>
+            </CardContent>
+            <CardFooter>
+                <Button
+                    disabled={!quest.isCompleted}
+                    variant={quest.isCompleted ? 'primary' : 'outline'}
+                >
+                    {quest.isCompleted ? 'View Quest' : 'In progress'}
+                </Button>
+            </CardFooter>
+        </Card>
     );
 };
 

@@ -15,12 +15,10 @@ export const CardVariants = cva('block', {
     },
 });
 
-export const Card = ({
-    className,
-    variant,
-    children,
-    ...props
-}: React.ComponentProps<'div'> & VariantProps<typeof CardVariants>) => {
+export type CardProps = React.ComponentProps<'div'> &
+    VariantProps<typeof CardVariants>;
+
+export const Card = ({ className, variant, children, ...props }: CardProps) => {
     return (
         <div
             className={

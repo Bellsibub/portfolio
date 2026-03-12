@@ -17,11 +17,7 @@ export const InventoryItemStory = () => {
                     />
                 </StoryBlock>
                 <StoryBlock label="Empty">
-                    <InventoryItem
-                        label={null}
-                        Icon={undefined}
-                        variant="empty"
-                    />
+                    <InventoryItem label={null} Icon={undefined} />
                 </StoryBlock>
             </StoryGroup>
         </div>
