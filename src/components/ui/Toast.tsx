@@ -22,8 +22,8 @@ const ToastViewport = forwardRef<
 ToastViewport.displayName = RadixToast.Viewport.displayName;
 
 const variantClasses: Record<ToastVariant, string> = {
-    default: 'bg-background-panel border-accent-primary/20',
-    success: 'bg-accent-darker border-accent-primary',
+    default: 'bg-background-panel border-accent/20',
+    success: 'bg-accent-darker border-accent',
     error: 'bg-danger-primary border-danger-lighter/50',
 };
 
@@ -72,7 +72,7 @@ const ToastDescription = forwardRef<
 >(({ className = '', ...props }, ref) => (
     <RadixToast.Description
         ref={ref}
-        className={['text-sm text-text-secondary', className].join(' ')}
+        className={['text-sm text-text-primary/80', className].join(' ')}
         {...props}
     />
 ));
@@ -85,9 +85,9 @@ const ToastAction = forwardRef<
     <RadixToast.Action
         ref={ref}
         className={[
-            'ml-auto shrink-0 rounded border border-accent-primary/30 px-3 py-1',
+            'ml-auto shrink-0 rounded border border-accent/30 px-3 py-1',
             'text-xs text-text-primary transition-colors',
-            'hover:bg-accent-primary/10 focus:outline-none focus:ring-2 focus:ring-accent-primary',
+            'hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-accent',
             className,
         ].join(' ')}
         {...props}
@@ -103,7 +103,7 @@ const ToastClose = forwardRef<
         ref={ref}
         className={[
             'absolute right-2 top-2 rounded opacity-70 transition-opacity',
-            'hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-accent-primary',
+            'hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-accent',
             className,
         ].join(' ')}
         {...props}

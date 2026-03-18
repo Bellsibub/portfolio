@@ -80,7 +80,7 @@ export function ToastStory() {
                     </StoryBlock>
                     <StoryBlock label="error">
                         <Button
-                            variant="danger"
+                            variant="secondary"
                             onClick={() =>
                                 fire(
                                     'error',

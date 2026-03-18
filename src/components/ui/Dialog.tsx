@@ -32,7 +32,7 @@ const DialogContent = forwardRef<
             ref={ref}
             className={[
                 'fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2',
-                'w-full max-w-lg rounded-lg border border-accent-primary/20',
+                'w-full max-w-lg rounded-lg border border-accent/20',
                 'bg-background-panel p-6 shadow-lg',
                 'data-[state=open]:animate-in data-[state=closed]:animate-out',
                 'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
@@ -44,7 +44,7 @@ const DialogContent = forwardRef<
             {...props}
         >
             {children}
-            <RadixDialog.Close className="absolute right-4 top-4 rounded opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-accent-primary focus:ring-offset-2 focus:ring-offset-background-panel transition-opacity">
+            <RadixDialog.Close className="absolute right-4 top-4 rounded opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-background-panel transition-opacity">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"

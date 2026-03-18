@@ -18,6 +18,10 @@ import { Route as AdminQuestsRouteImport } from './routes/admin/quests'
 import { Route as AdminMessagesRouteImport } from './routes/admin/messages'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as PublicSandboxRouteImport } from './routes/_public/sandbox'
+import { Route as PublicQuestsRouteImport } from './routes/_public/quests'
+import { Route as PublicLoreRouteImport } from './routes/_public/lore'
+import { Route as PublicInventoryRouteImport } from './routes/_public/inventory'
+import { Route as PublicContactRouteImport } from './routes/_public/contact'
 import { Route as PublicQuestsSlugRouteImport } from './routes/_public/quests.$slug'
 
 const AdminRoute = AdminRouteImport.update({
@@ -64,15 +68,39 @@ const PublicSandboxRoute = PublicSandboxRouteImport.update({
   path: '/sandbox',
   getParentRoute: () => PublicRoute,
 } as any)
-const PublicQuestsSlugRoute = PublicQuestsSlugRouteImport.update({
-  id: '/quests/$slug',
-  path: '/quests/$slug',
+const PublicQuestsRoute = PublicQuestsRouteImport.update({
+  id: '/quests',
+  path: '/quests',
   getParentRoute: () => PublicRoute,
+} as any)
+const PublicLoreRoute = PublicLoreRouteImport.update({
+  id: '/lore',
+  path: '/lore',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicInventoryRoute = PublicInventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicContactRoute = PublicContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicQuestsSlugRoute = PublicQuestsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => PublicQuestsRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof PublicIndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/contact': typeof PublicContactRoute
+  '/inventory': typeof PublicInventoryRoute
+  '/lore': typeof PublicLoreRoute
+  '/quests': typeof PublicQuestsRouteWithChildren
   '/sandbox': typeof PublicSandboxRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/messages': typeof AdminMessagesRoute
@@ -82,6 +110,10 @@ export interface FileRoutesByFullPath {
   '/quests/$slug': typeof PublicQuestsSlugRoute
 }
 export interface FileRoutesByTo {
+  '/contact': typeof PublicContactRoute
+  '/inventory': typeof PublicInventoryRoute
+  '/lore': typeof PublicLoreRoute
+  '/quests': typeof PublicQuestsRouteWithChildren
   '/sandbox': typeof PublicSandboxRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/messages': typeof AdminMessagesRoute
@@ -95,6 +127,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_public': typeof PublicRouteWithChildren
   '/admin': typeof AdminRouteWithChildren
+  '/_public/contact': typeof PublicContactRoute
+  '/_public/inventory': typeof PublicInventoryRoute
+  '/_public/lore': typeof PublicLoreRoute
+  '/_public/quests': typeof PublicQuestsRouteWithChildren
   '/_public/sandbox': typeof PublicSandboxRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/messages': typeof AdminMessagesRoute
@@ -109,6 +145,10 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/contact'
+    | '/inventory'
+    | '/lore'
+    | '/quests'
     | '/sandbox'
     | '/admin/login'
     | '/admin/messages'
@@ -118,6 +158,10 @@ export interface FileRouteTypes {
     | '/quests/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/contact'
+    | '/inventory'
+    | '/lore'
+    | '/quests'
     | '/sandbox'
     | '/admin/login'
     | '/admin/messages'
@@ -130,6 +174,10 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_public'
     | '/admin'
+    | '/_public/contact'
+    | '/_public/inventory'
+    | '/_public/lore'
+    | '/_public/quests'
     | '/_public/sandbox'
     | '/admin/login'
     | '/admin/messages'
@@ -210,26 +258,72 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicSandboxRouteImport
       parentRoute: typeof PublicRoute
     }
+    '/_public/quests': {
+      id: '/_public/quests'
+      path: '/quests'
+      fullPath: '/quests'
+      preLoaderRoute: typeof PublicQuestsRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/lore': {
+      id: '/_public/lore'
+      path: '/lore'
+      fullPath: '/lore'
+      preLoaderRoute: typeof PublicLoreRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/inventory': {
+      id: '/_public/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof PublicInventoryRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/contact': {
+      id: '/_public/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof PublicContactRouteImport
+      parentRoute: typeof PublicRoute
+    }
     '/_public/quests/$slug': {
       id: '/_public/quests/$slug'
-      path: '/quests/$slug'
+      path: '/$slug'
       fullPath: '/quests/$slug'
       preLoaderRoute: typeof PublicQuestsSlugRouteImport
-      parentRoute: typeof PublicRoute
+      parentRoute: typeof PublicQuestsRoute
     }
   }
 }
 
-interface PublicRouteChildren {
-  PublicSandboxRoute: typeof PublicSandboxRoute
-  PublicIndexRoute: typeof PublicIndexRoute
+interface PublicQuestsRouteChildren {
   PublicQuestsSlugRoute: typeof PublicQuestsSlugRoute
 }
 
+const PublicQuestsRouteChildren: PublicQuestsRouteChildren = {
+  PublicQuestsSlugRoute: PublicQuestsSlugRoute,
+}
+
+const PublicQuestsRouteWithChildren = PublicQuestsRoute._addFileChildren(
+  PublicQuestsRouteChildren,
+)
+
+interface PublicRouteChildren {
+  PublicContactRoute: typeof PublicContactRoute
+  PublicInventoryRoute: typeof PublicInventoryRoute
+  PublicLoreRoute: typeof PublicLoreRoute
+  PublicQuestsRoute: typeof PublicQuestsRouteWithChildren
+  PublicSandboxRoute: typeof PublicSandboxRoute
+  PublicIndexRoute: typeof PublicIndexRoute
+}
+
 const PublicRouteChildren: PublicRouteChildren = {
+  PublicContactRoute: PublicContactRoute,
+  PublicInventoryRoute: PublicInventoryRoute,
+  PublicLoreRoute: PublicLoreRoute,
+  PublicQuestsRoute: PublicQuestsRouteWithChildren,
   PublicSandboxRoute: PublicSandboxRoute,
   PublicIndexRoute: PublicIndexRoute,
-  PublicQuestsSlugRoute: PublicQuestsSlugRoute,
 }
 
 const PublicRouteWithChildren =

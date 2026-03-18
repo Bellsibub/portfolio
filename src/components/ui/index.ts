@@ -1,3 +1,5 @@
+export { Avatar, AvatarImage, AvatarFallback } from './Avatar';
+
 export { Button } from './Button';
 export type { ButtonProps } from './Button';
 
@@ -6,6 +8,13 @@ export type { InputProps } from './Input';
 
 export { Textarea } from './Textarea';
 export type { TextareaProps } from './Textarea';
+
+export { SectionHeader } from './SectionHeader';
+
+export { Separator } from './Separator';
+export type { SeparatorProps } from './Separator';
+
+export { Badge } from './Badge';
 
 export {
     Dialog,
@@ -45,3 +54,12 @@ export {
     ToastViewport,
 } from './Toast';
 export type { ToastProps } from './Toast';
+
+export {
+    Card,
+    CardTitle,
+    CardDescription,
+    CardContent,
+    CardFooter,
+} from './Card';
+export type { CardProps } from './Card';

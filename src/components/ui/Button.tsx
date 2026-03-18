@@ -1,7 +1,7 @@
 import { Slot as RadixSlot } from 'radix-ui';
 import { forwardRef } from 'react';
 
-type ButtonVariant = 'primary' | 'ghost' | 'danger';
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'link';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -12,9 +12,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<ButtonVariant, string> = {
     primary:
-        'bg-accent-primary text-background-primary hover:bg-accent-darker focus-visible:ring-accent-primary border-transparent',
-    ghost: 'bg-transparent text-text-primary hover:bg-accent-primary/10 focus-visible:ring-accent-primary border-accent-primary/50',
-    danger: 'bg-danger-primary text-text-primary hover:bg-danger-darker focus-visible:ring-danger-primary border-transparent',
+        'bg-accent text-text-inverted hover:bg-accent-darker focus-visible:ring-accent border-accent-darker',
+    secondary:
+        'bg-secondary text-text-inverted hover:bg-secondary-darker focus-visible:ring-secondary border-accent',
+    outline:
+        'bg-transparent text-accent hover:bg-accent/10 focus-visible:ring-accent border-accent',
+    ghost: 'bg-transparent text-accent hover:bg-accent/10 focus-visible:ring-accent border-transparent',
+    link: 'bg-transparent text-accent underline underline-offset-7 focus-visible:ring-accent border-transparent hover:text-accent-darker',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -39,9 +43,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <Comp
                 ref={ref}
                 className={[
-                    'inline-flex items-center justify-center gap-2 rounded border cursor-pointer',
-                    'font-body tracking-wide transition-colors',
-                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background-primary',
+                    'inline-flex items-center justify-center gap-2 rounded-lg border-2 cursor-pointer',
+                    'font-body tracking-[25%] transition-colors',
+                    'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1 focus-visible:ring-offset-background-primary',
                     'disabled:opacity-50 disabled:pointer-events-none',
                     variantClasses[variant],
                     sizeClasses[size],
