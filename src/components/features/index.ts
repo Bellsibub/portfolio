@@ -1,4 +1,5 @@
 export { InventoryItem } from './InventoryItem';
+export type { Item } from './InventoryItem';
 
 export { Stats } from './Stats';
 export type { StatsProps, StatItem } from './Stats';

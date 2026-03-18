@@ -12,7 +12,7 @@ export const PageWrapper = ({ children, className }: PageWrapperProps) => (
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -30 }}
-        transition={{ type: 'spring', stiffness: 150, damping: 20 }}
+        transition={{ type: 'spring', stiffness: 250, damping: 50 }}
     >
         {children}
     </motion.div>

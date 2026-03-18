@@ -18,6 +18,7 @@ export type QuestItem = {
     difficulty: 'easy' | 'medium' | 'hard' | 'legendary';
     rewards: string[];
     isCompleted: boolean;
+    isFeatured: boolean;
 };
 
 export interface QuestCardProps extends CardProps {
@@ -26,7 +27,7 @@ export interface QuestCardProps extends CardProps {
 
 export const QuestCard = ({ quest, ...props }: QuestCardProps) => {
     return (
-        <Card {...props}>
+        <Card variant={quest.isFeatured ? 'featured' : 'default'} {...props}>
             <CardTitle>{quest.title}</CardTitle>
             <CardDescription>{quest.description}</CardDescription>
             <CardContent className="flex flex-col gap-6">

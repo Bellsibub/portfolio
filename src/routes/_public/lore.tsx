@@ -1,4 +1,4 @@
-import { PageWrapper } from '@/components/layouts';
+import { Lore, PageWrapper } from '@/components/layouts';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_public/lore')({
@@ -8,7 +8,7 @@ export const Route = createFileRoute('/_public/lore')({
 function RouteComponent() {
     return (
         <PageWrapper>
-            <div>Hello "/_public/lore"!</div>
+            <Lore />
         </PageWrapper>
     );
 }

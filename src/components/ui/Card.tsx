@@ -8,6 +8,7 @@ export const CardVariants = cva('block', {
             default: 'border-accent/20',
             featured:
                 'border-accent rounded-t-2xl border-t-9 border-t-accent [&_[data-slot="title"]]:text-accent',
+            accent: 'border-accent bg-accent/10 [&_[data-slot="title"]]:text-accent',
         },
     },
     defaultVariants: {

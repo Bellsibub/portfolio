@@ -23,9 +23,9 @@ export const Route = createFileRoute('/_public')({
 const links: NavLink[] = [
     { name: 'Character', href: '/' },
     { name: 'Quests', href: '/quests' },
-    { name: 'Skills', href: '/skills' },
     { name: 'Inventory', href: '/inventory' },
     { name: 'Lore', href: '/lore' },
+    { name: 'Contact', href: '/contact' },
 ];
 
 const WHEEL_THRESHOLD = 350;
@@ -143,7 +143,13 @@ function PublicLayout() {
             touchMode = 'undecided';
         };
 
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowDown') tryNavigate(1);
+            else if (e.key === 'ArrowUp') tryNavigate(-1);
+        };
+
         window.addEventListener('wheel', handleWheel, { passive: true });
+        window.addEventListener('keydown', handleKeyDown);
         window.addEventListener('touchstart', handleTouchStart, {
             passive: true,
         });
@@ -154,6 +160,7 @@ function PublicLayout() {
 
         return () => {
             window.removeEventListener('wheel', handleWheel);
+            window.removeEventListener('keydown', handleKeyDown);
             window.removeEventListener('touchstart', handleTouchStart);
             window.removeEventListener('touchmove', handleTouchMove);
             window.removeEventListener('touchend', handleTouchEnd);

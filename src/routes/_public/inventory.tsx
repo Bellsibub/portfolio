@@ -1,5 +1,4 @@
-import { PageWrapper } from '@/components/layouts';
-import { InventoryItemStory } from '@/sandbox/stories/InventoryItemStory';
+import { Inventory, PageWrapper } from '@/components/layouts';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_public/inventory')({
@@ -9,7 +8,7 @@ export const Route = createFileRoute('/_public/inventory')({
 function RouteComponent() {
     return (
         <PageWrapper>
-            <InventoryItemStory />
+            <Inventory />
         </PageWrapper>
     );
 }

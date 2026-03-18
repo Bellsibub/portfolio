@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { Link } from '@tanstack/react-router';
 
@@ -24,15 +25,17 @@ export const Navbar = ({ links, className, ...props }: NavbarProps) => {
                 <h3>Bellsibub.dev</h3>
                 <p className="caption">Fullstack developer</p>
             </div>
-            <div>
+            <div className="inline-flex items-center gap-2">
                 {links?.map((link) => (
-                    <Link
-                        key={link.href}
-                        to={link.href}
-                        className="text-sm font-medium text-gray-300 hover:text-white"
-                    >
-                        {link.name}
-                    </Link>
+                    <Button asChild key={link.href} variant="ghost" size="sm">
+                        <Link
+                            to={link.href}
+                            className="text-text-primary"
+                            activeProps={{ className: 'text-accent!' }}
+                        >
+                            {link.name}
+                        </Link>
+                    </Button>
                 ))}
             </div>
         </nav>
