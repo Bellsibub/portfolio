@@ -1,8 +1,6 @@
 import { Button, Separator, ToastProvider } from '@/components/ui';
 import { BadgeStory } from '@/sandbox/stories/BadgeStory';
 import { CardStory } from '@/sandbox/stories/CardStory';
-import { InventoryItemStory } from '@/sandbox/stories/InventoryItemStory';
-import { QuestCardStory } from '@/sandbox/stories/QuestCardStory';
 import { SectionHeaderStory } from '@/sandbox/stories/SectionHeaderStory';
 import { SeparatorStory } from '@/sandbox/stories/SeparatorStory';
 import { StatsStory } from '@/sandbox/stories/StatsStory';
@@ -35,17 +33,7 @@ const STORIES = {
         },
         { name: 'Badge', component: BadgeStory },
     ],
-    features: [
-        { name: 'Stats', component: StatsStory },
-        {
-            name: 'InventoryItem',
-            component: InventoryItemStory,
-        },
-        {
-            name: 'QuestCard',
-            component: QuestCardStory,
-        },
-    ],
+    features: [{ name: 'Stats', component: StatsStory }],
 } as const;
 
 type StoryName = (typeof STORIES)[keyof typeof STORIES][number]['name'];
