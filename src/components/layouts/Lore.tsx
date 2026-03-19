@@ -6,7 +6,7 @@ export const Lore = ({ ...props }: LoreProps) => {
     return (
         <div className="flex flex-col gap-10 p-2.5" {...props}>
             <SectionHeader title="Lore" className="uppercase" />
-            <div className="flex flex-col gap-5 w-xl mx-auto">
+            <div className="flex flex-col gap-5 md:w-md lg:w-xl mx-auto">
                 <Card variant="accent">
                     <CardTitle className="text-2xl">Origin story</CardTitle>
                     <CardContent>

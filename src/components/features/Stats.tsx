@@ -12,10 +12,10 @@ export const Stats = ({ stats, ...props }: StatsProps) => {
         <div {...props} className="flex flex-col gap-5">
             {stats.map((stat, index) => (
                 <div key={index} className="inline-flex gap-5">
-                    <p className="text-accent uppercase text-base tracking-[0.4em] font-semibold">
+                    <p className="text-accent uppercase tracking-[0.4em] font-semibold">
                         {stat.label}
                     </p>
-                    <p className="text-text-primary text-base tracking-wider">
+                    <p className="text-text-primary tracking-wider">
                         {stat.value}
                     </p>
                 </div>

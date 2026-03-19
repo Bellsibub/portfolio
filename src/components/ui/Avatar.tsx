@@ -12,7 +12,7 @@ export const avatarVariants = cva('relative flex shrink-0 overflow-hidden', {
             xl: 'size-32',
             '2xl': 'size-48',
             '3xl': 'size-64',
-            '4xl': 'size-96',
+            '4xl': 'lg:size-96 size-64',
         },
         shape: {
             circle: 'rounded-full',

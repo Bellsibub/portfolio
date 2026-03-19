@@ -56,6 +56,17 @@ export {
 export type { ToastProps } from './Toast';
 
 export {
+    Sheet,
+    SheetTrigger,
+    SheetContent,
+    SheetTitle,
+    SheetDescription,
+    SheetClose,
+    SheetHeader,
+    SheetFooter,
+} from './Sheet';
+
+export {
     Card,
     CardTitle,
     CardDescription,

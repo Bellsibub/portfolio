@@ -14,7 +14,7 @@ export const Contact = ({ ...props }: ContactProps) => {
     return (
         <div className="flex flex-col gap-10 p-2.5" {...props}>
             <SectionHeader title="Contact" className="uppercase" />
-            <Card variant="accent" className="w-xl mx-auto">
+            <Card variant="accent" className="md:w-md lg:w-xl mx-auto">
                 <CardContent>
                     <form className="flex flex-col gap-4">
                         <div className="flex gap-4">
