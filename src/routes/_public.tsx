@@ -171,7 +171,7 @@ function PublicLayout() {
         <div className="flex flex-col min-h-screen overflow-hidden">
             <Navbar links={links} />
             <motion.main
-                className="flex-1 flex items-center justify-center px-6"
+                className="flex-1 flex items-center justify-center px-6 mt-25"
                 style={{ y }}
             >
                 <AnimatePresence mode="wait">

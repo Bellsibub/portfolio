@@ -22,7 +22,7 @@ export const Navbar = ({ links, className, ...props }: NavbarProps) => {
     return (
         <nav
             className={cn(
-                'h-25 flex items-center justify-between px-5 lg:px-20 sticky top-0 z-50 bg-background/80 backdrop-blur-sm',
+                'h-25 w-full flex items-center justify-between px-5 lg:px-20 fixed top-0 z-50 bg-background/80 backdrop-blur-sm',
                 className,
             )}
             {...props}
