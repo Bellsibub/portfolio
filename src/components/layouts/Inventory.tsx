@@ -79,13 +79,13 @@ export const Inventory = ({ ...props }: InventoryProps) => {
         <div className="flex flex-col gap-6 p-2.5" {...props}>
             <SectionHeader title="Inventory" className="uppercase" />
             <div className="flex flex-col items-center gap-6">
-                <div className="grid grid-cols-5 gap-2.5 w-md">
+                <div className="grid grid-cols-3 md:grid-cols-5 gap-2.5">
                     {unequippedItems.map((item, index) => (
                         <InventoryItem key={item?.id || index} item={item} />
                     ))}
                 </div>
-                <Separator variant="accent" className="w-2xl" />
-                <Card className="grid grid-cols-6 gap-2.5 p-2.5! w-xl">
+                <Separator variant="accent" className="" />
+                <Card className="grid grid-cols-3 md:grid-cols-6 gap-2.5 p-2.5!">
                     {equippedItems.map((item, index) => (
                         <InventoryItem key={item?.id || index} item={item} />
                     ))}

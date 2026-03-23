@@ -8,7 +8,7 @@ type PageWrapperProps = {
 
 export const PageWrapper = ({ children, className }: PageWrapperProps) => (
     <motion.div
-        className={cn('content-panel max-w-5xl w-full', className)}
+        className={cn('content-panel max-w-5xl w-full pb-20', className)}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -30 }}
