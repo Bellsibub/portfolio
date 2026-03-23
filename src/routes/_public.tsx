@@ -41,6 +41,7 @@ function PublicLayout() {
     const match = useMatch({ strict: false });
     const nextMatch = matches[matches.findIndex((d) => d.id === match.id) + 1];
 
+    const isDetailPage = activeIndex === -1;
     const y = useMotionValue(0);
     const isNavigating = useRef(false);
 
@@ -63,6 +64,7 @@ function PublicLayout() {
     );
 
     useEffect(() => {
+        if (isDetailPage) return;
         // --- Wheel ---
         let accumulated = 0;
         let resetTimer: ReturnType<typeof setTimeout>;
@@ -165,7 +167,7 @@ function PublicLayout() {
             window.removeEventListener('touchmove', handleTouchMove);
             window.removeEventListener('touchend', handleTouchEnd);
         };
-    }, [tryNavigate, y]);
+    }, [isDetailPage, tryNavigate, y]);
 
     return (
         <div className="flex flex-col min-h-screen overflow-hidden">
@@ -178,7 +180,9 @@ function PublicLayout() {
                     <Outlet key={nextMatch.id} />
                 </AnimatePresence>
             </motion.main>
-            <ScrollIndicator links={links} activeIndex={activeIndex} />
+            {!isDetailPage && (
+                <ScrollIndicator links={links} activeIndex={activeIndex} />
+            )}
         </div>
     );
 }
