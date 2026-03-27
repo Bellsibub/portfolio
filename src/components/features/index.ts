@@ -5,4 +5,6 @@ export { Stats } from './Stats';
 export type { StatsProps, StatItem } from './Stats';
 
 export { QuestCard } from './QuestCard';
-export type { QuestCardProps, QuestItem } from './QuestCard';
+export type { QuestCardProps } from './QuestCard';
+
+export { QuestImages } from './QuestImages';

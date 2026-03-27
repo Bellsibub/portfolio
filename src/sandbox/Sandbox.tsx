@@ -1,6 +1,7 @@
 import { Button, Separator, ToastProvider } from '@/components/ui';
 import { BadgeStory } from '@/sandbox/stories/BadgeStory';
 import { CardStory } from '@/sandbox/stories/CardStory';
+import { CarouselStory } from '@/sandbox/stories/CarouselStory';
 import { SectionHeaderStory } from '@/sandbox/stories/SectionHeaderStory';
 import { SeparatorStory } from '@/sandbox/stories/SeparatorStory';
 import { StatsStory } from '@/sandbox/stories/StatsStory';
@@ -32,6 +33,7 @@ const STORIES = {
             component: SectionHeaderStory,
         },
         { name: 'Badge', component: BadgeStory },
+        { name: 'Carousel', component: CarouselStory },
     ],
     features: [{ name: 'Stats', component: StatsStory }],
 } as const;

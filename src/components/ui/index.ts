@@ -74,3 +74,12 @@ export {
     CardFooter,
 } from './Card';
 export type { CardProps } from './Card';
+
+export {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselPrevious,
+    CarouselNext,
+} from './Carousel';
+export type { CarouselProps, CarouselImage } from './Carousel';

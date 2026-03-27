@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import {
     Badge,
     Button,
@@ -9,20 +8,11 @@ import {
     type CardProps,
     CardTitle,
 } from '@/components/ui';
-
-export type QuestItem = {
-    id: string;
-    title: string;
-    description: string;
-    level: 'novice' | 'apprentice' | 'adept' | 'master';
-    difficulty: 'easy' | 'medium' | 'hard' | 'legendary';
-    rewards: string[];
-    isCompleted: boolean;
-    isFeatured: boolean;
-};
+import type { Quests } from '@/lib/dev/quests';
+import { Link } from '@tanstack/react-router';
 
 export interface QuestCardProps extends CardProps {
-    quest: QuestItem;
+    quest: Quests;
 }
 
 export const QuestCard = ({ quest, ...props }: QuestCardProps) => {
@@ -56,8 +46,11 @@ export const QuestCard = ({ quest, ...props }: QuestCardProps) => {
                 <Button
                     disabled={!quest.isCompleted}
                     variant={quest.isCompleted ? 'primary' : 'outline'}
+                    asChild
                 >
-                    {quest.isCompleted ? 'View Quest' : 'In progress'}
+                    <Link to="/quests/$slug" params={{ slug: quest.slug }}>
+                        {quest.isCompleted ? 'View Quest' : 'In progress'}
+                    </Link>
                 </Button>
             </CardFooter>
         </Card>

@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import { cn } from '@/lib/utils';
 import { type VariantProps, cva } from 'class-variance-authority';
 import type { DeveloperIconProps } from 'developer-icons/dist/icon';
