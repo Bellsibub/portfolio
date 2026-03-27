@@ -41,19 +41,23 @@ export const QuestDetail = ({ quest, ...props }: QuestDetailProps) => {
                     <CardTitle>Tech stack & links</CardTitle>
                     <CardContent className="flex flex-col gap-4">
                         <div className="flex flex-wrap gap-2">
-                            {quest.rewards.map((tech) => (
-                                <Badge key={tech}>{tech}</Badge>
+                            {quest.quest_skills.map(({ skill }) => (
+                                <Badge key={skill.id}>{skill.name}</Badge>
                             ))}
                         </div>
                         <div className="flex gap-4">
                             {quest.demo_link && (
                                 <Button variant="link" asChild>
-                                    <a href={quest.demo_link}>Demo</a>
+                                    <a href={quest.demo_link} target="_blank">
+                                        Demo
+                                    </a>
                                 </Button>
                             )}
                             {quest.github_link && (
                                 <Button variant="link" asChild>
-                                    <a href={quest.github_link}>Code</a>
+                                    <a href={quest.github_link} target="_blank">
+                                        Code
+                                    </a>
                                 </Button>
                             )}
                         </div>

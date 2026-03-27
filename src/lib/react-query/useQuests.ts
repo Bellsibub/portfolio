@@ -4,12 +4,13 @@ import { useQuery } from '@tanstack/react-query';
 
 import { keys } from './keys';
 
-export type Quest = Tables<'quests'>;
+export type Skill = Tables<'skills'>;
+export type Quest = Tables<'quests'> & { quest_skills: { skill: Skill }[] };
 
 async function fetchQuests(): Promise<Quest[]> {
     const { data, error } = await supabase
         .from('quests')
-        .select('*')
+        .select('*, quest_skills(skill:skills(*))')
         .order('created_at');
     if (error) throw error;
     return data;

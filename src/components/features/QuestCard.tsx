@@ -34,9 +34,9 @@ export const QuestCard = ({ quest, ...props }: QuestCardProps) => {
                 <div className="flex flex-col gap-2">
                     <p className="caption tracking-widest">Rewards:</p>
                     <div className="inline-flex items-center gap-2 flex-wrap">
-                        {quest.rewards.map((reward, index) => (
-                            <Badge key={index} variant="outline">
-                                {reward}
+                        {quest.quest_skills.map(({ skill }) => (
+                            <Badge key={skill.id} variant="outline">
+                                {skill.name}
                             </Badge>
                         ))}
                     </div>

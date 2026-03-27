@@ -66,6 +66,35 @@ export type Database = {
                 };
                 Relationships: [];
             };
+            inventory_items: {
+                Row: {
+                    created_at: string;
+                    id: string;
+                    is_equipped: boolean;
+                    skill_id: string;
+                };
+                Insert: {
+                    created_at?: string;
+                    id?: string;
+                    is_equipped?: boolean;
+                    skill_id: string;
+                };
+                Update: {
+                    created_at?: string;
+                    id?: string;
+                    is_equipped?: boolean;
+                    skill_id?: string;
+                };
+                Relationships: [
+                    {
+                        foreignKeyName: 'inventory_items_skill_id_fkey';
+                        columns: ['skill_id'];
+                        isOneToOne: false;
+                        referencedRelation: 'skills';
+                        referencedColumns: ['id'];
+                    },
+                ];
+            };
             quest_images: {
                 Row: {
                     id: string;
@@ -98,6 +127,36 @@ export type Database = {
                     },
                 ];
             };
+            quest_skills: {
+                Row: {
+                    quest_id: string;
+                    skill_id: string;
+                };
+                Insert: {
+                    quest_id: string;
+                    skill_id: string;
+                };
+                Update: {
+                    quest_id?: string;
+                    skill_id?: string;
+                };
+                Relationships: [
+                    {
+                        foreignKeyName: 'quest_skills_quest_id_fkey';
+                        columns: ['quest_id'];
+                        isOneToOne: false;
+                        referencedRelation: 'quests';
+                        referencedColumns: ['id'];
+                    },
+                    {
+                        foreignKeyName: 'quest_skills_skill_id_fkey';
+                        columns: ['skill_id'];
+                        isOneToOne: false;
+                        referencedRelation: 'skills';
+                        referencedColumns: ['id'];
+                    },
+                ];
+            };
             quests: {
                 Row: {
                     created_at: string;
@@ -111,7 +170,6 @@ export type Database = {
                     is_featured: boolean;
                     level: string;
                     reflections: string | null;
-                    rewards: string[];
                     slug: string;
                     summary: string;
                     title: string;
@@ -128,7 +186,6 @@ export type Database = {
                     is_featured?: boolean;
                     level: string;
                     reflections?: string | null;
-                    rewards?: string[];
                     slug: string;
                     summary: string;
                     title: string;
@@ -145,12 +202,52 @@ export type Database = {
                     is_featured?: boolean;
                     level?: string;
                     reflections?: string | null;
-                    rewards?: string[];
                     slug?: string;
                     summary?: string;
                     title?: string;
                 };
                 Relationships: [];
+            };
+            skills: {
+                Row: {
+                    category: string;
+                    created_at: string;
+                    description: string | null;
+                    icon_name: string | null;
+                    id: string;
+                    name: string;
+                    parent_id: string | null;
+                    slug: string;
+                };
+                Insert: {
+                    category: string;
+                    created_at?: string;
+                    description?: string | null;
+                    icon_name?: string | null;
+                    id?: string;
+                    name: string;
+                    parent_id?: string | null;
+                    slug: string;
+                };
+                Update: {
+                    category?: string;
+                    created_at?: string;
+                    description?: string | null;
+                    icon_name?: string | null;
+                    id?: string;
+                    name?: string;
+                    parent_id?: string | null;
+                    slug?: string;
+                };
+                Relationships: [
+                    {
+                        foreignKeyName: 'skills_parent_id_fkey';
+                        columns: ['parent_id'];
+                        isOneToOne: false;
+                        referencedRelation: 'skills';
+                        referencedColumns: ['id'];
+                    },
+                ];
             };
         };
         Views: {
