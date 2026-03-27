@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import { Separator } from '@/components/ui/Separator';
 import { cn } from '@/lib/utils';
 import { type VariantProps, cva } from 'class-variance-authority';

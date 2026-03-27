@@ -29,7 +29,7 @@ const SLIDES = [
 
 export const QuestImages = ({ ...props }: QuestImagesProps) => {
     return (
-        <div>
+        <div {...props}>
             <Carousel>
                 <CarouselContent>
                     {SLIDES.map((s) => (

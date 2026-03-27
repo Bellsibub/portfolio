@@ -35,6 +35,9 @@ export type Quests = {
     isFeatured: boolean;
     imageUrl?: string;
     images?: Image[];
+    demoLink?: string;
+    githubLink?: string;
+    reflections?: string;
 };
 
 const TEMP_QUEST: Quests = {
@@ -51,6 +54,10 @@ const TEMP_QUEST: Quests = {
     isFeatured: false,
     imageUrl: 'https://picsum.photos/500',
     images: SLIDES,
+    demoLink: 'https://example.com',
+    githubLink: 'https://github.com',
+    reflections:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.',
 };
 
 const TEMP_QUESTS: Quests[] = [

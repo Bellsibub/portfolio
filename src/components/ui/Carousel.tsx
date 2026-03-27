@@ -1,4 +1,4 @@
-// eslint-disable-next-line react-refresh/only-export-components
+/* eslint-disable react-hooks/set-state-in-effect */
 import { cn } from '@/lib/utils';
 import useEmblaCarousel, {
     type UseEmblaCarouselType,

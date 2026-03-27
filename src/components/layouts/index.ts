@@ -7,3 +7,4 @@ export { Quests } from './Quests';
 export { Inventory } from './Inventory';
 export { Lore } from './Lore';
 export { Contact } from './Contact';
+export { QuestDetail } from './QuestDetail';
