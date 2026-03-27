@@ -12,6 +12,7 @@
         "prepare": "husky"
     },
     "dependencies": {
+        "@supabase/supabase-js": "^2.100.1",
         "@tailwindcss/vite": "^4.2.1",
         "@tanstack/devtools-vite": "^0.5.3",
         "@tanstack/react-devtools": "^0.9.10",

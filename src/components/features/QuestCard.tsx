@@ -8,16 +8,16 @@ import {
     type CardProps,
     CardTitle,
 } from '@/components/ui';
-import type { Quests } from '@/lib/dev/quests';
+import type { Quest } from '@/lib/react-query/useQuests';
 import { Link } from '@tanstack/react-router';
 
 export interface QuestCardProps extends CardProps {
-    quest: Quests;
+    quest: Quest;
 }
 
 export const QuestCard = ({ quest, ...props }: QuestCardProps) => {
     return (
-        <Card variant={quest.isFeatured ? 'featured' : 'default'} {...props}>
+        <Card variant={quest.is_featured ? 'featured' : 'default'} {...props}>
             <CardTitle>{quest.title}</CardTitle>
             <CardDescription>{quest.description}</CardDescription>
             <CardContent className="flex flex-col gap-6">
@@ -44,12 +44,12 @@ export const QuestCard = ({ quest, ...props }: QuestCardProps) => {
             </CardContent>
             <CardFooter>
                 <Button
-                    disabled={!quest.isCompleted}
-                    variant={quest.isCompleted ? 'primary' : 'outline'}
+                    disabled={!quest.is_completed}
+                    variant={quest.is_completed ? 'primary' : 'outline'}
                     asChild
                 >
                     <Link to="/quests/$slug" params={{ slug: quest.slug }}>
-                        {quest.isCompleted ? 'View Quest' : 'In progress'}
+                        {quest.is_completed ? 'View Quest' : 'In progress'}
                     </Link>
                 </Button>
             </CardFooter>

@@ -1,5 +1,5 @@
 import { QuestDetail } from '@/components/layouts';
-import { TEMP_QUESTS } from '@/lib/dev/quests';
+import { useQuest } from '@/lib/react-query/useQuest';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_public/quests_/$slug')({
@@ -8,9 +8,11 @@ export const Route = createFileRoute('/_public/quests_/$slug')({
 
 function RouteComponent() {
     const { slug } = Route.useParams();
-    const quest = TEMP_QUESTS.find((q) => q.slug === slug);
+    const { data: quest, isPending, isError } = useQuest(slug);
 
-    if (!quest) return <div>Quest not found.</div>;
+    if (isPending) return <p className="text-secondary p-2.5">Loading...</p>;
+    if (isError || !quest)
+        return <p className="text-danger p-2.5">Quest not found.</p>;
 
     return (
         <div className="max-w-5xl w-full lg:pt-20 pb-20 self-baseline">

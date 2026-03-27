@@ -1,10 +1,6 @@
 export const keys = {
-    /**
-     * Example:
-     *
-     * user: {
-     *   all: ['user'],
-     *   byId: (id: string) => ['user', id],
-     * }
-     */
+    quests: {
+        all: ['quests'] as const,
+        bySlug: (slug: string) => ['quests', slug] as const,
+    },
 };

@@ -13,10 +13,10 @@ import {
     SectionHeader,
     Separator,
 } from '@/components/ui';
-import type { Quests } from '@/lib/dev/quests';
+import type { QuestWithImages } from '@/lib/react-query/useQuest';
 
 type QuestDetailProps = {
-    quest: Quests;
+    quest: QuestWithImages;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export const QuestDetail = ({ quest, ...props }: QuestDetailProps) => {
@@ -25,7 +25,7 @@ export const QuestDetail = ({ quest, ...props }: QuestDetailProps) => {
             <SectionHeader
                 title={quest.title}
                 variant="image"
-                imageUrl={quest.imageUrl}
+                imageUrl={quest.image_url ?? undefined}
                 caption={quest.description}
             />
             <Separator variant="accent" />
@@ -46,36 +46,44 @@ export const QuestDetail = ({ quest, ...props }: QuestDetailProps) => {
                             ))}
                         </div>
                         <div className="flex gap-4">
-                            <Button variant="link" asChild>
-                                <a href={quest.demoLink}>Demo</a>
-                            </Button>
-                            <Button variant="link" asChild>
-                                <a href={quest.githubLink}>Code</a>
-                            </Button>
+                            {quest.demo_link && (
+                                <Button variant="link" asChild>
+                                    <a href={quest.demo_link}>Demo</a>
+                                </Button>
+                            )}
+                            {quest.github_link && (
+                                <Button variant="link" asChild>
+                                    <a href={quest.github_link}>Code</a>
+                                </Button>
+                            )}
                         </div>
                     </CardContent>
                 </div>
             </Card>
-            <Carousel>
-                <CarouselContent>
-                    {quest.images?.map((s) => (
-                        <CarouselItem key={s.label}>
-                            <img
-                                src={s.url}
-                                alt={s.label}
-                                className="h-80 w-full object-cover rounded-xl"
-                            />
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-            </Carousel>
+            {quest.quest_images.length > 0 && (
+                <Carousel>
+                    <CarouselContent>
+                        {quest.quest_images.map((s) => (
+                            <CarouselItem key={s.label}>
+                                <img
+                                    src={s.url}
+                                    alt={s.label}
+                                    className="h-80 w-full object-cover rounded-xl"
+                                />
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            )}
 
-            <Card variant="ghost">
-                <CardTitle>Reflections</CardTitle>
-                <CardDescription>{quest.reflections}</CardDescription>
-            </Card>
+            {quest.reflections && (
+                <Card variant="ghost">
+                    <CardTitle>Reflections</CardTitle>
+                    <CardDescription>{quest.reflections}</CardDescription>
+                </Card>
+            )}
         </div>
     );
 };
