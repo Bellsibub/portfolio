@@ -1,25 +1,56 @@
+type Image = {
+    url: string;
+    label: string;
+};
+
+const SLIDES = [
+    {
+        url: 'https://picsum.photos/500',
+        label: 'Slide 1',
+    },
+    {
+        url: 'https://picsum.photos/1200',
+        label: 'Slide 2',
+    },
+    {
+        url: 'https://picsum.photos/2440',
+        label: 'Slide 3',
+    },
+    {
+        url: 'https://picsum.photos/1600',
+        label: 'Slide 4',
+    },
+];
+
 export type Quests = {
     id: string;
     title: string;
     description: string;
+    summary: string;
     slug: string;
     level: 'novice' | 'apprentice' | 'adept' | 'master';
     difficulty: 'easy' | 'medium' | 'hard' | 'legendary';
     rewards: string[];
     isCompleted: boolean;
     isFeatured: boolean;
+    imageUrl?: string;
+    images?: Image[];
 };
 
 const TEMP_QUEST: Quests = {
     id: '1',
     title: 'Defeat the Dragon',
     description: 'Slay the dragon terrorizing the village.',
+    summary:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.',
     slug: 'defeat-the-dragon',
     level: 'adept',
     difficulty: 'hard',
     rewards: ['React', 'TypeScript', 'Gold'],
     isCompleted: false,
     isFeatured: false,
+    imageUrl: 'https://picsum.photos/500',
+    images: SLIDES,
 };
 
 const TEMP_QUESTS: Quests[] = [

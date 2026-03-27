@@ -5,10 +5,11 @@ import { type VariantProps, cva } from 'class-variance-authority';
 export const CardVariants = cva('block', {
     variants: {
         variant: {
-            default: 'border-accent/20',
+            default: 'bg-background-panel border-accent/20',
             featured:
-                'border-accent rounded-t-2xl border-t-9 border-t-accent [&_[data-slot="title"]]:text-accent',
-            accent: 'border-accent bg-accent/10 [&_[data-slot="title"]]:text-accent',
+                'bg-background-panel border-accent rounded-t-2xl border-t-9 border-t-accent [&_[data-slot="title"]]:text-accent',
+            accent: 'bg-background-panel border-accent bg-accent/10 [&_[data-slot="title"]]:text-accent',
+            ghost: 'bg-background-panel/30 border-transparent',
         },
     },
     defaultVariants: {
@@ -23,7 +24,7 @@ export const Card = ({ className, variant, children, ...props }: CardProps) => {
     return (
         <div
             className={
-                'flex flex-col gap-3 bg-background-panel p-6 rounded-xl border ' +
+                'flex flex-col gap-3 p-6 rounded-xl border ' +
                 cn(CardVariants({ variant, className }))
             }
             {...props}
