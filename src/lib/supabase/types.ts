@@ -39,6 +39,36 @@ export type Database = {
     };
     public: {
         Tables: {
+            character: {
+                Row: {
+                    created_at: string;
+                    cv_url: string | null;
+                    id: string;
+                    name: string;
+                    stats: Json;
+                    tagline: string | null;
+                    title: string;
+                };
+                Insert: {
+                    created_at?: string;
+                    cv_url?: string | null;
+                    id?: string;
+                    name: string;
+                    stats?: Json;
+                    tagline?: string | null;
+                    title: string;
+                };
+                Update: {
+                    created_at?: string;
+                    cv_url?: string | null;
+                    id?: string;
+                    name?: string;
+                    stats?: Json;
+                    tagline?: string | null;
+                    title?: string;
+                };
+                Relationships: [];
+            };
             contact_messages: {
                 Row: {
                     created_at: string;

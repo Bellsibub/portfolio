@@ -3,4 +3,8 @@ export const keys = {
         all: ['quests'] as const,
         bySlug: (slug: string) => ['quests', slug] as const,
     },
+    character: {
+        all: ['character'] as const,
+        byId: (id: string) => ['character', id] as const,
+    },
 };
