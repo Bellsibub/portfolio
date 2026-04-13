@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(tree -L 3 /c/Users/isabe/Documents/Code/$bellsibub/portfolio/src/)",
-      "Read(//c/Users/isabe/Documents/Code/$bellsibub/portfolio/src/**)"
+      "Read(//c/Users/isabe/Documents/Code/$bellsibub/portfolio/src/**)",
+      "Read(//c/Users/isabe/Documents/Code$bellsibub/**)",
+      "Bash(node -e \"const pkg = require\\('./package.json'\\); console.log\\(JSON.stringify\\(Object.keys\\(pkg.dependencies\\).filter\\(k => k.includes\\('radix'\\)\\), null, 2\\)\\)\")"
     ]
   }
 }

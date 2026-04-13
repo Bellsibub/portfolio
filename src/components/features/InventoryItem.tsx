@@ -1,14 +1,21 @@
+import { useIsMobile } from '@/lib/hooks/useIsMobile';
+import type { Skill } from '@/lib/react-query/useQuests';
 import { cn } from '@/lib/utils';
 import { type VariantProps, cva } from 'class-variance-authority';
-import type { DeveloperIconProps } from 'developer-icons/dist/icon';
 
-export type Item = {
-    id: string;
-    name: string;
-    description: string;
-    Icon: React.ComponentType<DeveloperIconProps> | undefined | null;
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from '../ui';
+
+export interface Item extends Skill {
+    Icon: React.ComponentType<{ className?: string }> | undefined | null;
     isEquipped: boolean;
-};
+}
 
 export const InventoryItemVariants = cva(
     'size-[80px] flex flex-col items-center justify-center p-3 gap-2 bg-background-panel rounded-lg border',
@@ -39,12 +46,14 @@ export const InventoryItem = ({
     item,
     ...props
 }: InventoryItemProps) => {
+    const isMobile = useIsMobile();
     const resolvedVariant = !item
         ? 'empty'
         : item.isEquipped
           ? 'equipped'
           : variant;
-    return (
+
+    const itemBox = (
         <div
             className={cn(
                 InventoryItemVariants({ variant: resolvedVariant, className }),
@@ -53,18 +62,32 @@ export const InventoryItem = ({
             {...props}
         >
             {item?.Icon && (
-                <item.Icon className="transition-[width,height] duration-500 ease-in-out size-14 group-hover:size-7" />
+                <item.Icon className="transition-[width,height] duration-500 ease-in-out size-14 group-hover:size-10 group-data-[state=open]:size-10" />
             )}
-            <span
-                className={cn(
-                    'caption tracking-widest overflow-hidden',
-                    item?.Icon &&
-                        'opacity-0 max-h-0 transition-[max-height,opacity] duration-500 ease-in-out group-hover:max-h-8 group-hover:opacity-100',
-                )}
-            >
-                {item?.name}
-            </span>
+            {!item?.Icon && (
+                <span className="caption tracking-widest overflow-hidden">
+                    {item?.name}
+                </span>
+            )}
         </div>
+    );
+
+    if (!item?.name || !item?.Icon) return itemBox;
+
+    if (isMobile) {
+        return (
+            <Popover>
+                <PopoverTrigger asChild>{itemBox}</PopoverTrigger>
+                <PopoverContent side="top">{item.name}</PopoverContent>
+            </Popover>
+        );
+    }
+
+    return (
+        <Tooltip delayDuration={1000}>
+            <TooltipTrigger asChild>{itemBox}</TooltipTrigger>
+            <TooltipContent side="top">{item.name}</TooltipContent>
+        </Tooltip>
     );
 };
 

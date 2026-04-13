@@ -32,6 +32,8 @@ export {
     TooltipContent,
 } from './Tooltip';
 
+export { Popover, PopoverTrigger, PopoverContent } from './Popover';
+
 export {
     DropdownMenu,
     DropdownMenuTrigger,

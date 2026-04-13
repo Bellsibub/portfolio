@@ -1,3 +1,4 @@
+import { TooltipProvider } from '@/components/ui';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { Outlet, createRootRoute } from '@tanstack/react-router';
@@ -11,7 +12,9 @@ export const Route = createRootRoute({
 function RootComponent() {
     return (
         <React.Fragment>
-            <Outlet />
+            <TooltipProvider>
+                <Outlet />
+            </TooltipProvider>
             <TanStackDevtools
                 plugins={[
                     {

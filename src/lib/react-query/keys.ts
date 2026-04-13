@@ -7,4 +7,7 @@ export const keys = {
         all: ['character'] as const,
         byId: (id: string) => ['character', id] as const,
     },
+    skills: {
+        all: ['skills'] as const,
+    },
 };

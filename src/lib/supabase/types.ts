@@ -96,35 +96,6 @@ export type Database = {
                 };
                 Relationships: [];
             };
-            inventory_items: {
-                Row: {
-                    created_at: string;
-                    id: string;
-                    is_equipped: boolean;
-                    skill_id: string;
-                };
-                Insert: {
-                    created_at?: string;
-                    id?: string;
-                    is_equipped?: boolean;
-                    skill_id: string;
-                };
-                Update: {
-                    created_at?: string;
-                    id?: string;
-                    is_equipped?: boolean;
-                    skill_id?: string;
-                };
-                Relationships: [
-                    {
-                        foreignKeyName: 'inventory_items_skill_id_fkey';
-                        columns: ['skill_id'];
-                        isOneToOne: false;
-                        referencedRelation: 'skills';
-                        referencedColumns: ['id'];
-                    },
-                ];
-            };
             quest_images: {
                 Row: {
                     id: string;

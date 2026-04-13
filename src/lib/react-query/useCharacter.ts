@@ -4,7 +4,7 @@ import supabase from '@/lib/supabase/client';
 import type { Tables } from '@/lib/supabase/types';
 import { useQuery } from '@tanstack/react-query';
 
-type Character = Omit<Tables<'character'>, 'stats'> & {
+export type Character = Omit<Tables<'character'>, 'stats'> & {
     stats: StatItem[];
 };
 
