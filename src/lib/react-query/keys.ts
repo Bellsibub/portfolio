@@ -10,4 +10,7 @@ export const keys = {
     skills: {
         all: ['skills'] as const,
     },
+    lore: {
+        all: ['lore'] as const,
+    },
 };

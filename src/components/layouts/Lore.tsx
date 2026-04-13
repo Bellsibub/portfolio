@@ -1,56 +1,67 @@
 import { Card, CardContent, CardTitle, SectionHeader } from '@/components/ui';
+import { useLore } from '@/lib/react-query/useLore';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 type LoreProps = {} & React.HTMLAttributes<HTMLDivElement>;
 
 export const Lore = ({ ...props }: LoreProps) => {
+    const { data: lore, isPending, isError } = useLore();
+
+    if (isPending) return <p className="text-secondary p-2.5">Loading...</p>;
+    if (isError || !lore)
+        return <p className="text-danger p-2.5">Lore not found.</p>;
+
     return (
         <div className="flex flex-col gap-10 p-2.5" {...props}>
             <SectionHeader title="Lore" className="uppercase" />
             <div className="flex flex-col gap-5 md:w-md lg:w-xl mx-auto">
-                <Card variant="accent">
-                    <CardTitle className="text-2xl">Origin story</CardTitle>
-                    <CardContent>
-                        <p>
-                            Every developer has an origin story.
-                            <br />
-                            <br />
-                            Mine started with curiosity about how games,
-                            systems, and digital worlds work.
-                            <br />
-                            <br />
-                            Today I build applications that help people organize
-                            complexity — whether that's sales battle cards, game
-                            backlogs, or internal tools.
-                        </p>
-                    </CardContent>
-                </Card>
-                <Card variant="accent">
-                    <CardTitle className="text-2xl">The Journey</CardTitle>
-                    <CardContent>
-                        <p>
-                            Lorem ipsum dolor, sit amet consectetur adipisicing
-                            elit. Iste eaque obcaecati nisi, veritatis
-                            voluptatibus magnam molestiae placeat accusamus sed
-                            esse et fugiat repudiandae rerum illum autem
-                            deleniti illo aliquid cum?
-                        </p>
-                    </CardContent>
-                </Card>
-                <Card variant="accent">
-                    <CardTitle className="text-2xl">Current Campaign</CardTitle>
-                    <CardContent>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Voluptas, voluptate. Doloribus, magnam.
-                            Voluptas, voluptate. Doloribus, magnam.
-                            <br />
-                            <br />
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Voluptas, voluptate. Doloribus, magnam.
-                            Voluptas, voluptate. Doloribus, magnam.
-                        </p>
-                    </CardContent>
-                </Card>
+                {lore.map((section) => (
+                    <Card key={section.id} variant={'accent'}>
+                        <CardTitle className="text-2xl">
+                            {section.title}
+                        </CardTitle>
+                        <CardContent>
+                            <Markdown
+                                remarkPlugins={[remarkGfm]}
+                                components={{
+                                    p: ({ children }) => (
+                                        <p className="mb-2 last:mb-0">
+                                            {children}
+                                        </p>
+                                    ),
+                                    ul: ({ children }) => (
+                                        <ul className="list-disc list-inside space-y-1 my-2">
+                                            {children}
+                                        </ul>
+                                    ),
+                                    ol: ({ children }) => (
+                                        <ol className="list-decimal list-inside space-y-1 my-2">
+                                            {children}
+                                        </ol>
+                                    ),
+                                    blockquote: ({ children }) => (
+                                        <blockquote className="border-l-2 border-accent pl-3 italic text-text-secondary my-2">
+                                            {children}
+                                        </blockquote>
+                                    ),
+                                    strong: ({ children }) => (
+                                        <strong className="font-bold text-secondary">
+                                            {children}
+                                        </strong>
+                                    ),
+                                    em: ({ children }) => (
+                                        <em className="italic text-text-secondary">
+                                            {children}
+                                        </em>
+                                    ),
+                                }}
+                            >
+                                {section.content}
+                            </Markdown>
+                        </CardContent>
+                    </Card>
+                ))}
             </div>
         </div>
     );

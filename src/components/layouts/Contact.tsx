@@ -32,6 +32,13 @@ export const Contact = ({ ...props }: ContactProps) => {
     return (
         <div className="flex flex-col gap-10 p-2.5" {...props}>
             <SectionHeader title="Contact" className="uppercase" />
+            <div>
+                <p className="text-center text-lg text-text-secondary">
+                    I&apos;m currently open to new opportunities and
+                    collaborations. Whether you have a question, want to work
+                    together, or just want to say hi, feel free to reach out!
+                </p>
+            </div>
             <Card variant="accent" className="md:w-md lg:w-xl mx-auto">
                 <CardContent>
                     <form
@@ -42,7 +49,7 @@ export const Contact = ({ ...props }: ContactProps) => {
                         <div className="flex gap-4">
                             <Input
                                 name="name"
-                                placeholder="Name"
+                                placeholder="Your name"
                                 value={form.name}
                                 onChange={handleChange}
                                 required
@@ -50,7 +57,7 @@ export const Contact = ({ ...props }: ContactProps) => {
                             <Input
                                 name="email"
                                 type="email"
-                                placeholder="Email"
+                                placeholder="Your email"
                                 value={form.email}
                                 onChange={handleChange}
                                 required
@@ -84,10 +91,15 @@ export const Contact = ({ ...props }: ContactProps) => {
                 <CardFooter>
                     <Button
                         type="submit"
+                        variant={isSuccess ? 'outline' : 'primary'}
                         form="contact-form"
                         disabled={isPending}
                     >
-                        {isPending ? 'Sending...' : 'Send Message'}
+                        {isPending
+                            ? 'Sending...'
+                            : isSuccess
+                              ? 'Send another'
+                              : 'Send Message'}
                     </Button>
                 </CardFooter>
             </Card>
