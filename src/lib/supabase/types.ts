@@ -41,6 +41,7 @@ export type Database = {
         Tables: {
             character: {
                 Row: {
+                    avatar_url: string | null;
                     created_at: string;
                     cv_url: string | null;
                     id: string;
@@ -50,6 +51,7 @@ export type Database = {
                     title: string;
                 };
                 Insert: {
+                    avatar_url?: string | null;
                     created_at?: string;
                     cv_url?: string | null;
                     id?: string;
@@ -59,6 +61,7 @@ export type Database = {
                     title: string;
                 };
                 Update: {
+                    avatar_url?: string | null;
                     created_at?: string;
                     cv_url?: string | null;
                     id?: string;

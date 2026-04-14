@@ -1,3 +1,5 @@
+import { CharacterForm } from '@/components/features';
+import { PageWrapper } from '@/components/layouts';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/admin/character')({
@@ -5,5 +7,11 @@ export const Route = createFileRoute('/admin/character')({
 });
 
 function RouteComponent() {
-    return <div>Hello "/admin/character"!</div>;
+    return (
+        <PageWrapper>
+            <div className="max-w-2xl mx-auto">
+                <CharacterForm />
+            </div>
+        </PageWrapper>
+    );
 }

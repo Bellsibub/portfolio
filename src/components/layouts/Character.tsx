@@ -19,7 +19,10 @@ export const Character = ({ ...props }: CharacterProps) => {
             {...props}
         >
             <Avatar size="4xl" shape={'rounded'}>
-                <AvatarImage src={avatarSrc} alt="Avatar" />
+                <AvatarImage
+                    src={character.avatar_url || avatarSrc}
+                    alt="Avatar"
+                />
                 <AvatarFallback>BS</AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-4 lg:gap-8">
@@ -32,7 +35,16 @@ export const Character = ({ ...props }: CharacterProps) => {
                     <Button asChild>
                         <Link to="/contact">Contact</Link>
                     </Button>
-                    <Button variant="outline">Download CV</Button>
+                    <Button
+                        variant="outline"
+                        onClick={() => {
+                            if (character.cv_url) {
+                                window.open(character.cv_url, '_blank');
+                            }
+                        }}
+                    >
+                        View CV
+                    </Button>
                 </div>
                 <Stats stats={character.stats || []} />
             </div>

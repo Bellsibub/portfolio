@@ -8,3 +8,5 @@ export { QuestCard } from './QuestCard';
 export type { QuestCardProps } from './QuestCard';
 
 export { QuestImages } from './QuestImages';
+
+export { CharacterForm } from './CharacterForm';
