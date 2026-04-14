@@ -13,10 +13,13 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as PublicRouteImport } from './routes/_public'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as PublicIndexRouteImport } from './routes/_public/index'
+import { Route as AdminSkillsRouteImport } from './routes/admin/skills'
 import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
 import { Route as AdminQuestsRouteImport } from './routes/admin/quests'
 import { Route as AdminMessagesRouteImport } from './routes/admin/messages'
+import { Route as AdminLoreRouteImport } from './routes/admin/lore'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminCharacterRouteImport } from './routes/admin/character'
 import { Route as PublicSandboxRouteImport } from './routes/_public/sandbox'
 import { Route as PublicQuestsRouteImport } from './routes/_public/quests'
 import { Route as PublicLoreRouteImport } from './routes/_public/lore'
@@ -43,6 +46,11 @@ const PublicIndexRoute = PublicIndexRouteImport.update({
   path: '/',
   getParentRoute: () => PublicRoute,
 } as any)
+const AdminSkillsRoute = AdminSkillsRouteImport.update({
+  id: '/skills',
+  path: '/skills',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -58,9 +66,19 @@ const AdminMessagesRoute = AdminMessagesRouteImport.update({
   path: '/messages',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminLoreRoute = AdminLoreRouteImport.update({
+  id: '/lore',
+  path: '/lore',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCharacterRoute = AdminCharacterRouteImport.update({
+  id: '/character',
+  path: '/character',
   getParentRoute: () => AdminRoute,
 } as any)
 const PublicSandboxRoute = PublicSandboxRouteImport.update({
@@ -102,10 +120,13 @@ export interface FileRoutesByFullPath {
   '/lore': typeof PublicLoreRoute
   '/quests': typeof PublicQuestsRoute
   '/sandbox': typeof PublicSandboxRoute
+  '/admin/character': typeof AdminCharacterRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/lore': typeof AdminLoreRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/quests': typeof AdminQuestsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/skills': typeof AdminSkillsRoute
   '/admin/': typeof AdminIndexRoute
   '/quests/$slug': typeof PublicQuestsSlugRoute
 }
@@ -115,10 +136,13 @@ export interface FileRoutesByTo {
   '/lore': typeof PublicLoreRoute
   '/quests': typeof PublicQuestsRoute
   '/sandbox': typeof PublicSandboxRoute
+  '/admin/character': typeof AdminCharacterRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/lore': typeof AdminLoreRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/quests': typeof AdminQuestsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/skills': typeof AdminSkillsRoute
   '/': typeof PublicIndexRoute
   '/admin': typeof AdminIndexRoute
   '/quests/$slug': typeof PublicQuestsSlugRoute
@@ -132,10 +156,13 @@ export interface FileRoutesById {
   '/_public/lore': typeof PublicLoreRoute
   '/_public/quests': typeof PublicQuestsRoute
   '/_public/sandbox': typeof PublicSandboxRoute
+  '/admin/character': typeof AdminCharacterRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/lore': typeof AdminLoreRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/quests': typeof AdminQuestsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/skills': typeof AdminSkillsRoute
   '/_public/': typeof PublicIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/_public/quests_/$slug': typeof PublicQuestsSlugRoute
@@ -150,10 +177,13 @@ export interface FileRouteTypes {
     | '/lore'
     | '/quests'
     | '/sandbox'
+    | '/admin/character'
     | '/admin/login'
+    | '/admin/lore'
     | '/admin/messages'
     | '/admin/quests'
     | '/admin/settings'
+    | '/admin/skills'
     | '/admin/'
     | '/quests/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -163,10 +193,13 @@ export interface FileRouteTypes {
     | '/lore'
     | '/quests'
     | '/sandbox'
+    | '/admin/character'
     | '/admin/login'
+    | '/admin/lore'
     | '/admin/messages'
     | '/admin/quests'
     | '/admin/settings'
+    | '/admin/skills'
     | '/'
     | '/admin'
     | '/quests/$slug'
@@ -179,10 +212,13 @@ export interface FileRouteTypes {
     | '/_public/lore'
     | '/_public/quests'
     | '/_public/sandbox'
+    | '/admin/character'
     | '/admin/login'
+    | '/admin/lore'
     | '/admin/messages'
     | '/admin/quests'
     | '/admin/settings'
+    | '/admin/skills'
     | '/_public/'
     | '/admin/'
     | '/_public/quests_/$slug'
@@ -223,6 +259,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicIndexRouteImport
       parentRoute: typeof PublicRoute
     }
+    '/admin/skills': {
+      id: '/admin/skills'
+      path: '/skills'
+      fullPath: '/admin/skills'
+      preLoaderRoute: typeof AdminSkillsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/settings': {
       id: '/admin/settings'
       path: '/settings'
@@ -244,11 +287,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminMessagesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/lore': {
+      id: '/admin/lore'
+      path: '/lore'
+      fullPath: '/admin/lore'
+      preLoaderRoute: typeof AdminLoreRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/login': {
       id: '/admin/login'
       path: '/login'
       fullPath: '/admin/login'
       preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/character': {
+      id: '/admin/character'
+      path: '/character'
+      fullPath: '/admin/character'
+      preLoaderRoute: typeof AdminCharacterRouteImport
       parentRoute: typeof AdminRoute
     }
     '/_public/sandbox': {
@@ -320,18 +377,24 @@ const PublicRouteWithChildren =
   PublicRoute._addFileChildren(PublicRouteChildren)
 
 interface AdminRouteChildren {
+  AdminCharacterRoute: typeof AdminCharacterRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  AdminLoreRoute: typeof AdminLoreRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
   AdminQuestsRoute: typeof AdminQuestsRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminSkillsRoute: typeof AdminSkillsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminCharacterRoute: AdminCharacterRoute,
   AdminLoginRoute: AdminLoginRoute,
+  AdminLoreRoute: AdminLoreRoute,
   AdminMessagesRoute: AdminMessagesRoute,
   AdminQuestsRoute: AdminQuestsRoute,
   AdminSettingsRoute: AdminSettingsRoute,
+  AdminSkillsRoute: AdminSkillsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
