@@ -8,3 +8,4 @@ export { Inventory } from './Inventory';
 export { Lore } from './Lore';
 export { Contact } from './Contact';
 export { QuestDetail } from './QuestDetail';
+export { AdminSidebar } from './AdminSidebar';
