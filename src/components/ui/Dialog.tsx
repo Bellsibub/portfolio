@@ -32,7 +32,7 @@ const DialogContent = forwardRef<
             ref={ref}
             className={[
                 'fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2',
-                'w-full max-w-lg rounded-lg border border-accent/20',
+                'w-[calc(100%-2rem)] max-w-4xl rounded-lg border border-accent/20',
                 'bg-background-panel p-6 shadow-lg',
                 'data-[state=open]:animate-in data-[state=closed]:animate-out',
                 'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',

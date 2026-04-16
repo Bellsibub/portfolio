@@ -10,7 +10,7 @@ export const Route = createFileRoute('/admin/login')({
         } = await supabase.auth.getSession();
 
         if (session) {
-            throw redirect({ to: '/admin/' });
+            throw redirect({ to: '/admin' });
         }
     },
     component: LoginPage,
@@ -39,7 +39,7 @@ function LoginPage() {
             return;
         }
 
-        navigate({ to: '/admin/' });
+        navigate({ to: '/admin' });
     }
 
     return (

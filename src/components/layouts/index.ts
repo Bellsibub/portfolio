@@ -9,3 +9,4 @@ export { Lore } from './Lore';
 export { Contact } from './Contact';
 export { QuestDetail } from './QuestDetail';
 export { AdminSidebar } from './AdminSidebar';
+export { AdminContentList } from './AdminContentList';
