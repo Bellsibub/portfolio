@@ -1,5 +1,5 @@
 export { useLore } from './useLore';
-export { useQuests } from './useQuests';
+export { useQuests, type Quest } from './useQuests';
 export { useQuest } from './useQuest';
 export { useSkills } from './useSkills';
 export { useCharacter } from './useCharacter';
@@ -15,3 +15,8 @@ export {
     useUpdateQuest,
     useDeleteQuest,
 } from './useQuestMutations';
+export {
+    useCreateSkill,
+    useUpdateSkill,
+    useDeleteSkill,
+} from './useSkillMutations';

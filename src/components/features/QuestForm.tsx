@@ -1,5 +1,6 @@
 import {
     Button,
+    Checkbox,
     Dialog,
     DialogClose,
     DialogContent,
@@ -16,11 +17,26 @@ import {
     useCreateQuest,
     useUpdateQuest,
 } from '@/lib/react-query/useQuestMutations';
+import { useSkills } from '@/lib/react-query/useSkills';
+import supabase from '@/lib/supabase/client';
 import type { Tables } from '@/lib/supabase/types';
 import type { FormDialogProps } from '@/lib/types';
 import { useState } from 'react';
 
-type Quest = Tables<'quests'>;
+type Quest = Tables<'quests'> & {
+    quest_skills?: {
+        skill: {
+            id: string;
+            name: string;
+            category: string;
+            created_at: string;
+            description: string | null;
+            icon_name: string | null;
+            parent_id: string | null;
+            slug: string;
+        };
+    }[];
+};
 
 const LEVELS = ['novice', 'apprentice', 'adept', 'master'] as const;
 const DIFFICULTIES = ['easy', 'medium', 'hard', 'legendary'] as const;
@@ -48,21 +64,26 @@ function getInitialFormData(quest?: Quest) {
         demo_link: quest?.demo_link ?? '',
         github_link: quest?.github_link ?? '',
         reflections: quest?.reflections ?? '',
+        selectedSkills:
+            quest?.quest_skills?.map(
+                (qs: { skill: { id: string } }) => qs.skill.id,
+            ) ?? [],
     };
 }
 
-export function QuestForm({ data: quest, trigger }: FormDialogProps<Quest>) {
+export function QuestForm({ data, trigger }: FormDialogProps<Quest>) {
     const [open, setOpen] = useState(false);
-    const [formData, setFormData] = useState(() => getInitialFormData(quest));
+    const [formData, setFormData] = useState(() => getInitialFormData(data));
 
     const createMutation = useCreateQuest();
     const updateMutation = useUpdateQuest();
+    const { data: skills = [] } = useSkills();
 
-    const isEditing = !!quest;
+    const isEditing = !!data;
     const isLoading = createMutation.isPending || updateMutation.isPending;
 
     const handleOpenChange = (next: boolean) => {
-        if (next) setFormData(getInitialFormData(quest));
+        if (next) setFormData(getInitialFormData(data));
         setOpen(next);
     };
 
@@ -74,22 +95,55 @@ export function QuestForm({ data: quest, trigger }: FormDialogProps<Quest>) {
         }));
     };
 
+    const handleSkillChange = (skillId: string, checked: boolean) => {
+        setFormData((prev) => ({
+            ...prev,
+            selectedSkills: checked
+                ? [...prev.selectedSkills, skillId]
+                : prev.selectedSkills.filter((id: string) => id !== skillId),
+        }));
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (!formData.title.trim() || !formData.description.trim()) return;
 
-        try {
-            const submitData = formData;
+        const { selectedSkills, ...questData } = formData;
 
-            if (isEditing && quest) {
-                await updateMutation.mutateAsync({
-                    id: quest.id,
-                    data: submitData,
+        try {
+            let quest: Tables<'quests'>;
+
+            if (isEditing && data) {
+                quest = await updateMutation.mutateAsync({
+                    id: data.id,
+                    data: questData,
                 });
             } else {
-                await createMutation.mutateAsync(submitData);
+                quest = await createMutation.mutateAsync(questData);
             }
+
+            // Handle quest skills
+            if (quest.id) {
+                // Delete existing quest skills
+                await supabase
+                    .from('quest_skills')
+                    .delete()
+                    .eq('quest_id', quest.id);
+
+                // Insert new quest skills
+                if (selectedSkills.length > 0) {
+                    const questSkillsData = selectedSkills.map(
+                        (skillId: string) => ({
+                            quest_id: quest.id,
+                            skill_id: skillId,
+                        }),
+                    );
+
+                    await supabase.from('quest_skills').insert(questSkillsData);
+                }
+            }
+
             setOpen(false);
         } catch (error) {
             console.error('Failed to save quest:', error);
@@ -279,6 +333,34 @@ export function QuestForm({ data: quest, trigger }: FormDialogProps<Quest>) {
                             }
                             placeholder="Enter reflections in markdown format"
                         />
+                    </div>
+
+                    <div>
+                        <Label>Skills</Label>
+                        <div className="grid grid-cols-2 gap-2 mt-2 max-h-40 overflow-y-auto">
+                            {skills.map((skill) => (
+                                <div
+                                    key={skill.id}
+                                    className="flex items-center gap-2"
+                                >
+                                    <Checkbox
+                                        id={`skill-${skill.id}`}
+                                        checked={formData.selectedSkills.includes(
+                                            skill.id,
+                                        )}
+                                        onCheckedChange={(checked) =>
+                                            handleSkillChange(skill.id, checked)
+                                        }
+                                    />
+                                    <Label
+                                        htmlFor={`skill-${skill.id}`}
+                                        className="text-sm cursor-pointer"
+                                    >
+                                        {skill.name}
+                                    </Label>
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
                     <div className="flex justify-end gap-3 pt-4">

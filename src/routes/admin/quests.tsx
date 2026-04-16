@@ -1,11 +1,8 @@
 import { QuestForm } from '@/components/features';
 import { AdminContentList, PageWrapper } from '@/components/layouts';
 import { Badge } from '@/components/ui';
-import { useDeleteQuest, useQuests } from '@/lib/react-query';
-import type { Tables } from '@/lib/supabase/types';
+import { type Quest, useDeleteQuest, useQuests } from '@/lib/react-query';
 import { createFileRoute } from '@tanstack/react-router';
-
-type Quest = Tables<'quests'>;
 
 export const Route = createFileRoute('/admin/quests')({
     component: RouteComponent,

@@ -95,3 +95,5 @@ export { Switch } from './Switch';
 export { Select } from './Select';
 
 export { Label } from './Label';
+
+export { Checkbox } from './Checkbox';
