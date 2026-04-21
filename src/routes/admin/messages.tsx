@@ -36,9 +36,12 @@ function MessageItem({
     });
 
     return (
-        <Card>
+        <Card
+            data-expanded={expanded}
+            className="data-[expanded=true]:bg-accent/10 transition-colors"
+        >
             <button
-                className="flex justify-between items-start gap-4 text-left w-full"
+                className="flex justify-between items-start gap-4 text-left w-full px-4 py-3 hover:bg-accent/10 rounded-md transition-colors hover:cursor-pointer"
                 onClick={() => setExpanded((prev) => !prev)}
             >
                 <div className="flex flex-col gap-1 min-w-0">
