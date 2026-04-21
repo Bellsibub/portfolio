@@ -8,6 +8,10 @@ export const BadgeVariants = cva(
             variant: {
                 default: 'border-transparent bg-accent text-background-primary',
                 outline: 'border-accent text-accent',
+                secondary:
+                    'border-transparent bg-secondary text-background-primary',
+                primary:
+                    'border-transparent bg-primary text-background-primary',
             },
         },
         defaultVariants: {

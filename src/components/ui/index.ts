@@ -32,6 +32,8 @@ export {
     TooltipContent,
 } from './Tooltip';
 
+export { Popover, PopoverTrigger, PopoverContent } from './Popover';
+
 export {
     DropdownMenu,
     DropdownMenuTrigger,
@@ -83,3 +85,15 @@ export {
     CarouselNext,
 } from './Carousel';
 export type { CarouselProps, CarouselImage } from './Carousel';
+
+export { MarkdownEditor } from './MarkdownEditor';
+
+export { ConfirmDialog } from './ConfirmDialog';
+
+export { Switch } from './Switch';
+
+export { Select } from './Select';
+
+export { Label } from './Label';
+
+export { Checkbox } from './Checkbox';
