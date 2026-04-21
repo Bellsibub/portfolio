@@ -1,4 +1,5 @@
 import supabase from '@/lib/supabase/client';
+import { ensureQuestImageFolder } from '@/lib/supabase/questImageUpload';
 import type { Tables, TablesInsert, TablesUpdate } from '@/lib/supabase/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -44,7 +45,14 @@ export function useCreateQuest() {
 
     return useMutation({
         mutationFn: createQuest,
-        onSuccess: () => {
+        onSuccess: async (newQuest) => {
+            try {
+                // Create image folder for the new quest
+                await ensureQuestImageFolder(newQuest.id);
+            } catch (error) {
+                console.warn('Failed to create quest image folder:', error);
+                // Don't block quest creation if folder setup fails
+            }
             queryClient.invalidateQueries({ queryKey: ['quests'] });
         },
     });

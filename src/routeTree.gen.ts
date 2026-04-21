@@ -19,6 +19,7 @@ import { Route as AdminQuestsRouteImport } from './routes/admin/quests'
 import { Route as AdminMessagesRouteImport } from './routes/admin/messages'
 import { Route as AdminLoreRouteImport } from './routes/admin/lore'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as AdminGalleryRouteImport } from './routes/admin/gallery'
 import { Route as AdminCharacterRouteImport } from './routes/admin/character'
 import { Route as PublicSandboxRouteImport } from './routes/_public/sandbox'
 import { Route as PublicQuestsRouteImport } from './routes/_public/quests'
@@ -76,6 +77,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminGalleryRoute = AdminGalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminCharacterRoute = AdminCharacterRouteImport.update({
   id: '/character',
   path: '/character',
@@ -121,6 +127,7 @@ export interface FileRoutesByFullPath {
   '/quests': typeof PublicQuestsRoute
   '/sandbox': typeof PublicSandboxRoute
   '/admin/character': typeof AdminCharacterRoute
+  '/admin/gallery': typeof AdminGalleryRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/lore': typeof AdminLoreRoute
   '/admin/messages': typeof AdminMessagesRoute
@@ -137,6 +144,7 @@ export interface FileRoutesByTo {
   '/quests': typeof PublicQuestsRoute
   '/sandbox': typeof PublicSandboxRoute
   '/admin/character': typeof AdminCharacterRoute
+  '/admin/gallery': typeof AdminGalleryRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/lore': typeof AdminLoreRoute
   '/admin/messages': typeof AdminMessagesRoute
@@ -157,6 +165,7 @@ export interface FileRoutesById {
   '/_public/quests': typeof PublicQuestsRoute
   '/_public/sandbox': typeof PublicSandboxRoute
   '/admin/character': typeof AdminCharacterRoute
+  '/admin/gallery': typeof AdminGalleryRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/lore': typeof AdminLoreRoute
   '/admin/messages': typeof AdminMessagesRoute
@@ -178,6 +187,7 @@ export interface FileRouteTypes {
     | '/quests'
     | '/sandbox'
     | '/admin/character'
+    | '/admin/gallery'
     | '/admin/login'
     | '/admin/lore'
     | '/admin/messages'
@@ -194,6 +204,7 @@ export interface FileRouteTypes {
     | '/quests'
     | '/sandbox'
     | '/admin/character'
+    | '/admin/gallery'
     | '/admin/login'
     | '/admin/lore'
     | '/admin/messages'
@@ -213,6 +224,7 @@ export interface FileRouteTypes {
     | '/_public/quests'
     | '/_public/sandbox'
     | '/admin/character'
+    | '/admin/gallery'
     | '/admin/login'
     | '/admin/lore'
     | '/admin/messages'
@@ -301,6 +313,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/gallery': {
+      id: '/admin/gallery'
+      path: '/gallery'
+      fullPath: '/admin/gallery'
+      preLoaderRoute: typeof AdminGalleryRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/character': {
       id: '/admin/character'
       path: '/character'
@@ -378,6 +397,7 @@ const PublicRouteWithChildren =
 
 interface AdminRouteChildren {
   AdminCharacterRoute: typeof AdminCharacterRoute
+  AdminGalleryRoute: typeof AdminGalleryRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminLoreRoute: typeof AdminLoreRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
@@ -389,6 +409,7 @@ interface AdminRouteChildren {
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminCharacterRoute: AdminCharacterRoute,
+  AdminGalleryRoute: AdminGalleryRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminLoreRoute: AdminLoreRoute,
   AdminMessagesRoute: AdminMessagesRoute,
