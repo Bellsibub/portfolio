@@ -17,4 +17,7 @@ export const keys = {
     lore: {
         all: ['lore'] as const,
     },
+    messages: {
+        all: ['messages'] as const,
+    },
 };
