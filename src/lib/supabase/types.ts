@@ -199,6 +199,7 @@ export type Database = {
                     level: string;
                     reflections: string | null;
                     slug: string;
+                    status: Database['public']['Enums']['quest-status'] | null;
                     summary: string;
                     title: string;
                 };
@@ -215,6 +216,7 @@ export type Database = {
                     level: string;
                     reflections?: string | null;
                     slug: string;
+                    status?: Database['public']['Enums']['quest-status'] | null;
                     summary: string;
                     title: string;
                 };
@@ -231,6 +233,7 @@ export type Database = {
                     level?: string;
                     reflections?: string | null;
                     slug?: string;
+                    status?: Database['public']['Enums']['quest-status'] | null;
                     summary?: string;
                     title?: string;
                 };
@@ -285,7 +288,7 @@ export type Database = {
             [_ in never]: never;
         };
         Enums: {
-            [_ in never]: never;
+            'quest-status': 'active' | 'maintenance' | 'archived';
         };
         CompositeTypes: {
             [_ in never]: never;
@@ -418,6 +421,8 @@ export const Constants = {
         Enums: {},
     },
     public: {
-        Enums: {},
+        Enums: {
+            'quest-status': ['active', 'maintenance', 'archived'],
+        },
     },
 } as const;
