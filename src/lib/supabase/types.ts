@@ -194,7 +194,6 @@ export type Database = {
                     github_link: string | null;
                     id: string;
                     image_url: string | null;
-                    is_completed: boolean;
                     is_featured: boolean;
                     level: string;
                     reflections: string | null;
@@ -211,7 +210,6 @@ export type Database = {
                     github_link?: string | null;
                     id?: string;
                     image_url?: string | null;
-                    is_completed?: boolean;
                     is_featured?: boolean;
                     level: string;
                     reflections?: string | null;
@@ -228,7 +226,6 @@ export type Database = {
                     github_link?: string | null;
                     id?: string;
                     image_url?: string | null;
-                    is_completed?: boolean;
                     is_featured?: boolean;
                     level?: string;
                     reflections?: string | null;
@@ -241,44 +238,45 @@ export type Database = {
             };
             skills: {
                 Row: {
-                    category: string;
+                    category:
+                        | Database['public']['Enums']['skill-category']
+                        | null;
                     created_at: string;
                     description: string | null;
+                    equipped: boolean | null;
+                    highlights: string[] | null;
                     icon_name: string | null;
                     id: string;
                     name: string;
-                    parent_id: string | null;
                     slug: string;
                 };
                 Insert: {
-                    category: string;
+                    category?:
+                        | Database['public']['Enums']['skill-category']
+                        | null;
                     created_at?: string;
                     description?: string | null;
+                    equipped?: boolean | null;
+                    highlights?: string[] | null;
                     icon_name?: string | null;
                     id?: string;
                     name: string;
-                    parent_id?: string | null;
                     slug: string;
                 };
                 Update: {
-                    category?: string;
+                    category?:
+                        | Database['public']['Enums']['skill-category']
+                        | null;
                     created_at?: string;
                     description?: string | null;
+                    equipped?: boolean | null;
+                    highlights?: string[] | null;
                     icon_name?: string | null;
                     id?: string;
                     name?: string;
-                    parent_id?: string | null;
                     slug?: string;
                 };
-                Relationships: [
-                    {
-                        foreignKeyName: 'skills_parent_id_fkey';
-                        columns: ['parent_id'];
-                        isOneToOne: false;
-                        referencedRelation: 'skills';
-                        referencedColumns: ['id'];
-                    },
-                ];
+                Relationships: [];
             };
         };
         Views: {
@@ -288,7 +286,18 @@ export type Database = {
             [_ in never]: never;
         };
         Enums: {
-            'quest-status': 'active' | 'maintenance' | 'archived';
+            'quest-status':
+                | 'active'
+                | 'maintenance'
+                | 'archived'
+                | 'enhancement';
+            'skill-category':
+                | 'framework'
+                | 'language'
+                | 'runtime'
+                | 'styling'
+                | 'tool'
+                | 'skill';
         };
         CompositeTypes: {
             [_ in never]: never;
@@ -422,7 +431,20 @@ export const Constants = {
     },
     public: {
         Enums: {
-            'quest-status': ['active', 'maintenance', 'archived'],
+            'quest-status': [
+                'active',
+                'maintenance',
+                'archived',
+                'enhancement',
+            ],
+            'skill-category': [
+                'framework',
+                'language',
+                'runtime',
+                'styling',
+                'tool',
+                'skill',
+            ],
         },
     },
 } as const;

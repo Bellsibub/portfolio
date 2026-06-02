@@ -31,9 +31,7 @@ export const Inventory = ({ ...props }: InventoryProps) => {
     const { data: skills } = useSkills();
 
     const hotbarSkillIds = new Set(
-        (quests ?? [])
-            .filter((q) => !q.is_completed)
-            .flatMap((q) => q.quest_skills.map((qs) => qs.skill.id)),
+        (quests ?? []).flatMap((q) => q.quest_skills.map((qs) => qs.skill.id)),
     );
 
     const hotbarSkills = (skills ?? []).filter((s) => hotbarSkillIds.has(s.id));

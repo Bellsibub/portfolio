@@ -37,8 +37,8 @@ function RouteComponent() {
 
     const QuestBadges: React.FC<{ item: Quest }> = ({ item }) => (
         <div className="flex items-center gap-2">
+            {item.status && <Badge variant="outline">{item.status}</Badge>}
             {item.is_featured && <Badge variant="default">Featured</Badge>}
-            {item.is_completed && <Badge variant="secondary">Completed</Badge>}
         </div>
     );
 

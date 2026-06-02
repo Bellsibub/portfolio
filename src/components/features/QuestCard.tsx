@@ -32,9 +32,7 @@ export const QuestCard = ({ quest, ...props }: QuestCardProps) => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">
-                    <p className="caption tracking-widest">
-                        {quest.is_completed ? 'Exp gained in:' : 'Level up in:'}
-                    </p>
+                    <p className="caption tracking-widest">Level up in:</p>
                     <div className="inline-flex items-center gap-2 flex-wrap">
                         {quest.quest_skills.map(({ skill }) => (
                             <Badge key={skill.id} variant="outline">
@@ -46,11 +44,13 @@ export const QuestCard = ({ quest, ...props }: QuestCardProps) => {
             </CardContent>
             <CardFooter>
                 <Button
-                    variant={quest.is_completed ? 'primary' : 'outline'}
+                    variant={quest.status === 'archived' ? 'ghost' : 'outline'}
                     asChild
                 >
                     <Link to="/quests/$slug" params={{ slug: quest.slug }}>
-                        {quest.is_completed ? 'View Quest' : 'View progress'}
+                        {quest.status === 'archived'
+                            ? 'View details'
+                            : 'View progress'}
                     </Link>
                 </Button>
             </CardFooter>

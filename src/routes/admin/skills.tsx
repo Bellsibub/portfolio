@@ -39,12 +39,10 @@ function RouteComponent() {
                     <div>
                         <h1 className="text-3xl font-semibold">Skills</h1>
                         <p className="mt-2 text-sm text-text-secondary">
-                            Create, edit, and organize skills into a
-                            parent/child tree.
+                            Create, edit, and delete skills.
                         </p>
                     </div>
                     <SkillForm
-                        skills={skills}
                         trigger={<Button variant="primary">Add Skill</Button>}
                     />
                 </div>

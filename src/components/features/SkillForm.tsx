@@ -27,30 +27,20 @@ const skillCategories = [
     { label: 'Tool', value: 'tool' },
     { label: 'Styling', value: 'styling' },
     { label: 'Runtime', value: 'runtime' },
+    { label: 'Skill', value: 'skill' },
 ];
 
-type SkillFormProps = FormDialogProps<Skill> & {
-    skills: Skill[];
-    defaultParentId?: string;
-};
+type SkillFormProps = FormDialogProps<Skill>;
 
 type SkillPayload = TablesInsert<'skills'>;
 
-export function SkillForm({
-    data: skill,
-    trigger,
-    skills,
-    defaultParentId,
-}: SkillFormProps) {
+export function SkillForm({ data: skill, trigger }: SkillFormProps) {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState(skill?.name ?? '');
     const [slug, setSlug] = useState(skill?.slug ?? '');
     const [category, setCategory] = useState(skill?.category ?? 'language');
     const [description, setDescription] = useState(skill?.description ?? '');
     const [iconName, setIconName] = useState(skill?.icon_name ?? '');
-    const [parentId, setParentId] = useState(
-        skill?.parent_id ?? defaultParentId ?? '',
-    );
 
     const createMutation = useCreateSkill();
     const updateMutation = useUpdateSkill();
@@ -65,7 +55,6 @@ export function SkillForm({
             setCategory(skill?.category ?? 'language');
             setDescription(skill?.description ?? '');
             setIconName(skill?.icon_name ?? '');
-            setParentId(skill?.parent_id ?? defaultParentId ?? '');
         }
         setOpen(newOpen);
     };
@@ -81,7 +70,6 @@ export function SkillForm({
             category,
             description: description.trim() || null,
             icon_name: iconName.trim() || null,
-            parent_id: parentId || null,
         };
 
         try {
@@ -142,25 +130,6 @@ export function SkillForm({
                                     {option.label}
                                 </option>
                             ))}
-                        </Select>
-                    </div>
-                    <div>
-                        <Label htmlFor="skill-parent">Parent Skill</Label>
-                        <Select
-                            id="skill-parent"
-                            value={parentId ?? ''}
-                            onChange={(event) =>
-                                setParentId(event.target.value)
-                            }
-                        >
-                            <option value="">No parent</option>
-                            {skills
-                                .filter((item) => item.id !== skill?.id)
-                                .map((item) => (
-                                    <option key={item.id} value={item.id}>
-                                        {item.name}
-                                    </option>
-                                ))}
                         </Select>
                     </div>
                     <div>

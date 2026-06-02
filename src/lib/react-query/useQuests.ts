@@ -11,7 +11,7 @@ async function fetchQuests(): Promise<Quest[]> {
     const { data, error } = await supabase
         .from('quests')
         .select('*, quest_skills(skill:skills(*))')
-        .order('is_completed', { ascending: true });
+        .order('created_at', { ascending: false });
     if (error) throw error;
     return data;
 }

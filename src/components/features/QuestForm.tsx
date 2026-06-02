@@ -40,6 +40,7 @@ type Quest = Tables<'quests'> & {
 
 const LEVELS = ['novice', 'apprentice', 'adept', 'master'] as const;
 const DIFFICULTIES = ['easy', 'medium', 'hard', 'legendary'] as const;
+const STATUSES = ['active', 'maintenance', 'archived', 'enhancement'] as const;
 
 function generateSlug(title: string): string {
     return title
@@ -59,8 +60,8 @@ function getInitialFormData(quest?: Quest) {
         level: (quest?.level ?? 'novice') as (typeof LEVELS)[number],
         difficulty: (quest?.difficulty ??
             'easy') as (typeof DIFFICULTIES)[number],
-        is_completed: quest?.is_completed ?? false,
         is_featured: quest?.is_featured ?? false,
+        status: (quest?.status ?? 'active') as (typeof STATUSES)[number],
         demo_link: quest?.demo_link ?? '',
         github_link: quest?.github_link ?? '',
         reflections: quest?.reflections ?? '',
@@ -218,7 +219,7 @@ export function QuestForm({ data, trigger }: FormDialogProps<Quest>) {
                         />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-3 gap-4">
                         <div>
                             <Label htmlFor="level">Level</Label>
                             <Select
@@ -261,6 +262,27 @@ export function QuestForm({ data, trigger }: FormDialogProps<Quest>) {
                                 ))}
                             </Select>
                         </div>
+                        <div>
+                            <Label htmlFor="status">Status</Label>
+                            <Select
+                                id="status"
+                                value={formData.status}
+                                onChange={(e) =>
+                                    setFormData((prev) => ({
+                                        ...prev,
+                                        status: e.target
+                                            .value as (typeof STATUSES)[number],
+                                    }))
+                                }
+                            >
+                                {STATUSES.map((status) => (
+                                    <option key={status} value={status}>
+                                        {status.charAt(0).toUpperCase() +
+                                            status.slice(1)}
+                                    </option>
+                                ))}
+                            </Select>
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
@@ -295,18 +317,6 @@ export function QuestForm({ data, trigger }: FormDialogProps<Quest>) {
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-2">
-                            <Switch
-                                checked={formData.is_completed}
-                                onCheckedChange={(checked) =>
-                                    setFormData((prev) => ({
-                                        ...prev,
-                                        is_completed: checked,
-                                    }))
-                                }
-                            />
-                            <Label>Completed</Label>
-                        </div>
                         <div className="flex items-center gap-2">
                             <Switch
                                 checked={formData.is_featured}
