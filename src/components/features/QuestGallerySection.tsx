@@ -1,4 +1,5 @@
-import { Button, ConfirmDialog } from '@/components/ui';
+import { Button } from '@/components/ui/Button';
+import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import {
     useCreateQuestImage,
     useDeleteQuestImage,

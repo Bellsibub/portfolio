@@ -1,12 +1,8 @@
-import { PageWrapper } from '@/components/layouts';
-import {
-    Button,
-    Card,
-    CardContent,
-    CardFooter,
-    SectionHeader,
-} from '@/components/ui';
+import { PageWrapper } from '@/components/layouts/PageWrapper';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardFooter } from '@/components/ui/Card';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
+import { SectionHeader } from '@/components/ui/SectionHeader';
 import { useDeleteMessage, useMessages } from '@/lib/react-query/useMessages';
 import type { Tables } from '@/lib/supabase/types';
 import { createFileRoute } from '@tanstack/react-router';

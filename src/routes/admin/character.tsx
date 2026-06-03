@@ -1,5 +1,5 @@
 import { CharacterForm } from '@/components/features/CharacterForm';
-import { PageWrapper } from '@/components/layouts';
+import { PageWrapper } from '@/components/layouts/PageWrapper';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/admin/character')({

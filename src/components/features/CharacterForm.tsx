@@ -1,22 +1,18 @@
-import { Stats } from '@/components/features';
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-    Button,
-    Card,
-    CardContent,
-    CardTitle,
-    Input,
-    Textarea,
-} from '@/components/ui';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/Avatar';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardTitle } from '@/components/ui/Card';
+import { Input } from '@/components/ui/Input';
+import { Textarea } from '@/components/ui/Textarea';
 import { useCharacter } from '@/lib/react-query/useCharacter';
 import { useUpdateCharacter } from '@/lib/react-query/useUpdateCharacter';
-import React, { useState } from 'react';
+import type { HTMLAttributes } from 'react';
+import { useEffect, useState } from 'react';
+
+import { Stats } from './Stats';
 
 type StatItem = { label: string; value: string | number };
 
-type CharacterFormProps = {} & React.HTMLAttributes<HTMLDivElement>;
+type CharacterFormProps = {} & HTMLAttributes<HTMLDivElement>;
 
 export const CharacterForm = ({ ...props }: CharacterFormProps) => {
     const { data: character, isPending: isLoadingCharacter } = useCharacter();
@@ -34,7 +30,7 @@ export const CharacterForm = ({ ...props }: CharacterFormProps) => {
     const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
 
     // Initialize form data when character loads
-    React.useEffect(() => {
+    useEffect(() => {
         if (character) {
             setFormData({
                 name: character.name || '',

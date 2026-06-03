@@ -1,7 +1,7 @@
 import { SkillForm } from '@/components/features/SkillForm';
 import { SkillTree } from '@/components/features/SkillTree';
-import { PageWrapper } from '@/components/layouts';
-import { Button } from '@/components/ui';
+import { PageWrapper } from '@/components/layouts/PageWrapper';
+import { Button } from '@/components/ui/Button';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import { useDeleteSkill, useSkills } from '@/lib/react-query';
 import type { Skill } from '@/lib/react-query/useQuests';

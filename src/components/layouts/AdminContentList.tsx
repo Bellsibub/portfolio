@@ -1,26 +1,22 @@
-import {
-    Button,
-    Card,
-    CardContent,
-    CardFooter,
-    CardTitle,
-    SectionHeader,
-} from '@/components/ui';
+import { Button } from '@/components/ui/Button';
+import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/Card';
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
+import { SectionHeader } from '@/components/ui/SectionHeader';
 import type { FormDialogProps } from '@/lib/types';
 import type { UseMutationResult } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import type { FC, HTMLAttributes } from 'react';
+import { useState } from 'react';
 
 interface AdminContentListProps<
     T extends { title: string; id: string },
-> extends React.HTMLAttributes<HTMLDivElement> {
+> extends HTMLAttributes<HTMLDivElement> {
     title: string;
     dataType: string;
     data: T[];
-    FormDialog: React.FC<FormDialogProps<T>>;
+    FormDialog: FC<FormDialogProps<T>>;
     deleteMutation: UseMutationResult<void, Error, string, unknown>;
-    ItemContent: React.FC<{ item: T }>;
-    ItemBadges?: React.FC<{ item: T }>;
+    ItemContent: FC<{ item: T }>;
+    ItemBadges?: FC<{ item: T }>;
 }
 
 export const AdminContentList = <T extends { title: string; id: string }>({
