@@ -13,6 +13,7 @@ import {
     Switch,
     Textarea,
 } from '@/components/ui';
+import { type Quest, type QuestSkill } from '@/lib/react-query';
 import {
     useCreateQuest,
     useUpdateQuest,
@@ -22,24 +23,6 @@ import supabase from '@/lib/supabase/client';
 import type { Tables } from '@/lib/supabase/types';
 import type { FormDialogProps } from '@/lib/types';
 import { useState } from 'react';
-
-type QuestSkill = {
-    skill: {
-        id: string;
-        name: string;
-        category: string;
-        created_at: string;
-        description: string | null;
-        icon_name: string | null;
-        parent_id: string | null;
-        slug: string;
-    };
-    skill_importance?: Tables<'quest_skills'>['skill_importance'];
-};
-
-type Quest = Tables<'quests'> & {
-    quest_skills?: QuestSkill[];
-};
 
 const LEVELS = ['novice', 'apprentice', 'adept', 'master'] as const;
 const DIFFICULTIES = ['easy', 'medium', 'hard', 'legendary'] as const;
