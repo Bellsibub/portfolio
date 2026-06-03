@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/Textarea';
 import { useCharacter } from '@/lib/react-query/useCharacter';
 import { useUpdateCharacter } from '@/lib/react-query/useUpdateCharacter';
 import type { HTMLAttributes } from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Stats } from './Stats';
 
@@ -19,30 +19,16 @@ export const CharacterForm = ({ ...props }: CharacterFormProps) => {
     const updateCharacter = useUpdateCharacter();
 
     const [formData, setFormData] = useState({
-        name: '',
-        title: '',
-        tagline: '',
-        stats: [] as StatItem[],
+        name: character?.name || '',
+        title: character?.title || '',
+        tagline: character?.tagline || '',
+        stats: (character?.stats as StatItem[]) || [],
     });
-
     const [avatarFile, setAvatarFile] = useState<File | null>(null);
     const [cvFile, setCvFile] = useState<File | null>(null);
-    const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-
-    // Initialize form data when character loads
-    useEffect(() => {
-        if (character) {
-            setFormData({
-                name: character.name || '',
-                title: character.title || '',
-                tagline: character.tagline || '',
-                stats: character.stats || [],
-            });
-            if (character.avatar_url) {
-                setAvatarPreview(character.avatar_url);
-            }
-        }
-    }, [character]);
+    const [avatarPreview, setAvatarPreview] = useState<string | null>(
+        character?.avatar_url || null,
+    );
 
     const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
