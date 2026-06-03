@@ -4,9 +4,9 @@ import {
     CardContent,
     CardFooter,
     CardTitle,
-    ConfirmDialog,
     SectionHeader,
 } from '@/components/ui';
+import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import type { FormDialogProps } from '@/lib/types';
 import type { UseMutationResult } from '@tanstack/react-query';
 import React, { useState } from 'react';

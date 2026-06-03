@@ -4,9 +4,9 @@ import {
     Card,
     CardContent,
     CardFooter,
-    ConfirmDialog,
     SectionHeader,
 } from '@/components/ui';
+import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import { useDeleteMessage, useMessages } from '@/lib/react-query/useMessages';
 import type { Tables } from '@/lib/supabase/types';
 import { createFileRoute } from '@tanstack/react-router';

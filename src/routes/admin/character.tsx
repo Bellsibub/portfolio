@@ -1,4 +1,4 @@
-import { CharacterForm } from '@/components/features';
+import { CharacterForm } from '@/components/features/CharacterForm';
 import { PageWrapper } from '@/components/layouts';
 import { createFileRoute } from '@tanstack/react-router';
 
