@@ -24,7 +24,6 @@
         "@uiw/react-md-editor": "^4.1.0",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
-        "developer-icons": "^6.0.5",
         "embla-carousel-react": "^8.6.0",
         "framer-motion": "^12.35.2",
         "radix-ui": "^1.4.3",

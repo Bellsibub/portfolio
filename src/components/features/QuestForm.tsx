@@ -23,24 +23,28 @@ import type { Tables } from '@/lib/supabase/types';
 import type { FormDialogProps } from '@/lib/types';
 import { useState } from 'react';
 
+type QuestSkill = {
+    skill: {
+        id: string;
+        name: string;
+        category: string;
+        created_at: string;
+        description: string | null;
+        icon_name: string | null;
+        parent_id: string | null;
+        slug: string;
+    };
+    skill_importance?: Tables<'quest_skills'>['skill_importance'];
+};
+
 type Quest = Tables<'quests'> & {
-    quest_skills?: {
-        skill: {
-            id: string;
-            name: string;
-            category: string;
-            created_at: string;
-            description: string | null;
-            icon_name: string | null;
-            parent_id: string | null;
-            slug: string;
-        };
-    }[];
+    quest_skills?: QuestSkill[];
 };
 
 const LEVELS = ['novice', 'apprentice', 'adept', 'master'] as const;
 const DIFFICULTIES = ['easy', 'medium', 'hard', 'legendary'] as const;
 const STATUSES = ['active', 'maintenance', 'archived', 'enhancement'] as const;
+const SKILL_IMPORTANCE_LEVELS = ['primary', 'secondary', 'tertiary'] as const;
 
 function generateSlug(title: string): string {
     return title
@@ -66,9 +70,10 @@ function getInitialFormData(quest?: Quest) {
         github_link: quest?.github_link ?? '',
         reflections: quest?.reflections ?? '',
         selectedSkills:
-            quest?.quest_skills?.map(
-                (qs: { skill: { id: string } }) => qs.skill.id,
-            ) ?? [],
+            quest?.quest_skills?.map((qs: QuestSkill) => ({
+                skill_id: qs.skill.id,
+                importance: qs.skill_importance ?? 'secondary',
+            })) ?? [],
     };
 }
 
@@ -100,8 +105,23 @@ export function QuestForm({ data, trigger }: FormDialogProps<Quest>) {
         setFormData((prev) => ({
             ...prev,
             selectedSkills: checked
-                ? [...prev.selectedSkills, skillId]
-                : prev.selectedSkills.filter((id: string) => id !== skillId),
+                ? [
+                      ...prev.selectedSkills,
+                      { skill_id: skillId, importance: 'secondary' as const },
+                  ]
+                : prev.selectedSkills.filter((s) => s.skill_id !== skillId),
+        }));
+    };
+
+    const handleSkillImportanceChange = (
+        skillId: string,
+        importance: (typeof SKILL_IMPORTANCE_LEVELS)[number],
+    ) => {
+        setFormData((prev) => ({
+            ...prev,
+            selectedSkills: prev.selectedSkills.map((s) =>
+                s.skill_id === skillId ? { ...s, importance } : s,
+            ),
         }));
     };
 
@@ -134,12 +154,11 @@ export function QuestForm({ data, trigger }: FormDialogProps<Quest>) {
 
                 // Insert new quest skills
                 if (selectedSkills.length > 0) {
-                    const questSkillsData = selectedSkills.map(
-                        (skillId: string) => ({
-                            quest_id: quest.id,
-                            skill_id: skillId,
-                        }),
-                    );
+                    const questSkillsData = selectedSkills.map((s) => ({
+                        quest_id: quest.id,
+                        skill_id: s.skill_id,
+                        skill_importance: s.importance,
+                    }));
 
                     await supabase.from('quest_skills').insert(questSkillsData);
                 }
@@ -347,29 +366,64 @@ export function QuestForm({ data, trigger }: FormDialogProps<Quest>) {
 
                     <div>
                         <Label>Skills</Label>
-                        <div className="grid grid-cols-2 gap-2 mt-2 max-h-40 overflow-y-auto">
-                            {skills.map((skill) => (
-                                <div
-                                    key={skill.id}
-                                    className="flex items-center gap-2"
-                                >
-                                    <Checkbox
-                                        id={`skill-${skill.id}`}
-                                        checked={formData.selectedSkills.includes(
-                                            skill.id,
-                                        )}
-                                        onCheckedChange={(checked) =>
-                                            handleSkillChange(skill.id, checked)
-                                        }
-                                    />
-                                    <Label
-                                        htmlFor={`skill-${skill.id}`}
-                                        className="text-sm cursor-pointer"
+                        <div className="grid grid-cols-1 gap-2 mt-2 max-h-60 overflow-y-auto">
+                            {skills.map((skill) => {
+                                const selectedSkill =
+                                    formData.selectedSkills.find(
+                                        (s) => s.skill_id === skill.id,
+                                    );
+                                const isSelected = !!selectedSkill;
+                                return (
+                                    <div
+                                        key={skill.id}
+                                        className="flex items-center gap-2"
                                     >
-                                        {skill.name}
-                                    </Label>
-                                </div>
-                            ))}
+                                        <Checkbox
+                                            id={`skill-${skill.id}`}
+                                            checked={isSelected}
+                                            onCheckedChange={(checked) =>
+                                                handleSkillChange(
+                                                    skill.id,
+                                                    checked,
+                                                )
+                                            }
+                                        />
+                                        <Label
+                                            htmlFor={`skill-${skill.id}`}
+                                            className="text-sm cursor-pointer flex-1"
+                                        >
+                                            {skill.name}
+                                        </Label>
+                                        {isSelected && (
+                                            <Select
+                                                value={selectedSkill.importance}
+                                                onChange={(e) =>
+                                                    handleSkillImportanceChange(
+                                                        skill.id,
+                                                        e.target
+                                                            .value as (typeof SKILL_IMPORTANCE_LEVELS)[number],
+                                                    )
+                                                }
+                                                className="w-28 text-sm"
+                                            >
+                                                {SKILL_IMPORTANCE_LEVELS.map(
+                                                    (level) => (
+                                                        <option
+                                                            key={level}
+                                                            value={level}
+                                                        >
+                                                            {level
+                                                                .charAt(0)
+                                                                .toUpperCase() +
+                                                                level.slice(1)}
+                                                        </option>
+                                                    ),
+                                                )}
+                                            </Select>
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
 

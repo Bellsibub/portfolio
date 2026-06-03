@@ -1,3 +1,4 @@
+import { SkillDialog } from '@/components/features';
 import {
     Badge,
     Button,
@@ -13,13 +14,21 @@ import {
     SectionHeader,
     Separator,
 } from '@/components/ui';
+import { getIconComponent } from '@/lib/icons/reactIcons';
 import type { QuestWithImages } from '@/lib/react-query/useQuest';
+import type { Skill } from '@/lib/react-query/useQuests';
+import { useState } from 'react';
 
 type QuestDetailProps = {
     quest: QuestWithImages;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export const QuestDetail = ({ quest, ...props }: QuestDetailProps) => {
+    const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
+    const selectedIcon = selectedSkill
+        ? getIconComponent(selectedSkill.icon_name)
+        : null;
+
     return (
         <div className="flex flex-col gap-8 p-2.5" {...props}>
             <SectionHeader
@@ -31,19 +40,47 @@ export const QuestDetail = ({ quest, ...props }: QuestDetailProps) => {
             <Separator variant="accent" />
             <Card
                 variant="ghost"
-                className="flex-row flex-wrap lg:flex-nowrap gap-10"
+                className="flex-row flex-wrap lg:flex-nowrap gap-10 w-full"
             >
-                <div className="space-y-4">
+                <div className="flex flex-col gap-4 flex-[70%]">
                     <CardTitle>Summary</CardTitle>
                     <CardDescription>{quest.summary}</CardDescription>
                 </div>
-                <div className="space-y-4 shrink-0">
+                <div className="flex flex-col gap-4 w-full">
                     <CardTitle>Tech stack & links</CardTitle>
                     <CardContent className="flex flex-col gap-4">
-                        <div className="flex flex-wrap gap-2">
-                            {quest.quest_skills.map(({ skill }) => (
-                                <Badge key={skill.id}>{skill.name}</Badge>
-                            ))}
+                        <div className="flex flex-col gap-2">
+                            {[
+                                ['primary', 'default'] as const,
+                                ['secondary', 'outline'] as const,
+                                ['tertiary', 'secondary'] as const,
+                            ].map(([importance, variant]) => {
+                                const skills = quest.quest_skills.filter(
+                                    (s) =>
+                                        (s.skill_importance ?? 'secondary') ===
+                                        importance,
+                                );
+                                if (skills.length === 0) return null;
+                                return (
+                                    <div
+                                        key={importance}
+                                        className="flex flex-wrap gap-2"
+                                    >
+                                        {skills.map(({ skill }) => (
+                                            <Badge
+                                                key={skill.id}
+                                                variant={variant}
+                                                className="cursor-pointer hover:opacity-80 transition-opacity"
+                                                onClick={() =>
+                                                    setSelectedSkill(skill)
+                                                }
+                                            >
+                                                {skill.name}
+                                            </Badge>
+                                        ))}
+                                    </div>
+                                );
+                            })}
                         </div>
                         <div className="flex gap-4">
                             {quest.demo_link && (
@@ -87,6 +124,16 @@ export const QuestDetail = ({ quest, ...props }: QuestDetailProps) => {
                     <CardTitle>Reflections</CardTitle>
                     <CardDescription>{quest.reflections}</CardDescription>
                 </Card>
+            )}
+            {selectedSkill && (
+                <SkillDialog
+                    skill={selectedSkill}
+                    Icon={selectedIcon}
+                    open={selectedSkill !== null}
+                    onOpenChange={(open) => {
+                        if (!open) setSelectedSkill(null);
+                    }}
+                />
             )}
         </div>
     );

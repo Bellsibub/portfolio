@@ -1,6 +1,8 @@
 export { InventoryItem } from './InventoryItem';
 export type { Item } from './InventoryItem';
 
+export { SkillDialog } from './SkillDialog';
+
 export { Stats } from './Stats';
 export type { StatsProps, StatItem } from './Stats';
 

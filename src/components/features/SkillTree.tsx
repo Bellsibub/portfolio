@@ -9,18 +9,27 @@ type SkillTreeProps = {
     onDelete: (skill: Skill) => void;
 };
 
-function renderNode(skill: Skill, onDelete: (skill: Skill) => void) {
+function renderNode(
+    skill: Skill,
+    onDelete: (skill: Skill) => void,
+    equippedCount: number,
+) {
     return (
         <div key={skill.id} className="space-y-4 h-full">
             <Card className={cn('p-4 h-full')}>
                 <div className="flex flex-row gap-4 justify-between">
                     <div className="space-y-2">
                         <CardTitle>{skill.name}</CardTitle>
-                        <div className="flex flex-wrap gap-2 text-sm text-text-secondary"></div>
+                        <div className="flex flex-wrap gap-2 text-sm text-text-secondary">
+                            {skill.equipped && (
+                                <Badge variant="default">Equipped</Badge>
+                            )}
+                        </div>
                     </div>
                     <div className="flex gap-2 justify-end">
                         <SkillForm
                             data={skill}
+                            equippedCount={equippedCount}
                             trigger={
                                 <Button variant="outline" size="sm">
                                     Edit
@@ -61,9 +70,11 @@ export function SkillTree({ skills, onDelete }: SkillTreeProps) {
         );
     }
 
+    const equippedCount = skills.filter((s) => s.equipped).length;
+
     return (
         <div className="grid grid-cols-2 auto-rows-fr gap-4 items-stretch">
-            {skills.map((skill) => renderNode(skill, onDelete))}
+            {skills.map((skill) => renderNode(skill, onDelete, equippedCount))}
         </div>
     );
 }

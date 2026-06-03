@@ -3,18 +3,20 @@ import type { Tables } from '@/lib/supabase/types';
 import { useQuery } from '@tanstack/react-query';
 
 import { keys } from './keys';
-import type { Skill } from './useQuests';
+import type { QuestSkill } from './useQuests';
 
 export type QuestImage = Tables<'quest_images'>;
 export type QuestWithImages = Tables<'quests'> & {
     quest_images: QuestImage[];
-    quest_skills: { skill: Skill }[];
+    quest_skills: QuestSkill[];
 };
 
 async function fetchQuest(slug: string): Promise<QuestWithImages> {
     const { data, error } = await supabase
         .from('quests')
-        .select('*, quest_images(*), quest_skills(skill:skills(*))')
+        .select(
+            '*, quest_images(*), quest_skills(skill_importance, skill:skills(*))',
+        )
         .eq('slug', slug)
         .order('order', { referencedTable: 'quest_images' })
         .single();

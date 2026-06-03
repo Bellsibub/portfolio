@@ -16,6 +16,7 @@ function RouteComponent() {
     const { data: skills = [], isLoading } = useSkills();
     const deleteMutation = useDeleteSkill();
     const [deleteTarget, setDeleteTarget] = useState<Skill | null>(null);
+    const equippedCount = skills.filter((s) => s.equipped).length;
 
     if (isLoading) {
         return <div className="p-6">Loading skills...</div>;
@@ -43,6 +44,7 @@ function RouteComponent() {
                         </p>
                     </div>
                     <SkillForm
+                        equippedCount={equippedCount}
                         trigger={<Button variant="primary">Add Skill</Button>}
                     />
                 </div>

@@ -159,14 +159,17 @@ export type Database = {
                 Row: {
                     quest_id: string;
                     skill_id: string;
+                    skill_importance: Database['public']['Enums']['skill-importance'];
                 };
                 Insert: {
                     quest_id: string;
                     skill_id: string;
+                    skill_importance?: Database['public']['Enums']['skill-importance'];
                 };
                 Update: {
                     quest_id?: string;
                     skill_id?: string;
+                    skill_importance?: Database['public']['Enums']['skill-importance'];
                 };
                 Relationships: [
                     {
@@ -298,6 +301,7 @@ export type Database = {
                 | 'styling'
                 | 'tool'
                 | 'skill';
+            'skill-importance': 'primary' | 'secondary' | 'tertiary';
         };
         CompositeTypes: {
             [_ in never]: never;
@@ -445,6 +449,7 @@ export const Constants = {
                 'tool',
                 'skill',
             ],
+            'skill-importance': ['primary', 'secondary', 'tertiary'],
         },
     },
 } as const;

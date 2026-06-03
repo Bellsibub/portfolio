@@ -1,25 +1,28 @@
 import { InventoryItem, type Item } from '@/components/features';
-import { Card, SectionHeader, Separator } from '@/components/ui';
-import * as CustomIcons from '@/lib/icons/customIcons';
-import { type Skill, useQuests } from '@/lib/react-query/useQuests';
+import {
+    Card,
+    CardDescription,
+    CardTitle,
+    SectionHeader,
+    Separator,
+} from '@/components/ui';
+import { getIconComponent } from '@/lib/icons/reactIcons';
+import { type Quest, type Skill, useQuests } from '@/lib/react-query/useQuests';
 import { useSkills } from '@/lib/react-query/useSkills';
-import * as DeveloperIcons from 'developer-icons';
-
-const allIcons = {
-    ...DeveloperIcons,
-    ...CustomIcons,
-} as Record<string, React.ComponentType<{ className?: string }>>;
 
 type InventoryProps = {} & React.HTMLAttributes<HTMLDivElement>;
 
-function skillToItem(skill: Skill, isEquipped: boolean): Item {
-    const Icon = skill.icon_name
-        ? (allIcons[skill.icon_name] ?? undefined)
-        : undefined;
+function skillToItem(
+    skill: Skill,
+    isEquipped: boolean,
+    linkedQuests: Quest[],
+): Item {
+    const IconComponent = getIconComponent(skill.icon_name);
     return {
         ...skill,
-        Icon: Icon as Item['Icon'],
+        Icon: IconComponent ?? undefined,
         isEquipped,
+        linkedQuests,
     };
 }
 
@@ -30,22 +33,31 @@ export const Inventory = ({ ...props }: InventoryProps) => {
     const { data: quests } = useQuests();
     const { data: skills } = useSkills();
 
-    const hotbarSkillIds = new Set(
-        (quests ?? []).flatMap((q) => q.quest_skills.map((qs) => qs.skill.id)),
-    );
+    // Build a map of skill IDs to linked quests
+    const skillQuestsMap = new Map<string, Quest[]>();
+    for (const quest of quests ?? []) {
+        for (const { skill } of quest.quest_skills) {
+            if (!skillQuestsMap.has(skill.id)) {
+                skillQuestsMap.set(skill.id, []);
+            }
+            skillQuestsMap.get(skill.id)!.push(quest);
+        }
+    }
 
-    const hotbarSkills = (skills ?? []).filter((s) => hotbarSkillIds.has(s.id));
-    const inventorySkills = (skills ?? []).filter(
-        (s) => !hotbarSkillIds.has(s.id),
-    );
+    const hotbarSkills = (skills ?? []).filter((s) => s.equipped);
+    const inventorySkills = (skills ?? []).filter((s) => !s.equipped);
 
     const equippedItems: (Item | null)[] = [
-        ...hotbarSkills.map((s) => skillToItem(s, true)),
+        ...hotbarSkills.map((s) =>
+            skillToItem(s, true, skillQuestsMap.get(s.id) ?? []),
+        ),
         ...Array(Math.max(0, MAX_EQUIPPED - hotbarSkills.length)).fill(null),
     ].slice(0, MAX_EQUIPPED);
 
     const unequippedItems: (Item | null)[] = [
-        ...inventorySkills.map((s) => skillToItem(s, false)),
+        ...inventorySkills.map((s) =>
+            skillToItem(s, false, skillQuestsMap.get(s.id) ?? []),
+        ),
         ...Array(Math.max(0, MAX_UNEQUIPPED - inventorySkills.length)).fill(
             null,
         ),
@@ -62,11 +74,22 @@ export const Inventory = ({ ...props }: InventoryProps) => {
                     ))}
                 </div>
                 <Separator variant="accent" className="" />
-                {/* Hotbar — skills linked to at least one in-progress quest */}
-                <Card className="grid grid-cols-3 md:grid-cols-6 gap-2.5 p-2.5!">
-                    {equippedItems.map((item, index) => (
-                        <InventoryItem key={item?.id || index} item={item} />
-                    ))}
+                {/* Hotbar — most prominent and most used skills */}
+                <Card variant="accent" className="gap-4">
+                    <div className="flex flex-col gap-1">
+                        <CardTitle>Core Skills</CardTitle>
+                        <CardDescription>
+                            My most prominent and most used skills
+                        </CardDescription>
+                    </div>
+                    <div className="grid grid-cols-3 md:grid-cols-6 gap-2.5">
+                        {equippedItems.map((item, index) => (
+                            <InventoryItem
+                                key={item?.id || index}
+                                item={item}
+                            />
+                        ))}
+                    </div>
                 </Card>
             </div>
         </div>

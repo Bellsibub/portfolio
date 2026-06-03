@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { type VariantProps, cva } from 'class-variance-authority';
 
 export const BadgeVariants = cva(
-    'block caption px-3 py-1 rounded-lg border uppercase tracking-widest font-semibold',
+    'block caption rounded-lg border font-semibold',
     {
         variants: {
             variant: {
@@ -13,9 +13,14 @@ export const BadgeVariants = cva(
                 primary:
                     'border-transparent bg-primary text-background-primary',
             },
+            size: {
+                default: 'px-3 py-1 uppercase tracking-widest',
+                sm: 'px-2 py-0.5 text-xs',
+            },
         },
         defaultVariants: {
             variant: 'default',
+            size: 'default',
         },
     },
 );
@@ -23,11 +28,15 @@ export const BadgeVariants = cva(
 export const Badge = ({
     className,
     variant,
+    size,
     children,
     ...props
 }: React.ComponentProps<'div'> & VariantProps<typeof BadgeVariants>) => {
     return (
-        <div className={cn(BadgeVariants({ variant, className }))} {...props}>
+        <div
+            className={cn(BadgeVariants({ variant, size, className }))}
+            {...props}
+        >
             {children}
         </div>
     );

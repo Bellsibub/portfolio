@@ -1,20 +1,14 @@
-import { useIsMobile } from '@/lib/hooks/useIsMobile';
-import type { Skill } from '@/lib/react-query/useQuests';
+import type { Quest, Skill } from '@/lib/react-query/useQuests';
 import { cn } from '@/lib/utils';
 import { type VariantProps, cva } from 'class-variance-authority';
+import { useState } from 'react';
 
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger,
-} from '../ui';
+import { SkillDialog } from './SkillDialog';
 
 export interface Item extends Skill {
     Icon: React.ComponentType<{ className?: string }> | undefined | null;
     isEquipped: boolean;
+    linkedQuests?: Quest[];
 }
 
 export const InventoryItemVariants = cva(
@@ -46,7 +40,8 @@ export const InventoryItem = ({
     item,
     ...props
 }: InventoryItemProps) => {
-    const isMobile = useIsMobile();
+    const [open, setOpen] = useState(false);
+
     const resolvedVariant = !item
         ? 'empty'
         : item.isEquipped
@@ -58,11 +53,13 @@ export const InventoryItem = ({
             className={cn(
                 InventoryItemVariants({ variant: resolvedVariant, className }),
                 'group',
+                item ? 'cursor-pointer' : '',
             )}
+            onClick={() => item && setOpen(true)}
             {...props}
         >
             {item?.Icon && (
-                <item.Icon className="transition-[width,height] duration-500 ease-in-out size-14 group-hover:size-10 group-data-[state=open]:size-10" />
+                <item.Icon className="transition-[width,height] duration-500 ease-in-out size-14 group-hover:size-10" />
             )}
             {!item?.Icon && (
                 <span className="caption tracking-widest overflow-hidden">
@@ -72,22 +69,19 @@ export const InventoryItem = ({
         </div>
     );
 
-    if (!item?.name || !item?.Icon) return itemBox;
-
-    if (isMobile) {
-        return (
-            <Popover>
-                <PopoverTrigger asChild>{itemBox}</PopoverTrigger>
-                <PopoverContent side="top">{item.name}</PopoverContent>
-            </Popover>
-        );
-    }
+    if (!item) return itemBox;
 
     return (
-        <Tooltip delayDuration={1000}>
-            <TooltipTrigger asChild>{itemBox}</TooltipTrigger>
-            <TooltipContent side="top">{item.name}</TooltipContent>
-        </Tooltip>
+        <>
+            {itemBox}
+            <SkillDialog
+                skill={item}
+                Icon={item.Icon}
+                linkedQuests={item.linkedQuests}
+                open={open}
+                onOpenChange={setOpen}
+            />
+        </>
     );
 };
 

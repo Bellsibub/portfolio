@@ -97,3 +97,5 @@ export { Select } from './Select';
 export { Label } from './Label';
 
 export { Checkbox } from './Checkbox';
+
+export { IconSelect } from './IconSelect';
